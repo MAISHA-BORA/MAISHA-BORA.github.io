@@ -11,7 +11,7 @@ We are thrilled to officially launch the Maisha Bora Youth Foundation website! O
 
 ## Our Story
 
-"Maisha Bora" means "Better Life" in Swahili - and that's exactly what we're working to create for young people in our community. Founded on the belief that every teenager deserves the opportunity to thrive, we've developed comprehensive programs addressing the spiritual, social, and economic needs of youth aged 13-20.
+"Maisha Bora", We mean "Better Life" - and that's exactly what we're working to create for young people in our community. Founded on the belief that every teenager deserves the opportunity to thrive, we've developed comprehensive programs addressing the spiritual, social, and economic needs of youth aged 13-20.
 
 ## The Need
 

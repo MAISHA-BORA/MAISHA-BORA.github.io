@@ -310,4 +310,4 @@ Whether you give $5 or $5,000, your donation makes a real difference in the life
 
 ### Thank You for Your Generosity!
 
-*"Maisha Bora" means "Better Life" in Swahili. With your support, we're making that a reality for hundreds of teenagers each year.*
+*"Maisha Bora", We mean "Better Life". With your support, we're making that a reality for hundreds of teenagers each year.*

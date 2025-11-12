@@ -145,6 +145,6 @@ For information about the organization, programs, or donations, visit [Contact U
 
 ---
 
-**Maisha Bora** - "Better Life" in Swahili
+**Maisha Bora** - We mean "Better Life"
 
 *Transforming lives, one teenager at a time.*
