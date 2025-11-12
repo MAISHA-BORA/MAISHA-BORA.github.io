@@ -1,0 +1,26 @@
+<header class="site-header">
+  <div class="header-container">
+    <div class="logo-container">
+      <a href="{{ '/' | relative_url }}">
+        <img src="{{ '/photos/logo1.png' | relative_url }}" alt="Maisha Bora Youth Foundation Logo" class="site-logo">
+      </a>
+      <a href="{{ '/' | relative_url }}" class="site-title">
+        Maisha Bora Youth Foundation
+        <span class="tagline">Empowering Youth, Transforming Futures</span>
+      </a>
+    </div>
+    
+    <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">
+      ☰
+    </button>
+    
+    <nav class="main-navigation" role="navigation">
+      <a href="{{ '/' | relative_url }}">Home</a>
+      <a href="{{ '/about/' | relative_url }}">About</a>
+      <a href="{{ '/events/' | relative_url }}">Events</a>
+      <a href="{{ '/blog/' | relative_url }}">Blog</a>
+      <a href="{{ '/contact/' | relative_url }}">Contact</a>
+      <a href="{{ '/donate/' | relative_url }}" class="donate-link">Donate</a>
+    </nav>
+  </div>
+</header>
