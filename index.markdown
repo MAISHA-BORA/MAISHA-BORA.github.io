@@ -3,90 +3,694 @@ layout: page
 title: Home
 ---
 
-# Empowering Youth, Transforming Futures
+<!-- Hero Section -->
+<section class="hero">
+  <div class="hero-content">
+    <h1 class="hero-title">Empowering Youth, Transforming Futures</h1>
+    <p class="hero-subtitle">Building brighter tomorrows for teenagers in Karatu District, Tanzania</p>
+    <div class="hero-actions">
+      <a href="/about/" class="btn btn-primary">Learn More</a>
+      <a href="/donate/" class="btn btn-secondary">Donate Now</a>
+    </div>
+  </div>
+</section>
 
-## About Us
+<!-- About Section -->
+<section class="section section-light">
+  <div class="container">
+    <h2 class="section-title">About Us</h2>
+    <div class="about-content">
+      <div class="about-text">
+        <p>Maisha Bora Youth Foundation is dedicated to empowering teenagers in Karatu District, Mang'ola County, Tanzania with the skills, knowledge, and support they need to thrive. In a challenging environment where many young people face obstacles to education and opportunity, we provide a pathway to a brighter future.</p>
+        
+        <div class="impact-stats">
+          <div class="stat">
+            <span class="stat-number">25</span>
+            <span class="stat-label">Youth Reached Monthly</span>
+          </div>
+          <div class="stat">
+            <span class="stat-number">300</span>
+            <span class="stat-label">Youth Reached Annually</span>
+          </div>
+        </div>
+        
+        <a href="/about/" class="btn btn-outline">Learn More About Us</a>
+      </div>
+      <div class="about-image">
+        <!-- Add your image here -->
+        <div class="image-placeholder">Youth Empowerment Image</div>
+      </div>
+    </div>
+  </div>
+</section>
 
-Maisha Bora Youth Foundation is dedicated to empowering teenagers in Karatu District, Mang'ola County, Tanzania with the skills, knowledge, and support they need to thrive. In a challenging environment where many young people face obstacles to education and opportunity, we provide a pathway to a brighter future.
+<!-- Programs Section -->
+<section class="section section-dark">
+  <div class="container">
+    <h2 class="section-title">Our Programs</h2>
+    <div class="programs-grid">
+      <div class="program-card">
+        <div class="program-icon">
+          <!-- Add icon here -->
+          <span>👥</span>
+        </div>
+        <h3>Social Development</h3>
+        <ul>
+          <li><strong>Workshops & Mentorship:</strong> Interactive sessions on communication, conflict resolution, and teamwork</li>
+          <li><strong>Peer Support Networks:</strong> Connecting older teens with younger participants for guidance</li>
+          <li><strong>Resilience Building:</strong> Programs that encourage self-reflection, values exploration, and community engagement</li>
+          <li><strong>Spiritual Growth:</strong> Weekly sessions focusing on personal development and mindfulness</li>
+        </ul>
+      </div>
+      
+      <div class="program-card">
+        <div class="program-icon">
+          <!-- Add icon here -->
+          <span>💼</span>
+        </div>
+        <h3>Economic Empowerment</h3>
+        <ul>
+          <li><strong>English Language Skills:</strong> Essential communication for education and employment</li>
+          <li><strong>Basic Computer Skills:</strong> Technology literacy for the modern world</li>
+          <li><strong>Financial Literacy:</strong> Budgeting, saving, and investing education</li>
+          <li><strong>Entrepreneurship Training:</strong> Innovation and self-employment workshops</li>
+          <li><strong>Career Guidance:</strong> Job readiness, resume writing, and interview preparation</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
 
-We reach approximately **25 youth per month** and **300 per year** through comprehensive programs that foster spiritual, social, and economic development.
+<!-- Vision & Mission Section -->
+<section class="section section-accent">
+  <div class="container">
+    <div class="vision-mission-grid">
+      <div class="vision-card">
+        <h2>Our Vision</h2>
+        <p>A community where teenagers are holistically empowered to lead purposeful and fulfilling lives.</p>
+      </div>
+      <div class="mission-card">
+        <h2>Our Mission</h2>
+        <p>To provide comprehensive programs and resources that nurture teenagers' spiritual, social, and economic development, enabling them to pursue meaningful and fulfilling lives.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-[Learn More About Us](/about/)
+<!-- Challenges & Solutions Section -->
+<section class="section section-light">
+  <div class="container">
+    <h2 class="section-title">How We Change Children's Lives</h2>
+    <div class="challenges-solutions">
+      <div class="challenges">
+        <h3>The Challenges</h3>
+        <p>Teenagers living near Karatu District, Mang'ola County, Tanzania face a difficult environment causing many of them to drop out of school before completing their primary education. This in turn leads to:</p>
+        <ul class="challenges-list">
+          <li>Child pregnancies and early marriages</li>
+          <li>Abandonment by fathers</li>
+          <li>Young men drifting into drugs and theft</li>
+          <li>Sexual violence against teenagers</li>
+          <li>Economic hardship preventing school attendance</li>
+        </ul>
+      </div>
+      
+      <div class="solutions">
+        <h3>Our Solutions</h3>
+        <p>Recognizing the importance of a holistic approach, our initiative equips teenagers with:</p>
+        <div class="skills-grid">
+          <div class="skill-item">
+            <span class="checkmark">✓</span>
+            <span>English Language Skills</span>
+          </div>
+          <div class="skill-item">
+            <span class="checkmark">✓</span>
+            <span>Basic Computer Skills</span>
+          </div>
+          <div class="skill-item">
+            <span class="checkmark">✓</span>
+            <span>Reading and Writing</span>
+          </div>
+          <div class="skill-item">
+            <span class="checkmark">✓</span>
+            <span>Financial Literacy</span>
+          </div>
+          <div class="skill-item">
+            <span class="checkmark">✓</span>
+            <span>Entrepreneurship</span>
+          </div>
+        </div>
+        <p class="goal-text">Our ultimate goal is to help these children improve their lives by preparing them to continue their education in secondary or technical school, helping them find local employment, or pursuing careers in the military.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
----
+<!-- How to Help Section -->
+<section class="section section-dark">
+  <div class="container">
+    <h2 class="section-title">How You Can Help</h2>
+    <div class="help-options">
+      <div class="help-card">
+        <div class="help-icon">🤝</div>
+        <h3>Volunteer</h3>
+        <p>Share your skills and time with young people who need mentorship and guidance.</p>
+      </div>
+      
+      <div class="help-card">
+        <div class="help-icon">💝</div>
+        <h3>Donate</h3>
+        <p>Your financial support helps us provide programs, resources, and opportunities to teenagers in need.</p>
+      </div>
+      
+      <div class="help-card">
+        <div class="help-icon">🌟</div>
+        <h3>Become a Mentor</h3>
+        <p>Make a lasting impact by guiding a young person on their journey to success.</p>
+      </div>
+    </div>
+    
+    <div class="help-actions">
+      <a href="/contact/" class="btn btn-primary">Contact Us</a>
+      <a href="/donate/" class="btn btn-secondary">Make a Donation</a>
+    </div>
+  </div>
+</section>
 
-## Our Programs
+<!-- Outcomes Section -->
+<section class="section section-light">
+  <div class="container">
+    <h2 class="section-title">Expected Outcomes</h2>
+    <div class="outcomes-grid">
+      <div class="outcome-item">
+        <span class="outcome-icon">🎯</span>
+        <p>Increased self-awareness and purpose among teenagers</p>
+      </div>
+      <div class="outcome-item">
+        <span class="outcome-icon">👥</span>
+        <p>Improved social skills and stronger peer relationships</p>
+      </div>
+      <div class="outcome-item">
+        <span class="outcome-icon">📈</span>
+        <p>Enhanced economic literacy and career preparedness</p>
+      </div>
+      <div class="outcome-item">
+        <span class="outcome-icon">🏘️</span>
+        <p>Greater community engagement and social responsibility</p>
+      </div>
+      <div class="outcome-item">
+        <span class="outcome-icon">🛡️</span>
+        <p>Reduced child pregnancies, early marriages, and youth delinquency</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-### Social Development
-- **Workshops & Mentorship**: Interactive sessions on communication, conflict resolution, and teamwork
-- **Peer Support Networks**: Connecting older teens with younger participants for guidance
-- **Resilience Building**: Programs that encourage self-reflection, values exploration, and community engagement
-- **Spiritual Growth**: Weekly sessions focusing on personal development and mindfulness
+<!-- CTA Section -->
+<section class="cta-section">
+  <div class="container">
+    <h2>Join Us in Transforming Lives</h2>
+    <p>Together, we can empower the next generation of leaders in Tanzania. Every contribution, whether time or resources, makes a difference in the life of a young person.</p>
+    <div class="cta-actions">
+      <a href="/contact/" class="btn btn-primary">Get Involved</a>
+      <a href="/donate/" class="btn btn-secondary">Support Our Mission</a>
+    </div>
+  </div>
+</section>
 
-### Economic Empowerment
-- **English Language Skills**: Essential communication for education and employment
-- **Basic Computer Skills**: Technology literacy for the modern world
-- **Financial Literacy**: Budgeting, saving, and investing education
-- **Entrepreneurship Training**: Innovation and self-employment workshops
-- **Career Guidance**: Job readiness, resume writing, and interview preparation
+<style>
+/* Base Styles */
+:root {
+  --primary-color: #2c5530;
+  --secondary-color: #4a7c59;
+  --accent-color: #8fb996;
+  --light-color: #f8f9fa;
+  --dark-color: #343a40;
+  --text-color: #333;
+  --text-light: #6c757d;
+}
 
----
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-## Our Vision & Mission
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  color: var(--text-color);
+}
 
-**Vision:** A community where teenagers are holistically empowered to lead purposeful and fulfilling lives.
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
 
-**Mission:** To provide comprehensive programs and resources that nurture teenagers' spiritual, social, and economic development, enabling them to pursue meaningful and fulfilling lives.
+/* Section Styles */
+.section {
+  padding: 80px 0;
+}
 
----
+.section-light {
+  background-color: var(--light-color);
+}
 
-## How We Change Children's Lives
+.section-dark {
+  background-color: var(--dark-color);
+  color: white;
+}
 
-Teenagers living near Karatu District, Mang'ola County, Tanzania face a difficult environment causing many of them to drop out of school before completing their primary education. This in turn leads to:
+.section-accent {
+  background-color: var(--accent-color);
+  color: var(--text-color);
+}
 
-- Child pregnancies and early marriages
-- Abandonment by fathers
-- Young men drifting into drugs and theft
-- Sexual violence against teenagers
-- Economic hardship preventing school attendance
+.section-title {
+  text-align: center;
+  margin-bottom: 50px;
+  font-size: 2.5rem;
+  position: relative;
+}
 
-Recognizing the importance of a holistic approach, our initiative equips teenagers with:
+.section-title::after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 4px;
+  background-color: var(--primary-color);
+  margin: 15px auto;
+}
 
-✓ **English Language Skills**  
-✓ **Basic Computer Skills**  
-✓ **Reading and Writing**  
-✓ **Financial Literacy**  
-✓ **Entrepreneurship**
+.section-dark .section-title::after {
+  background-color: var(--accent-color);
+}
 
-Our ultimate goal is to help these children improve their lives by preparing them to continue their education in secondary or technical school, helping them find local employment, or pursuing careers in the military.
+/* Hero Section */
+.hero {
+  background: linear-gradient(rgba(44, 85, 48, 0.8), rgba(44, 85, 48, 0.8)), url('/assets/images/hero-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  color: white;
+  padding: 120px 0;
+  text-align: center;
+}
 
----
+.hero-content {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
 
-## How You Can Help
+.hero-title {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  line-height: 1.2;
+}
 
-### Volunteer
-Share your skills and time with young people who need mentorship and guidance.
+.hero-subtitle {
+  font-size: 1.5rem;
+  margin-bottom: 40px;
+  opacity: 0.9;
+}
 
-### Donate
-Your financial support helps us provide programs, resources, and opportunities to teenagers in need.
+.hero-actions {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
 
-### Become a Mentor
-Make a lasting impact by guiding a young person on their journey to success.
+/* Button Styles */
+.btn {
+  display: inline-block;
+  padding: 12px 30px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+  cursor: pointer;
+}
 
-[Contact Us](/contact/) | [Make a Donation](/donate/)
+.btn-primary {
+  background-color: var(--primary-color);
+  color: white;
+}
 
----
+.btn-primary:hover {
+  background-color: #1e3a22;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
 
-## Expected Outcomes
+.btn-secondary {
+  background-color: transparent;
+  color: white;
+  border: 2px solid white;
+}
 
-- Increased self-awareness and purpose among teenagers
-- Improved social skills and stronger peer relationships
-- Enhanced economic literacy and career preparedness
-- Greater community engagement and social responsibility
-- Reduced child pregnancies, early marriages, and youth delinquency
+.btn-secondary:hover {
+  background-color: white;
+  color: var(--primary-color);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
 
----
+.btn-outline {
+  background-color: transparent;
+  color: var(--primary-color);
+  border: 2px solid var(--primary-color);
+}
 
-### Join Us in Transforming Lives
+.btn-outline:hover {
+  background-color: var(--primary-color);
+  color: white;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
 
-Together, we can empower the next generation of leaders in Tanzania. Every contribution, whether time or resources, makes a difference in the life of a young person.
+/* About Section */
+.about-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+  align-items: center;
+}
+
+.about-text p {
+  margin-bottom: 30px;
+  font-size: 1.1rem;
+}
+
+.impact-stats {
+  display: flex;
+  gap: 30px;
+  margin: 30px 0;
+}
+
+.stat {
+  text-align: center;
+}
+
+.stat-number {
+  display: block;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  color: var(--text-light);
+}
+
+.about-image {
+  height: 400px;
+  background-color: #e9ecef;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-light);
+}
+
+/* Programs Section */
+.programs-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+}
+
+.program-card {
+  background-color: white;
+  border-radius: 10px;
+  padding: 30px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+  color: var(--text-color);
+}
+
+.program-card:hover {
+  transform: translateY(-10px);
+}
+
+.program-icon {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.program-card h3 {
+  margin-bottom: 20px;
+  color: var(--primary-color);
+  font-size: 1.5rem;
+}
+
+.program-card ul {
+  list-style-type: none;
+}
+
+.program-card li {
+  margin-bottom: 10px;
+  padding-left: 20px;
+  position: relative;
+}
+
+.program-card li::before {
+  content: '•';
+  color: var(--accent-color);
+  font-weight: bold;
+  position: absolute;
+  left: 0;
+}
+
+/* Vision & Mission Section */
+.vision-mission-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+}
+
+.vision-card, .mission-card {
+  background-color: white;
+  border-radius: 10px;
+  padding: 30px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.vision-card h2, .mission-card h2 {
+  color: var(--primary-color);
+  margin-bottom: 20px;
+  font-size: 1.8rem;
+}
+
+/* Challenges & Solutions Section */
+.challenges-solutions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+}
+
+.challenges, .solutions {
+  padding: 30px;
+  border-radius: 10px;
+}
+
+.challenges {
+  background-color: #f8d7da;
+  border-left: 5px solid #dc3545;
+}
+
+.solutions {
+  background-color: #d1edff;
+  border-left: 5px solid #007bff;
+}
+
+.challenges h3, .solutions h3 {
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+}
+
+.challenges-list {
+  list-style-type: none;
+  margin-top: 15px;
+}
+
+.challenges-list li {
+  margin-bottom: 10px;
+  padding-left: 20px;
+  position: relative;
+}
+
+.challenges-list li::before {
+  content: '⚠';
+  position: absolute;
+  left: 0;
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.skill-item {
+  display: flex;
+  align-items: center;
+}
+
+.checkmark {
+  color: #28a745;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.goal-text {
+  margin-top: 20px;
+  font-style: italic;
+}
+
+/* How to Help Section */
+.help-options {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  margin-bottom: 50px;
+}
+
+.help-card {
+  text-align: center;
+  padding: 30px 20px;
+  background-color: rgba(255,255,255,0.1);
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+}
+
+.help-card:hover {
+  transform: translateY(-10px);
+}
+
+.help-icon {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+.help-card h3 {
+  margin-bottom: 15px;
+  font-size: 1.5rem;
+}
+
+.help-actions {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+/* Outcomes Section */
+.outcomes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+}
+
+.outcome-item {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.outcome-icon {
+  font-size: 2rem;
+  margin-right: 20px;
+}
+
+/* CTA Section */
+.cta-section {
+  background: linear-gradient(rgba(44, 85, 48, 0.9), rgba(44, 85, 48, 0.9)), url('/assets/images/cta-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  color: white;
+  padding: 100px 0;
+  text-align: center;
+}
+
+.cta-section h2 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.cta-section p {
+  font-size: 1.2rem;
+  max-width: 700px;
+  margin: 0 auto 40px;
+  opacity: 0.9;
+}
+
+.cta-actions {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+  .about-content,
+  .programs-grid,
+  .vision-mission-grid,
+  .challenges-solutions,
+  .help-options {
+    grid-template-columns: 1fr;
+  }
+  
+  .hero-title {
+    font-size: 2.5rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 60px 0;
+  }
+  
+  .impact-stats {
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .hero-actions,
+  .help-actions,
+  .cta-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .btn {
+    width: 100%;
+    max-width: 300px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 576px) {
+  .hero-title {
+    font-size: 2rem;
+  }
+  
+  .section-title {
+    font-size: 2rem;
+  }
+  
+  .outcomes-grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
