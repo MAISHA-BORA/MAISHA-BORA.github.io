@@ -5,9 +5,9 @@ permalink: /blog/
 ---
 
 <!-- Hero Section -->
-<section class="blog-hero">
-    <div class="container">
-        <div class="hero-content">
+<section class="blog-hero" >
+    <div class="container" >
+        <div class="hero-content" >
             <h1 class="hero-title">Latest News & Updates</h1>
             <p class="hero-subtitle">Stay informed about our programs, success stories, and the impact we're making in the lives of teenagers in Karatu District.</p>
         </div>

@@ -5,7 +5,7 @@ permalink: /about/
 ---
 
 <!-- Hero Section -->
-<section class="about-hero">
+<section class="about-hero" >
     <div class="container">
         <div class="hero-content">
             <h1 class="hero-title">Maisha Bora Youth Foundation</h1>
@@ -20,8 +20,11 @@ permalink: /about/
         <div class="content-grid">
             <div class="content-text">
                 <h2 class="section-title">Who We Are</h2>
-                <p class="lead-text">Maisha Bora Youth Foundation is a comprehensive youth development organization serving teenagers aged 13-20 years in Karatu District, Mang'ola County, Tanzania.</p>
-                <p>Founded on the belief that every young person deserves the opportunity to thrive, we work tirelessly to break the cycle of poverty and disadvantage through holistic programming.</p>
+                <p class="lead-text">In today’s rapidly changing world, teenagers face numerous challenges that impact their overall well-being. </p>
+                <p>Recognizing the importance of a holistic approach to development, our initiative aims to equip teenagers with the necessary tools, resources, and support systems that foster their spiritual, social, and economic growth. </p>
+                <p>This concept note outlines our proposed programs and the expected impact on the target demographic. Teenagers, according to our environment in Tanzania at ​​Karatu district in Mang’ola County, due to the difficult environment, lack the basics of a better life, which has led to child pregnancies and early marriages. It leads to abandonment by their husbands and brings danger to the mother and the child. </p>
+                <p>This difficult environment for young people leads to sexual violence against teenagers within our community, as well as for young men to get into drugs such as marijuana smoking and theft. This is due to their families having a difficult economic situation and lack of money to pay school fees and develop themselves academically.</p>
+                
                 
                 <div class="target-audience">
                     <h3>Our Reach</h3>

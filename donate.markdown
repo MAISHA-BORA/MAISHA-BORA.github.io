@@ -1,6 +1,5 @@
 ---
 layout: page
-title: Support Us
 permalink: /donate/
 ---
 
@@ -9,14 +8,104 @@ permalink: /donate/
     <div class="container">
         <div class="hero-content">
             <h1 class="hero-title">Make a Difference Today</h1>
-            <p class="hero-subtitle">Your support can transform the life of a teenager in Karatu District, Tanzania. Every contribution helps us provide comprehensive programs that empower young people to overcome obstacles and build brighter futures.</p>
+            <p class="hero-subtitle" >Your support can transform the life of a teenager in Karatu District, Tanzania. Every contribution helps us provide comprehensive programs that empower young people to overcome obstacles and build brighter futures.</p>
             <div class="hero-actions">
-                <a href="#donate-options" class="btn btn-primary">Donate Now</a>
+                <a href="#donate-section" class="btn btn-primary">Donate Now</a>
                 <a href="#impact" class="btn btn-secondary">See Your Impact</a>
             </div>
         </div>
     </div>
 </section>
+
+<!-- Impact of Your Donation Section -->
+<section class="section section-brand" id="donate-section">
+    <div class="container">
+        <h2 class="section-title">Impact of Your Donation</h2>
+        <p class="section-intro">See exactly how your generosity transforms lives in Karatu District</p>
+        <div class="donation-tiers">
+            <div class="tier-card">
+                <div class="tier-amount">$25</div>
+                <h3 class="tier-title">Basic Supplies</h3>
+                <div class="tier-icon">📚</div>
+                <ul class="tier-benefits">
+                    <li>Educational materials for one student for one month</li>
+                    <li>Notebooks, pens, and learning resources</li>
+                </ul>
+                <button class="tier-donate-btn" data-amount="25">Donate $25</button>
+            </div>
+            <div class="tier-card popular">
+                <div class="popular-badge">Most Popular</div>
+                <div class="tier-amount">$50</div>
+                <h3 class="tier-title">Computer Training</h3>
+                <div class="tier-icon">💻</div>
+                <ul class="tier-benefits">
+                    <li>One student's participation in an 8-week computer skills course</li>
+                    <li>Access to technology and digital literacy</li>
+                </ul>
+                <button class="tier-donate-btn" data-amount="50">Donate $50</button>
+            </div>
+            <div class="tier-card">
+                <div class="tier-amount">$100</div>
+                <h3 class="tier-title">English Language Program</h3>
+                <div class="tier-icon">🗣️</div>
+                <ul class="tier-benefits">
+                    <li>One student's enrollment in a 12-week English course</li>
+                    <li>Communication skills for education and employment</li>
+                </ul>
+                <button class="tier-donate-btn" data-amount="100">Donate $100</button>
+            </div>
+            <div class="tier-card">
+                <div class="tier-amount">$250</div>
+                <h3 class="tier-title">Mentorship Program</h3>
+                <div class="tier-icon">🤝</div>
+                <ul class="tier-benefits">
+                    <li>Connect one teenager with a mentor for six months</li>
+                    <li>Regular guidance and personal development support</li>
+                </ul>
+                <button class="tier-donate-btn" data-amount="250">Donate $250</button>
+            </div>
+        </div>
+        <div class="additional-tiers">
+            <div class="additional-tier">
+                <div class="tier-info">
+                    <span class="tier-amount-lg">$500</span>
+                    <span class="tier-desc">Entrepreneurship Training for 10 teenagers</span>
+                </div>
+                <button class="tier-donate-btn outline" data-amount="500">Select</button>
+            </div>
+            <div class="additional-tier">
+                <div class="tier-info">
+                    <span class="tier-amount-lg">$1,000</span>
+                    <span class="tier-desc">Full year of programming for 4 teenagers</span>
+                </div>
+                <button class="tier-donate-btn outline" data-amount="1000">Select</button>
+            </div>
+            <div class="additional-tier">
+                <div class="tier-info">
+                    <span class="tier-amount-lg">$2,500</span>
+                    <span class="tier-desc">Community Workshop for 50+ participants</span>
+                </div>
+                <button class="tier-donate-btn outline" data-amount="2500">Select</button>
+            </div>
+            <div class="additional-tier">
+                <div class="tier-info">
+                    <span class="tier-amount-lg">$5,000</span>
+                    <span class="tier-desc">Facility Support and equipment upgrades</span>
+                </div>
+                <button class="tier-donate-btn outline" data-amount="5000">Select</button>
+            </div>
+        </div>
+        <div class="custom-amount">
+            <h3>Or give any amount that feels right for you</h3>
+            <div class="custom-amount-input">
+                <span class="currency">$</span>
+                <input type="number" placeholder="Enter amount" class="amount-input" min="1">
+                <button class="custom-donate-btn">Donate Now</button>
+            </div>
+        </div>
+    </div>
+</section>
+
 
 <!-- Why Support Matters Section -->
 <section class="section section-light" id="impact">
@@ -54,8 +143,7 @@ permalink: /donate/
                         <span>Sexual violence and exploitation</span>
                     </div>
                 </div>
-            </div>
-            
+            </div> 
             <div class="solution-card">
                 <div class="card-header solution">
                     <h3>The Solution</h3>
@@ -111,106 +199,11 @@ permalink: /donate/
     </div>
 </section>
 
-<!-- Impact of Your Donation Section -->
-<section class="section section-brand">
-    <div class="container">
-        <h2 class="section-title">Impact of Your Donation</h2>
-        <p class="section-intro">See exactly how your generosity transforms lives in Karatu District</p>
-        
-        <div class="donation-tiers">
-            <div class="tier-card">
-                <div class="tier-amount">$25</div>
-                <h3 class="tier-title">Basic Supplies</h3>
-                <div class="tier-icon">📚</div>
-                <ul class="tier-benefits">
-                    <li>Educational materials for one student for one month</li>
-                    <li>Notebooks, pens, and learning resources</li>
-                </ul>
-                <button class="tier-donate-btn" data-amount="25">Donate $25</button>
-            </div>
-            
-            <div class="tier-card popular">
-                <div class="popular-badge">Most Popular</div>
-                <div class="tier-amount">$50</div>
-                <h3 class="tier-title">Computer Training</h3>
-                <div class="tier-icon">💻</div>
-                <ul class="tier-benefits">
-                    <li>One student's participation in an 8-week computer skills course</li>
-                    <li>Access to technology and digital literacy</li>
-                </ul>
-                <button class="tier-donate-btn" data-amount="50">Donate $50</button>
-            </div>
-            
-            <div class="tier-card">
-                <div class="tier-amount">$100</div>
-                <h3 class="tier-title">English Language Program</h3>
-                <div class="tier-icon">🗣️</div>
-                <ul class="tier-benefits">
-                    <li>One student's enrollment in a 12-week English course</li>
-                    <li>Communication skills for education and employment</li>
-                </ul>
-                <button class="tier-donate-btn" data-amount="100">Donate $100</button>
-            </div>
-            
-            <div class="tier-card">
-                <div class="tier-amount">$250</div>
-                <h3 class="tier-title">Mentorship Program</h3>
-                <div class="tier-icon">🤝</div>
-                <ul class="tier-benefits">
-                    <li>Connect one teenager with a mentor for six months</li>
-                    <li>Regular guidance and personal development support</li>
-                </ul>
-                <button class="tier-donate-btn" data-amount="250">Donate $250</button>
-            </div>
-        </div>
-        
-        <div class="additional-tiers">
-            <div class="additional-tier">
-                <div class="tier-info">
-                    <span class="tier-amount-lg">$500</span>
-                    <span class="tier-desc">Entrepreneurship Training for 10 teenagers</span>
-                </div>
-                <button class="tier-donate-btn outline" data-amount="500">Select</button>
-            </div>
-            <div class="additional-tier">
-                <div class="tier-info">
-                    <span class="tier-amount-lg">$1,000</span>
-                    <span class="tier-desc">Full year of programming for 4 teenagers</span>
-                </div>
-                <button class="tier-donate-btn outline" data-amount="1000">Select</button>
-            </div>
-            <div class="additional-tier">
-                <div class="tier-info">
-                    <span class="tier-amount-lg">$2,500</span>
-                    <span class="tier-desc">Community Workshop for 50+ participants</span>
-                </div>
-                <button class="tier-donate-btn outline" data-amount="2500">Select</button>
-            </div>
-            <div class="additional-tier">
-                <div class="tier-info">
-                    <span class="tier-amount-lg">$5,000</span>
-                    <span class="tier-desc">Facility Support and equipment upgrades</span>
-                </div>
-                <button class="tier-donate-btn outline" data-amount="5000">Select</button>
-            </div>
-        </div>
-        
-        <div class="custom-amount">
-            <h3>Or give any amount that feels right for you</h3>
-            <div class="custom-amount-input">
-                <span class="currency">$</span>
-                <input type="number" placeholder="Enter amount" class="amount-input" min="1">
-                <button class="custom-donate-btn">Donate Now</button>
-            </div>
-        </div>
-    </div>
-</section>
 
 <!-- Ways to Give Section -->
 <section class="section section-light" id="donate-options">
     <div class="container">
         <h2 class="section-title">Ways to Give</h2>
-        
         <div class="giving-options">
             <div class="giving-option">
                 <div class="option-icon">💳</div>
@@ -220,13 +213,11 @@ permalink: /donate/
                     <button class="option-btn primary">Give Once</button>
                 </div>
             </div>
-            
             <div class="giving-option featured">
                 <div class="featured-badge">Most Impactful</div>
                 <div class="option-icon">🔄</div>
                 <h3>Monthly Giving</h3>
                 <p>Join our <strong>Maisha Bora Champions</strong> with a recurring monthly donation and provide consistent, reliable support.</p>
-                
                 <div class="monthly-levels">
                     <div class="monthly-level">
                         <span class="level-amount">$10/month</span>
@@ -249,12 +240,10 @@ permalink: /donate/
                         <span class="level-name">Visionary Circle</span>
                     </div>
                 </div>
-                
                 <div class="option-actions">
                     <button class="option-btn primary">Become a Monthly Donor</button>
                 </div>
-            </div>
-            
+            </div>            
             <div class="giving-option">
                 <div class="option-icon">🎁</div>
                 <h3>In-Kind Donations</h3>
@@ -271,7 +260,6 @@ permalink: /donate/
 <section class="section section-dark">
     <div class="container">
         <h2 class="section-title">How to Donate</h2>
-        
         <div class="payment-methods">
             <div class="payment-method">
                 <div class="method-icon">🏦</div>
@@ -284,7 +272,6 @@ permalink: /donate/
                     <p><strong>Branch:</strong> [Branch Name], Tanzania</p>
                 </div>
             </div>
-            
             <div class="payment-method">
                 <div class="method-icon">📱</div>
                 <h3>Mobile Money (M-Pesa)</h3>
@@ -293,7 +280,6 @@ permalink: /donate/
                     <p><strong>Name:</strong> Maisha Bora Youth Foundation</p>
                 </div>
             </div>
-            
             <div class="payment-method">
                 <div class="method-icon">🌍</div>
                 <h3>International Transfer</h3>
@@ -301,7 +287,6 @@ permalink: /donate/
                     <p>For international donors, please contact us at <strong>donations@maishabora.org</strong> for the best transfer method to minimize fees.</p>
                 </div>
             </div>
-            
             <div class="payment-method">
                 <div class="method-icon">✉️</div>
                 <h3>Check/Cheque</h3>
@@ -314,7 +299,6 @@ permalink: /donate/
                 </div>
             </div>
         </div>
-        
         <div class="online-donation-notice">
             <div class="notice-icon">🚀</div>
             <div class="notice-content">
@@ -332,13 +316,11 @@ permalink: /donate/
             <div class="sponsorship-content">
                 <h2>Sponsor a Student</h2>
                 <p class="sponsorship-intro">Change one teenager's life with a personal sponsorship</p>
-                
                 <div class="sponsorship-card">
                     <div class="sponsorship-header">
                         <div class="sponsorship-amount">$50/month</div>
                         <div class="sponsorship-badge">Full Student Sponsorship</div>
                     </div>
-                    
                     <div class="sponsorship-benefits">
                         <h4>Includes:</h4>
                         <div class="benefits-grid">
@@ -364,17 +346,15 @@ permalink: /donate/
                             </div>
                         </div>
                     </div>
-                    
                     <div class="sponsorship-actions">
                         <button class="btn btn-primary">Become a Sponsor</button>
                         <a href="/contact/" class="btn btn-outline">Learn More</a>
                     </div>
                 </div>
             </div>
-            
             <div class="sponsorship-image">
                 <div class="image-placeholder">
-                    <span>Student Success Story Image</span>
+                    <img src="/photos/children.jpg" alt="Youth Empowering Image" width="500px"> 
                 </div>
             </div>
         </div>
@@ -567,7 +547,7 @@ body {
 
 .section-dark .section-title::after,
 .section-brand .section-title::after {
-    background-color: var(--accent-color);
+    background-color: var(--light-color);
 }
 
 .section-intro {
@@ -580,12 +560,13 @@ body {
 
 /* Hero Section */
 .donate-hero {
-    background: linear-gradient(rgba(44, 85, 48, 0.85), rgba(44, 85, 48, 0.85)), url('/assets/images/donate-hero.jpg');
+    background-image: url("/photos/janjaro.jpg");
     background-size: cover;
     background-position: center;
     color: white;
     padding: 120px 0;
     text-align: center;
+    
 }
 
 .hero-title {
@@ -600,6 +581,7 @@ body {
     max-width: 700px;
     margin: 0 auto 40px;
     line-height: 1.6;
+    color: white;
 }
 
 .hero-actions {
@@ -719,7 +701,7 @@ body {
 }
 
 .tier-card {
-    background: white;
+    background: rgba(132, 231, 18, 0.1);
     border-radius: 15px;
     padding: 30px;
     text-align: center;
@@ -734,7 +716,7 @@ body {
 }
 
 .tier-card.popular {
-    border: 3px solid var(--accent-color);
+    border: 3px solid var(--light-color);
     transform: scale(1.05);
 }
 
@@ -773,6 +755,10 @@ body {
     list-style: none;
     margin-bottom: 25px;
     text-align: left;
+    color: black;
+    background-color: white;
+    padding: 20px;
+    margin: 20px;
 }
 
 .tier-benefits li {
@@ -1147,7 +1133,7 @@ body {
 }
 
 .sponsorship-image {
-    height: 500px;
+    height: 700px;
     background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
     border-radius: 15px;
     display: flex;

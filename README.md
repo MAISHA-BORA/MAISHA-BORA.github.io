@@ -18,12 +18,12 @@ A community where teenagers are holistically empowered to lead purposeful and fu
 
 ### Pages
 
-- **Home (`index.markdown`)** - Main landing page with overview of programs and mission
-- **About (`about.markdown`)** - Comprehensive information about the organization, programs, and impact
-- **Events (`events.markdown`)** - Calendar of weekly programs, monthly workshops, and special events
-- **Contact (`contact.markdown`)** - Contact information, office hours, and ways to reach us
-- **Donate (`donate.markdown`)** - Ways to support the organization financially and through other means
-- **Blog (`blog.markdown`)** - Blog listing page for news and updates
+- **Home (`index.html`)** - Main landing page with overview of programs and mission
+- **About (`about.html`)** - Comprehensive information about the organization, programs, and impact
+- **Events (`events.html`)** - Calendar of weekly programs, monthly workshops, and special events
+- **Contact (`contact.html`)** - Contact information, office hours, and ways to reach us
+- **Donate (`donate.html`)** - Ways to support the organization financially and through other means
+- **Blog (`blog.html`)** - Blog listing page for news and updates
 
 ### Blog Posts
 
