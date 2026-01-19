@@ -354,7 +354,7 @@ permalink: /donate/
             </div>
             <div class="sponsorship-image">
                 <div class="image-placeholder">
-                    <img src="/photos/dirishani.jpg" alt="Youth Empowering Image" height="550px" width="300px">
+                    <img src="/photos/dirishani.jpg" alt="Youth Empowering Image" height="550px" width="800px">
                 </div>
             </div>
         </div>
@@ -1075,6 +1075,7 @@ body {
     border-radius: 15px;
     overflow: hidden;
     box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+    width: 500px;
 }
 
 .sponsorship-header {
