@@ -354,7 +354,7 @@ permalink: /donate/
             </div>
             <div class="sponsorship-image">
                 <div class="image-placeholder">
-                    <img src="/photos/children.jpg" alt="Youth Empowering Image" width="500px"> 
+                    <img src="/photos/dirishani.jpg" alt="Youth Empowering Image" height="550px" width="300px">
                 </div>
             </div>
         </div>
@@ -1133,7 +1133,7 @@ body {
 }
 
 .sponsorship-image {
-    height: 700px;
+    height: 600px;
     background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
     border-radius: 15px;
     display: flex;
