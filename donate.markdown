@@ -106,7 +106,6 @@ permalink: /donate/
     </div>
 </section>
 
-
 <!-- Why Support Matters Section -->
 <section class="section section-light" id="impact">
     <div class="container">
@@ -198,7 +197,6 @@ permalink: /donate/
         </div>
     </div>
 </section>
-
 
 <!-- Ways to Give Section -->
 <section class="section section-light" id="donate-options">
@@ -366,7 +364,6 @@ permalink: /donate/
     <div class="container">
         <h2 class="section-title">Transparency & Accountability</h2>
         <p class="section-intro">We are committed to using your donations responsibly and effectively</p>
-        
         <div class="transparency-content">
             <div class="allocation-chart">
                 <h3>How We Use Your Donations</h3>
@@ -408,7 +405,6 @@ permalink: /donate/
                     </div>
                 </div>
             </div>
-            
             <div class="transparency-details">
                 <div class="detail-item">
                     <h4>Financial Reports</h4>
@@ -433,7 +429,6 @@ permalink: /donate/
         <div class="cta-content">
             <h2>Every Gift Matters</h2>
             <p>Whether you give $5 or $5,000, your donation makes a real difference in the life of a teenager who deserves a chance at a better future.</p>
-            
             <div class="impact-grid">
                 <div class="impact-item">
                     <span class="impact-icon">✓</span>
@@ -460,13 +455,11 @@ permalink: /donate/
                     <span>Transform lives</span>
                 </div>
             </div>
-            
             <div class="cta-actions">
                 <a href="#donate-options" class="btn btn-primary">Make a Donation</a>
                 <a href="/contact/" class="btn btn-secondary">Contact Us</a>
                 <a href="/" class="btn btn-outline">Learn About Programs</a>
             </div>
-            
             <div class="organization-signature">
                 <h3>Maisha Bora Youth Foundation</h3>
                 <p class="tagline">"Maisha Bora" - We mean "Better Life". With your support, we're making that a reality for hundreds of teenagers each year.</p>
@@ -511,7 +504,7 @@ body {
 }
 
 .section-light {
-    background-color: var(--light-color);
+    background-color: var(--accent-color);
 }
 
 .section-dark {
@@ -525,7 +518,7 @@ body {
 }
 
 .section-brand {
-    background-color: var(--brand-color);
+    background-color: var(--accent-color);
     color: white;
 }
 
@@ -701,7 +694,7 @@ body {
 }
 
 .tier-card {
-    background: rgba(132, 231, 18, 0.1);
+    background: var(--brand-color);
     border-radius: 15px;
     padding: 30px;
     text-align: center;
@@ -818,7 +811,7 @@ body {
     background: rgba(255,255,255,0.1);
     padding: 20px;
     border-radius: 10px;
-    border: 1px solid rgba(255,255,255,0.2);
+    border: 1px solid rgba(12, 3, 3, 0);
 }
 
 .tier-info {
