@@ -1,0 +1,23 @@
+{
+  "name": "maisha-bora",
+  "version": "1.0.0",
+  "description": "**Empowering Youth, Transforming Futures**",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MAISHA-BORA/MAISHA-BORA.github.io.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MAISHA-BORA/MAISHA-BORA.github.io/issues"
+  },
+  "homepage": "https://github.com/MAISHA-BORA/MAISHA-BORA.github.io#readme",
+  "dependencies": {
+    "selcom-apigw-client": "^1.0.0"
+  }
+}

@@ -1418,39 +1418,300 @@ body {
 </style>
 
 <script>
-// Simple JavaScript for donation amount selection
 document.addEventListener('DOMContentLoaded', function() {
     const donateButtons = document.querySelectorAll('.tier-donate-btn, .custom-donate-btn');
+    const amountInput = document.querySelector('.amount-input');
+    const customDonateBtn = document.querySelector('.custom-donate-btn');
     
-    donateButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const amount = this.getAttribute('data-amount') || 
-                          document.querySelector('.amount-input').value;
+    // Collect donor information function
+    function collectDonorInfo(amount) {
+        return new Promise((resolve) => {
+            // In a real implementation, you'd show a form modal
+            // For now, we'll use basic defaults
+            const donorInfo = {
+                amount: amount,
+                email: 'donor@example.com', // You should collect this from a form
+                name: 'Anonymous Donor',     // You should collect this from a form
+                phone: '255000000000',       // You should collect this from a form
+                donationType: 'one-time'
+            };
             
-            if (!amount || amount < 1) {
-                alert('Please enter a valid donation amount');
-                return;
+            // Simple modal for donor info (you can enhance this)
+            const email = prompt('For payment confirmation, please enter your email:');
+            if (email) {
+                donorInfo.email = email;
+                const name = prompt('Your name (optional):');
+                if (name) donorInfo.name = name;
             }
             
-            // In a real implementation, this would redirect to payment processing
-            // For now, we'll show a confirmation message
-            alert(`Thank you for your generous donation of $${amount}! You will be redirected to our secure payment portal.`);
+            resolve(donorInfo);
+        });
+    }
+    
+    // Process donation function
+    async function processDonation(donorInfo) {
+        try {
+            // Show loading state
+            showLoading('Processing your donation...');
             
-            // Here you would typically:
-            // 1. Store the donation amount
-            // 2. Redirect to payment gateway
-            // 3. Process the donation
+            // Call your Vercel function
+            const response = await fetch('/api/create-order', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(donorInfo)
+            });
+            
+            const result = await response.json();
+            
+            if (!response.ok) {
+                throw new Error(result.details || 'Payment failed');
+            }
+            
+            // Handle Selcom response
+            if (result.result === 'SUCCESS') {
+                // Success! Show confirmation
+                hideLoading();
+                
+                // Store donation info for thank-you page
+                localStorage.setItem('lastDonation', JSON.stringify({
+                    amount: donorInfo.amount,
+                    reference: result.reference,
+                    timestamp: new Date().toISOString()
+                }));
+                
+                // Redirect to Selcom payment page or show payment options
+                if (result.data && result.data[0] && result.data[0].payment_gateway_url) {
+                    // Redirect to Selcom payment gateway
+                    const paymentUrl = atob(result.data[0].payment_gateway_url); // Decode base64 URL
+                    window.location.href = paymentUrl;
+                } else if (result.data && result.data[0] && result.data[0].qr) {
+                    // Show QR code for payment
+                    showQRCode(result.data[0].qr, donorInfo.amount, result.reference);
+                } else {
+                    // Generic success message
+                    showSuccessMessage(donorInfo.amount, result.reference);
+                }
+            } else {
+                throw new Error(result.message || 'Payment was not successful');
+            }
+            
+        } catch (error) {
+            hideLoading();
+            showError(error.message);
+            console.error('Donation error:', error);
+        }
+    }
+    
+    // Event listeners for all donation buttons
+    donateButtons.forEach(button => {
+        button.addEventListener('click', async function() {
+            let amount;
+            
+            if (this.classList.contains('custom-donate-btn')) {
+                amount = amountInput.value;
+                if (!amount || amount < 1) {
+                    alert('Please enter a valid donation amount');
+                    amountInput.focus();
+                    return;
+                }
+            } else {
+                amount = this.getAttribute('data-amount');
+            }
+            
+            // Collect donor information
+            const donorInfo = await collectDonorInfo(amount);
+            
+            // Process the donation
+            await processDonation(donorInfo);
         });
     });
     
-    // Highlight custom amount input when clicking custom donate button
-    const customDonateBtn = document.querySelector('.custom-donate-btn');
-    const amountInput = document.querySelector('.amount-input');
+    // UI Helper Functions
+    function showLoading(message) {
+        // Create or show loading overlay
+        let loadingOverlay = document.getElementById('loading-overlay');
+        if (!loadingOverlay) {
+            loadingOverlay = document.createElement('div');
+            loadingOverlay.id = 'loading-overlay';
+            loadingOverlay.innerHTML = `
+                <div class="loading-content">
+                    <div class="spinner"></div>
+                    <p>${message}</p>
+                </div>
+            `;
+            document.body.appendChild(loadingOverlay);
+            
+            // Add styles for loading overlay
+            const style = document.createElement('style');
+            style.textContent = `
+                #loading-overlay {
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: rgba(44, 85, 48, 0.9);
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    z-index: 9999;
+                    color: white;
+                }
+                .loading-content {
+                    text-align: center;
+                }
+                .spinner {
+                    border: 4px solid rgba(255, 255, 255, 0.3);
+                    border-radius: 50%;
+                    border-top: 4px solid white;
+                    width: 40px;
+                    height: 40px;
+                    animation: spin 1s linear infinite;
+                    margin: 0 auto 20px;
+                }
+                @keyframes spin {
+                    0% { transform: rotate(0deg); }
+                    100% { transform: rotate(360deg); }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+        loadingOverlay.style.display = 'flex';
+    }
     
+    function hideLoading() {
+        const loadingOverlay = document.getElementById('loading-overlay');
+        if (loadingOverlay) {
+            loadingOverlay.style.display = 'none';
+        }
+    }
+    
+    function showSuccessMessage(amount, reference) {
+        const successHTML = `
+            <div class="success-modal">
+                <div class="success-content">
+                    <div class="success-icon">🎉</div>
+                    <h3>Thank You for Your Donation!</h3>
+                    <p>Your donation of <strong>$${amount}</strong> has been initiated.</p>
+                    <p>Transaction Reference: <code>${reference}</code></p>
+                    <p>Please check your email for payment instructions to complete the transaction.</p>
+                    <button onclick="this.parentElement.parentElement.remove()" class="btn btn-primary">Close</button>
+                </div>
+            </div>
+        `;
+        
+        const modal = document.createElement('div');
+        modal.innerHTML = successHTML;
+        document.body.appendChild(modal);
+    }
+    
+    function showQRCode(qrData, amount, reference) {
+        const qrHTML = `
+            <div class="qr-modal">
+                <div class="qr-content">
+                    <div class="qr-header">
+                        <h3>Complete Your Donation</h3>
+                        <button class="close-btn" onclick="this.parentElement.parentElement.parentElement.remove()">×</button>
+                    </div>
+                    <div class="qr-body">
+                        <p>Scan this QR code with your mobile banking app to complete your donation of <strong>$${amount}</strong></p>
+                        <div class="qr-container">
+                            <!-- In reality, you would render the QR code here -->
+                            <div style="padding: 20px; background: white; display: inline-block; margin: 20px;">
+                                [QR Code: ${qrData.substring(0, 50)}...]
+                            </div>
+                        </div>
+                        <p class="reference">Reference: <code>${reference}</code></p>
+                        <div class="qr-instructions">
+                            <h4>How to pay:</h4>
+                            <ol>
+                                <li>Open your mobile banking app</li>
+                                <li>Tap "Scan QR Code"</li>
+                                <li>Point camera at this QR code</li>
+                                <li>Confirm the payment amount</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+        
+        const modal = document.createElement('div');
+        modal.innerHTML = qrHTML;
+        document.body.appendChild(modal);
+    }
+    
+    function showError(message) {
+        alert(`Payment Error: ${message}\n\nPlease try again or contact support if the issue persists.`);
+    }
+    
+    // Focus amount input when clicking custom donate button
     customDonateBtn.addEventListener('click', function() {
         if (!amountInput.value) {
             amountInput.focus();
         }
     });
+    
+    // Add thank-you page check
+    checkThankYouPage();
 });
+
+// Check if we should show thank-you message
+function checkThankYouPage() {
+    const lastDonation = localStorage.getItem('lastDonation');
+    const urlParams = new URLSearchParams(window.location.search);
+    
+    if (urlParams.has('thankyou') && lastDonation) {
+        const donation = JSON.parse(lastDonation);
+        showThankYouMessage(donation);
+        localStorage.removeItem('lastDonation');
+    }
+}
+
+function showThankYouMessage(donation) {
+    const thankyouHTML = `
+        <div class="thankyou-banner">
+            <div class="container">
+                <div class="thankyou-content">
+                    <h2>🎉 Thank You for Your Generous Donation!</h2>
+                    <p>Your contribution of <strong>$${donation.amount}</strong> will make a real difference.</p>
+                    <p>Transaction Reference: <code>${donation.reference}</code></p>
+                    <p>You will receive a confirmation email shortly.</p>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    // Insert at the top of the page
+    const banner = document.createElement('div');
+    banner.innerHTML = thankyouHTML;
+    document.body.insertBefore(banner, document.body.firstChild);
+    
+    // Add styles
+    const style = document.createElement('style');
+    style.textContent = `
+        .thankyou-banner {
+            background: linear-gradient(135deg, #27ae60, #2ecc71);
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+            animation: slideDown 0.5s ease-out;
+        }
+        .thankyou-content h2 {
+            margin-bottom: 15px;
+        }
+        .thankyou-content p {
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+        @keyframes slideDown {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(0); }
+        }
+    `;
+    document.head.appendChild(style);
+}
 </script>
+
