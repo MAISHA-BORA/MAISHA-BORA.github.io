@@ -24,7 +24,7 @@ module.exports = async (req, res) => {
         const apiKey = process.env.SELCOM_API_KEY;
         const apiSecret = process.env.SELCOM_API_SECRET;
         const baseUrl = 'https://apigw.selcommobile.com/v1';
-        const vendor = process.env.SELCOM_VENDOR_ID || '61232042';
+        const vendor = process.env.SELCOM_VENDOR_ID || '000000';
         
         if (!apiKey || !apiSecret) {
             throw new Error('Server configuration error');
