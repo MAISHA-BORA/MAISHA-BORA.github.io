@@ -1,6 +1,5 @@
 ---
 layout: page
-title: About Us
 permalink: /about/
 ---
 
@@ -24,8 +23,6 @@ permalink: /about/
                 <p>Recognizing the importance of a holistic approach to development, our initiative aims to equip teenagers with the necessary tools, resources, and support systems that foster their spiritual, social, and economic growth. </p>
                 <p>This concept note outlines our proposed programs and the expected impact on the target demographic. Teenagers, according to our environment in Tanzania at ​​Karatu district in Mang’ola County, due to the difficult environment, lack the basics of a better life, which has led to child pregnancies and early marriages. It leads to abandonment by their husbands and brings danger to the mother and the child. </p>
                 <p>This difficult environment for young people leads to sexual violence against teenagers within our community, as well as for young men to get into drugs such as marijuana smoking and theft. This is due to their families having a difficult economic situation and lack of money to pay school fees and develop themselves academically.</p>
-                
-                
                 <div class="target-audience">
                     <h3>Our Reach</h3>
                     <div class="stats-grid">
@@ -46,7 +43,7 @@ permalink: /about/
             </div>
             <div class="content-image">
                 <div class="image-placeholder">
-                    <span>Image: Our Team or Youth Participants</span>
+                   <img src="/photos/group1.jpeg" alt="Hero Image" height="350px">
                 </div>
             </div>
         </div>
@@ -76,7 +73,6 @@ permalink: /about/
     <div class="container">
         <h2 class="section-title">The Challenge We Face</h2>
         <p class="section-intro">In today's rapidly changing world, teenagers in our community face numerous challenges that impact their overall well-being:</p>
-        
         <div class="challenges-grid">
             <div class="challenge-category">
                 <h3>Environmental Challenges</h3>
@@ -128,7 +124,6 @@ permalink: /about/
         <h2 class="section-title">Our Response</h2>
         <div class="response-content">
             <p class="lead-text">Recognizing the importance of a holistic approach to development, our initiative aims to equip teenagers with the necessary tools, resources, and support systems that foster their spiritual, social, and economic growth.</p>
-            
             <div class="approach-highlights">
                 <div class="highlight-card">
                     <div class="highlight-icon">🧠</div>
@@ -168,7 +163,6 @@ permalink: /about/
                     <li>Personal development</li>
                 </ul>
             </div>
-            
             <div class="objective-card">
                 <div class="objective-header">
                     <div class="objective-number">2</div>
@@ -183,7 +177,6 @@ permalink: /about/
                     <li>Support networks fostering meaningful relationships</li>
                 </ul>
             </div>
-            
             <div class="objective-card">
                 <div class="objective-header">
                     <div class="objective-number">3</div>
@@ -217,7 +210,6 @@ permalink: /about/
                     <li>Mindfulness and meditation practices</li>
                 </ul>
             </div>
-            
             <div class="program-category">
                 <div class="program-icon">👥</div>
                 <h3>Social Skills Development</h3>
@@ -227,7 +219,6 @@ permalink: /about/
                     <li>Peer mentoring programs connecting older teens with younger participants</li>
                 </ul>
             </div>
-            
             <div class="program-category">
                 <div class="program-icon">💼</div>
                 <h3>Economic Empowerment Initiatives</h3>
@@ -238,7 +229,6 @@ permalink: /about/
                     <li>Technical skills training</li>
                 </ul>
             </div>
-            
             <div class="program-category">
                 <div class="program-icon">🏘️</div>
                 <h3>Community Engagement Projects</h3>
@@ -287,7 +277,6 @@ permalink: /about/
     <div class="container">
         <h2 class="section-title">Expected Outcomes</h2>
         <p class="section-intro">Through our comprehensive programming, we aim to achieve:</p>
-        
         <div class="outcomes-grid">
             <div class="outcome-item">
                 <span class="outcome-check">✓</span>
@@ -326,7 +315,6 @@ permalink: /about/
     <div class="container">
         <h2 class="section-title">Our Ultimate Goal</h2>
         <p class="goal-statement">We strive to help disadvantaged teenagers improve their lives by:</p>
-        
         <div class="goal-cards">
             <div class="goal-card">
                 <div class="goal-icon">🎓</div>
@@ -369,7 +357,6 @@ permalink: /about/
                     <li>International development organizations</li>
                 </ul>
             </div>
-            
             <div class="pf-column">
                 <h2>Funding and Sustainability</h2>
                 <p>Our programs are supported through:</p>
@@ -390,11 +377,9 @@ permalink: /about/
     <div class="container">
         <h2>Join Our Mission</h2>
         <p>We invite you to be part of this transformative work. Whether through volunteering, mentoring, donating, or partnering with us, you can make a lasting impact on the lives of young people in Tanzania.</p>
-        
         <div class="cta-quote">
             <p>"Together, we can empower a generation of young people who are not only capable but also committed to pursuing meaningful and fulfilling lives."</p>
         </div>
-        
         <div class="cta-actions">
             <a href="/contact/" class="btn btn-primary">Contact Us</a>
             <a href="/donate/" class="btn btn-secondary">Get Involved</a>
@@ -440,7 +425,7 @@ body {
 }
 
 .section-light {
-    background-color: var(--light-color);
+    background-color: var(--secondary-color);
 }
 
 .section-dark {
@@ -488,12 +473,12 @@ body {
 
 /* Hero Section */
 .about-hero {
-    background: linear-gradient(rgba(44, 85, 48, 0.85), rgba(44, 85, 48, 0.85)), url('/assets/images/about-hero.jpg');
-    background-size: cover;
-    background-position: center;
-    color: white;
-    padding: 120px 0;
-    text-align: center;
+  background-image: url('/photos/cropped.jpg');
+  background-size: cover;
+  background-position: center;
+  color: white;
+  padding: 120px 0;
+  text-align: center;
 }
 
 .hero-title {
