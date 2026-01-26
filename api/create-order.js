@@ -37,7 +37,6 @@ module.exports = async (req, res) => {
     const apiKey = process.env.SELCOM_API_KEY;
     const apiSecret = process.env.SELCOM_API_SECRET;
     const vendor = process.env.SELCOM_VENDOR_ID;
-    const baseUrl = process.env.SELCOM_BASE_URL || 'https://apigw.selcommobile.com';
     
     if (!apiKey || !apiSecret || !vendor) {
       console.error('Missing Selcom credentials');
@@ -92,18 +91,48 @@ module.exports = async (req, res) => {
     
     console.log('Creating order:', { orderId, amount: orderData.amount });
     
-    // Create authorization signature
+    // Create authorization signature according to Selcom specification
     const path = '/v1/checkout/create-order-minimal';
-    const signedFields = 'vendor,order_id,buyer_email,buyer_name,buyer_phone,amount,currency,buyer_remarks,merchant_remarks,no_of_items';
-    const timestamp_sig = Math.floor(Date.now() / 1000);
     
-    // Create signature string
-    const signatureString = `${path}${timestamp_sig}${signedFields}${orderData.vendor}${orderData.order_id}${orderData.buyer_email}${orderData.buyer_name}${orderData.buyer_phone}${orderData.amount}${orderData.currency}${orderData.buyer_remarks}${orderData.merchant_remarks}${orderData.no_of_items}`;
+    // 1. Generate ISO 8601 timestamp with +03:00 timezone (East Africa Time)
+    function getSelcomTimestamp() {
+        const now = new Date();
+        // Adjust for East Africa Time (UTC+3)
+        const adjustedTime = new Date(now.getTime() + (3 * 60 * 60 * 1000));
+        
+        // Format: YYYY-MM-DDThh:mm:ss+03:00 (no milliseconds)
+        const year = adjustedTime.getUTCFullYear();
+        const month = String(adjustedTime.getUTCMonth() + 1).padStart(2, '0');
+        const day = String(adjustedTime.getUTCDate()).padStart(2, '0');
+        const hours = String(adjustedTime.getUTCHours()).padStart(2, '0');
+        const minutes = String(adjustedTime.getUTCMinutes()).padStart(2, '0');
+        const seconds = String(adjustedTime.getUTCSeconds()).padStart(2, '0');
+        
+        return `${year}-${month}-${day}T${hours}:${minutes}:${seconds}+03:00`;
+    }
+    const timestamp_sig = getSelcomTimestamp();
+    console.log('Selcom Timestamp:', timestamp_sig);
     
+    // 2. Prepare data for the signature - include timestamp first
+    const dataToSign = {
+      timestamp: timestamp_sig,
+      ...orderData
+    };
+    
+    // 3. Create the query string for signing (sorted alphabetically by key)
+    const signedFields = Object.keys(orderData).sort().join(',');
+    const queryString = Object.keys(dataToSign)
+      .sort()
+      .map(key => `${key}=${dataToSign[key]}`)
+      .join('&');
+    
+    console.log('String to sign:', queryString);
+    
+    // 4. Create the HMAC SHA256 signature and encode it in Base64
     const signature = crypto
       .createHmac('sha256', apiSecret)
-      .update(signatureString)
-      .digest('hex');
+      .update(queryString)
+      .digest('base64');
     
     // Make request to Selcom
     const response = await makeSelcomRequest(path, orderData, {
@@ -159,27 +188,39 @@ function makeSelcomRequest(path, data, auth) {
       headers: {
         'Content-Type': 'application/json',
         'Content-Length': Buffer.byteLength(postData),
-        'Authorization': `SELCOM ${auth.apiKey}`,
+        // Authorization must be base64 encoded API key with "SELCOM " prefix
+        'Authorization': `SELCOM ${Buffer.from(auth.apiKey).toString('base64')}`,
         'Digest-Method': 'HS256',
-        'Digest': auth.signature,
-        'Timestamp': auth.timestamp.toString(),
+        'Digest': auth.signature, // Base64 encoded signature
+        'Timestamp': auth.timestamp, // ISO 8601 timestamp
         'Signed-Fields': auth.signedFields
       }
     };
     
+    // Log request for debugging
+    console.log('Request headers:', {
+      Authorization: options.headers.Authorization,
+      Timestamp: options.headers.Timestamp,
+      Digest: options.headers.Digest,
+      'Signed-Fields': options.headers['Signed-Fields']
+    });
+    
     const req = https.request(options, (response) => {
       let body = '';
+      
+      console.log('Response status:', response.statusCode);
       
       response.on('data', (chunk) => {
         body += chunk;
       });
       
       response.on('end', () => {
+        console.log('Response body:', body);
         try {
           const parsed = JSON.parse(body);
           resolve(parsed);
         } catch (e) {
-          reject(new Error('Invalid response from payment gateway'));
+          reject(new Error(`Invalid response from payment gateway: ${body.substring(0, 200)}`));
         }
       });
     });
@@ -206,4 +247,3 @@ function formatPhoneNumber(phone) {
   }
   return cleaned.length >= 10 && cleaned.length <= 13 ? cleaned : null;
 }
-
