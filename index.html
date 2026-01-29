@@ -6,7 +6,7 @@ layout: page
 <section class="hero">
   <div class="hero-content" >
     <h1 class="hero-title">Empowering Youth, Transforming Futures</h1>
-    <p class="hero-subtitle">Building brighter tomorrows for teenagers in Karatu District, Tanzania</p>
+    <p class="hero-subtitle">Building brighter tomorrows for teenagers in Tanzania</p>
     <div class="hero-actions">
       <a href="/about/" class="btn btn-primary">About Us</a>
       <a href="/donate/" class="btn btn-secondary">Donate Now</a>
@@ -16,36 +16,43 @@ layout: page
 
 <!-- Programs Section -->
 <section class="section section-dark">
-  <div class="container">
-    <h2 class="section-title">Our Programs</h2>
-    <div class="programs-grid">
-      <div class="program-card">
-        <div class="program-icon">
-          <!-- Add icon here -->
-          <span>👥</span>
+  <div class="programs-wrapper">
+    <div class="container-left image-stack">
+      <img src="/photos/kid1.jpeg" alt="Child 1" class="float-img img-1">
+      <img src="/photos/kid2.jpeg" alt="Child 2" class="float-img img-2">
+      <img src="/photos/kid3.jpeg" alt="Child 3" class="float-img img-3">
+    </div>
+    <div class="container-right">
+      <h2 class="section-title">Our Programs</h2>
+      <div class="programs-grid">
+        <div class="program-card">
+          <div class="program-icon">
+            <!-- Add icon here -->
+            <span>👥</span>
+          </div>
+          <h3>Social Development</h3>
+          <ul>
+            <li><strong>Workshops & Mentorship:</strong> Interactive sessions on communication, conflict resolution, and teamwork</li>
+            <li><strong>Peer Support Networks:</strong> Connecting older teens with younger participants for guidance</li>
+            <li><strong>Resilience Building:</strong> Programs that encourage self-reflection, values exploration, and community engagement</li>
+            <li><strong>Spiritual Growth:</strong> Weekly sessions focusing on personal development and mindfulness</li>
+          </ul>
         </div>
-        <h3>Social Development</h3>
-        <ul>
-          <li><strong>Workshops & Mentorship:</strong> Interactive sessions on communication, conflict resolution, and teamwork</li>
-          <li><strong>Peer Support Networks:</strong> Connecting older teens with younger participants for guidance</li>
-          <li><strong>Resilience Building:</strong> Programs that encourage self-reflection, values exploration, and community engagement</li>
-          <li><strong>Spiritual Growth:</strong> Weekly sessions focusing on personal development and mindfulness</li>
-        </ul>
-      </div>
-      
-      <div class="program-card">
-        <div class="program-icon">
-          <!-- Add icon here -->
-          <span>💼</span>
+        
+        <div class="program-card">
+          <div class="program-icon">
+            <!-- Add icon here -->
+            <span>💼</span>
+          </div>
+          <h3>Economic Empowerment</h3>
+          <ul>
+            <li><strong>English Language Skills:</strong> Essential communication for education and employment</li>
+            <li><strong>Basic Computer Skills:</strong> Technology literacy for the modern world</li>
+            <li><strong>Financial Literacy:</strong> Budgeting, saving, and investing education</li>
+            <li><strong>Entrepreneurship Training:</strong> Innovation and self-employment workshops</li>
+            <li><strong>Career Guidance:</strong> Financial support for training and education at technical and secondary schools</li>
+          </ul>
         </div>
-        <h3>Economic Empowerment</h3>
-        <ul>
-          <li><strong>English Language Skills:</strong> Essential communication for education and employment</li>
-          <li><strong>Basic Computer Skills:</strong> Technology literacy for the modern world</li>
-          <li><strong>Financial Literacy:</strong> Budgeting, saving, and investing education</li>
-          <li><strong>Entrepreneurship Training:</strong> Innovation and self-employment workshops</li>
-          <li><strong>Career Guidance:</strong> Financial support for training and education at technical and secondary schools</li>
-        </ul>
       </div>
     </div>
   </div>
@@ -95,7 +102,7 @@ layout: page
 
 
 <!-- How to Help Section -->
-<section class="section section-dark">
+<section class="section section-help">
   <div class="container">
     <h2 class="section-title">How You Can Help</h2>
     <div class="help-options">
@@ -168,7 +175,17 @@ body {
 
 .container-left {
   max-width: 1200px;
-  padding-left: 30px;
+  padding-left: 50px;
+  padding-bottom: 20px;
+}
+
+.container-right {
+  max-width: 1200px;
+  margin-left: auto;  
+  margin-right: 0;
+  padding-right: 30px;
+  padding-left: 20px;
+  padding-top: 10px;
 }
 
 .challenges-wrapper {
@@ -183,7 +200,7 @@ body {
   display: flex;
   justify-content: flex-end; /* push image to the right */
   align-items: flex-start;
-  padding-right: 30px;
+  padding-right: 40px;
 }
 
 .image-right img {
@@ -211,7 +228,10 @@ body {
   background-color: var(--accent-color);
   color: white;
 }
-
+.section-help {
+  background-color: var(--accent-color);
+  color: black;
+}
 .section-accent {
   background-color: var(--accent-color);
   color: var(--text-color);
@@ -415,6 +435,61 @@ body {
   left: 0;
 }
 
+.programs-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 50px;
+  align-items: center;
+}
+
+.image-stack {
+  position: relative;
+  min-height: 420px;
+  padding-left: 60px;   
+  padding-top: 30px;    
+}
+
+
+.float-img {
+  position: absolute;
+  width: 320px;
+  height: 600px;
+  border-radius: 16px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+  cursor: pointer;
+  transition: transform 0.3s ease, z-index 0.2s ease;
+}
+
+/* Initial positions */
+.float-img:nth-child(1) {
+  top: 0;
+  left: 0;
+  z-index: 1;
+  padding-left: 10px;
+}
+
+.float-img:nth-child(2) {
+  top: -20px;
+  left: 60px;
+  z-index: 2;
+}
+
+.float-img:nth-child(3) {
+  top: 0px;
+  left: 300px;
+  z-index: 3;
+}
+
+/* Active (clicked) image */
+.float-img.active {
+  z-index: 10;
+  transform: scale(1.05);
+}
+
+.float-img:hover {
+  transform: translateY(-6px);
+}
+
 /* Vision & Mission Section */
 .vision-mission-grid {
   display: grid;
@@ -608,6 +683,19 @@ body {
   .hero-subtitle {
     font-size: 1.2rem;
   }
+
+  .image-stack {
+    position: static;
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+  }
+
+  .float-img {
+    position: static;
+    width: 30%;
+    transform: none !important;
+  }
 }
 
 @media (max-width: 768px) {
@@ -648,3 +736,13 @@ body {
   }
 }
 </style>
+<script>
+  const images = document.querySelectorAll('.float-img');
+
+  images.forEach(img => {
+    img.addEventListener('click', () => {
+      images.forEach(i => i.classList.remove('active'));
+      img.classList.add('active');
+    });
+  });
+</script>
