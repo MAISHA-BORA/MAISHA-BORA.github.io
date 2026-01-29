@@ -44,59 +44,55 @@ layout: page
           <li><strong>Basic Computer Skills:</strong> Technology literacy for the modern world</li>
           <li><strong>Financial Literacy:</strong> Budgeting, saving, and investing education</li>
           <li><strong>Entrepreneurship Training:</strong> Innovation and self-employment workshops</li>
-          <li><strong>Career Guidance:</strong> Job readiness, resume writing, and interview preparation</li>
+          <li><strong>Career Guidance:</strong> Financial support for training and education at technical and secondary schools</li>
         </ul>
       </div>
     </div>
   </div>
 </section>
 <!-- Challenges & Solutions Section -->
-<section class="section section-light">
-  <div class="container">
-    <h2 class="section-title">How We Change Children's Lives</h2>
-    <div class="challenges-solutions">
-      <div class="challenges">
-        <h3>The Challenges</h3>
-        <p>Teenagers living near Karatu District, Mang'ola County, Tanzania face a difficult environment causing many of them to drop out of school before completing their primary education. This in turn leads to:</p>
-        <ul class="challenges-list">
-          <li>Child pregnancies and early marriages</li>
-          <li>Abandonment by fathers</li>
-          <li>Young men drifting into drugs and theft</li>
-          <li>Sexual violence against teenagers</li>
-          <li>Economic hardship preventing school attendance</li>
-        </ul>
-      </div>
-      
-      <div class="solutions">
-        <h3>Our Solutions</h3>
-        <p>Recognizing the importance of a holistic approach, our initiative equips teenagers with:</p>
-        <div class="skills-grid">
-          <div class="skill-item">
-            <span class="checkmark">✓</span>
-            <span>English Language Skills</span>
-          </div>
-          <div class="skill-item">
-            <span class="checkmark">✓</span>
-            <span>Basic Computer Skills</span>
-          </div>
-          <div class="skill-item">
-            <span class="checkmark">✓</span>
-            <span>Reading and Writing</span>
-          </div>
-          <div class="skill-item">
-            <span class="checkmark">✓</span>
-            <span>Financial Literacy</span>
-          </div>
-          <div class="skill-item">
-            <span class="checkmark">✓</span>
-            <span>Entrepreneurship</span>
-          </div>
+<section class="section section-light-padded">
+  <div class="challenges-wrapper">
+    
+    <!-- LEFT: text -->
+    <div class="container-left">
+      <h2 class="section-title">How We Change Teenagers' Lives</h2>
+      <div class="challenges-solutions">
+        <div class="challenges">
+          <h3>The Challenges</h3>
+          <p>Teenagers living near Karatu District, Mang'ola County, Tanzania face a difficult environment causing many of them to drop out of school before completing their primary education. This in turn leads to:</p>
+          <ul class="challenges-list">
+            <li>Early pregnancies and early marriages</li>
+            <li>Abandonment by fathers</li>
+            <li>Young men drifting into drugs and theft</li>
+            <li>Sexual violence against teenagers</li>
+            <li>Economic hardship preventing school attendance</li>
+          </ul>
         </div>
-        <p class="goal-text">Our ultimate goal is to help these children improve their lives by preparing them to continue their education in secondary or technical school, helping them find local employment, or pursuing careers in the military.</p>
+
+        <div class="solutions">
+          <h3>Our Solutions</h3>
+          <p>Recognizing the importance of a holistic approach, our initiative equips teenagers with:</p>
+          <div class="skills-grid">
+            <div class="skill-item"><span class="checkmark">✓</span>English Language Skills</div>
+            <div class="skill-item"><span class="checkmark">✓</span>Basic Computer Skills</div>
+            <div class="skill-item"><span class="checkmark">✓</span>Reading and Writing</div>
+            <div class="skill-item"><span class="checkmark">✓</span>Financial Literacy</div>
+            <div class="skill-item"><span class="checkmark">✓</span>Entrepreneurship</div>
+          </div>
+          <p class="goal-text">Our ultimate goal is to help these children improve their lives by preparing them to continue their education in secondary or technical school, helping them find local employment, or pursuing careers in the military.</p>
+        </div>
       </div>
     </div>
+
+    <!-- RIGHT: image -->
+    <div class="image-right">
+      <img src="/photos/kid7.jpeg" alt="Hello Friend">
+    </div>
+
   </div>
 </section>
+
 
 <!-- How to Help Section -->
 <section class="section section-dark">
@@ -125,35 +121,6 @@ layout: page
     <div class="help-actions">
       <a href="/contact/" class="btn btn-primary">Contact Us</a>
       <a href="/donate/" class="btn btn-secondary">Make a Donation</a>
-    </div>
-  </div>
-</section>
-
-<!-- Outcomes Section -->
-<section class="section section-light">
-  <div class="container">
-    <h2 class="section-title">Expected Outcomes</h2>
-    <div class="outcomes-grid">
-      <div class="outcome-item">
-        <span class="outcome-icon">🎯</span>
-        <p>Increased self-awareness and purpose among teenagers</p>
-      </div>
-      <div class="outcome-item">
-        <span class="outcome-icon">👥</span>
-        <p>Improved social skills and stronger peer relationships</p>
-      </div>
-      <div class="outcome-item">
-        <span class="outcome-icon">📈</span>
-        <p>Enhanced economic literacy and career preparedness</p>
-      </div>
-      <div class="outcome-item">
-        <span class="outcome-icon">🏘️</span>
-        <p>Greater community engagement and social responsibility</p>
-      </div>
-      <div class="outcome-item">
-        <span class="outcome-icon">🛡️</span>
-        <p>Reduced child pregnancies, early marriages, and youth delinquency</p>
-      </div>
     </div>
   </div>
 </section>
@@ -199,6 +166,32 @@ body {
   padding: 0 20px;
 }
 
+.container-left {
+  max-width: 1200px;
+  padding-left: 30px;
+}
+
+.challenges-wrapper {
+  display: grid;
+  grid-template-columns: 2fr 1fr; /* text bigger, image smaller */
+  gap: 1px;
+  align-items: start;
+}
+
+/* right image */
+.image-right {
+  display: flex;
+  justify-content: flex-end; /* push image to the right */
+  align-items: flex-start;
+  padding-right: 30px;
+}
+
+.image-right img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+}
+
 /* Section Styles */
 .section {
   padding: 80px 0;
@@ -206,6 +199,12 @@ body {
 
 .section-light {
   background-color: var(--accent-color);
+}
+
+.section-light-padded {
+  background-color: var(--accent-color);
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 .section-dark {
@@ -441,7 +440,10 @@ body {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 50px;
+  /* align-items: start;   aligns items to the top/left */
+  text-align: start;     /* aligns text to the left */
 }
+
 
 .challenges, .solutions {
   padding: 30px;

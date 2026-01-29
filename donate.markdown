@@ -350,11 +350,6 @@ permalink: /donate/
                     </div>
                 </div>
             </div>
-            <div class="sponsorship-image">
-                <div class="image-placeholder">
-                    <img src="/photos/dirishani.jpg" alt="Youth Empowering Image" height="550px" width="800px">
-                </div>
-            </div>
         </div>
     </div>
 </section>
@@ -571,8 +566,10 @@ body {
 }
 
 .section-accent {
-    background-color: var(--accent-color);
-    color: var(--text-color);
+    /* background-color: var(--accent-color);
+    color: var(--text-color); */
+    background: url('/photos/dirishani_kids.jpeg') center/cover no-repeat;
+    position: relative;
 }
 
 .section-brand {
@@ -1123,10 +1120,17 @@ body {
 
 .sponsorship-card {
     background: white;
-    border-radius: 15px;
+    border-radius: 20px;
     overflow: hidden;
     box-shadow: 0 15px 40px rgba(0,0,0,0.1);
-    width: 500px;
+    width: 100%;
+    max-width: 350px;
+    
+}
+@media (min-width: 768px) {
+    .sponsorship-card {
+        max-width: 600px;
+    }
 }
 
 .sponsorship-header {
@@ -1184,16 +1188,6 @@ body {
     gap: 15px;
 }
 
-.sponsorship-image {
-    height: 600px;
-    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-    border-radius: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-size: 1.1rem;
-}
 
 /* Transparency Section */
 .transparency-content {
@@ -1416,11 +1410,7 @@ body {
     .tier-card.popular {
         transform: none;
     }
-    
-    .sponsorship-image {
-        height: 300px;
-        order: -1;
-    }
+
 }
 
 @media (max-width: 768px) {
