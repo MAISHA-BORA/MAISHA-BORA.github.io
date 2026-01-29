@@ -78,7 +78,7 @@ module.exports = async (req, res) => {
       buyer_email: email.trim().toLowerCase(),
       buyer_name: name?.trim() || 'Anonymous Donor',
       buyer_phone: formatPhoneNumber(phone) || '255000000000',
-      amount: Math.round(parseFloat(amount) * 100), // Convert to cents
+      amount: parseFloat(amount), // amount: Math.round(parseFloat(amount) * 100),
       currency: 'TZS',
       buyer_remarks: `Donation to Maisha Bora${isMonthly ? ' (Monthly)' : ''}`,
       merchant_remarks: `MBYF - ${donationType || 'General'}`,

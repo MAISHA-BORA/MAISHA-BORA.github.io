@@ -13,43 +13,6 @@ permalink: /about/
     </div>
 </section>
 
-<!-- Who We Are Section -->
-<section class="section section-light">
-    <div class="container">
-        <div class="content-grid">
-            <div class="content-text">
-                <h2 class="section-title">Who We Are</h2>
-                <p class="lead-text">In today’s rapidly changing world, teenagers face numerous challenges that impact their overall well-being. </p>
-                <p>Recognizing the importance of a holistic approach to development, our initiative aims to equip teenagers with the necessary tools, resources, and support systems that foster their spiritual, social, and economic growth. </p>
-                <p>This concept note outlines our proposed programs and the expected impact on the target demographic. Teenagers, according to our environment in Tanzania at ​​Karatu district in Mang’ola County, due to the difficult environment, lack the basics of a better life, which has led to child pregnancies and early marriages. It leads to abandonment by their husbands and brings danger to the mother and the child. </p>
-                <p>This difficult environment for young people leads to sexual violence against teenagers within our community, as well as for young men to get into drugs such as marijuana smoking and theft. This is due to their families having a difficult economic situation and lack of money to pay school fees and develop themselves academically.</p>
-                <div class="target-audience">
-                    <h3>Our Reach</h3>
-                    <div class="stats-grid">
-                        <div class="stat-card">
-                            <div class="stat-number">13-20</div>
-                            <div class="stat-label">Age Range Served</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-number">25</div>
-                            <div class="stat-label">Teenagers Reached Monthly</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-number">300</div>
-                            <div class="stat-label">Teenagers Reached Annually</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="content-image">
-                <div class="image-placeholder">
-                   <img src="/photos/group1.jpeg" alt="Hero Image" height="350px">
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
 <!-- Vision & Mission Section -->
 <section class="section section-accent">
     <div class="container">
@@ -63,6 +26,41 @@ permalink: /about/
                 <div class="vm-icon">🌟</div>
                 <h2>Our Mission</h2>
                 <p>"To provide comprehensive programs and resources that nurture teenagers' spiritual, social, and economic development, enabling them to pursue meaningful and fulfilling lives."</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Who We Are Section -->
+<section class="section section-light">
+    <div class="container">
+        <div class="content-grid">
+            <div class="content-text">
+                <h2 class="section-title">Who We Are</h2>
+                <p class="lead-text">In today’s rapidly changing world, teenagers face numerous challenges that impact their overall well-being. </p>
+                <p class="lead-text">Maisha Bora Youth Foundation is dedicated to empowering teenagers in Karatu District, Mang'ola County, Tanzania with the skills, knowledge, and support they need to thrive. In a challenging environment where many young people face obstacles to education and opportunity, we provide a pathway to a brighter future..</p>
+                <div class="target-audience">
+                    <h1>Our Reach</h1>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-number">13-20</div>
+                            <div class="stat-label">Age Range Served</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">25</div>
+                            <div class="stat-label">Youth Reached Monthly</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">300</div>
+                            <div class="stat-label">Youth Reached Annually</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="content-image">
+                <div class="image-placeholder">
+                   <img src="/photos/group1.jpeg" alt="Hero Image" height="350px">
+                </div>
             </div>
         </div>
     </div>
@@ -446,7 +444,7 @@ body {
 .section-title {
     text-align: center;
     margin-bottom: 50px;
-    font-size: 2.5rem;
+    font-size: 4.5rem;
     position: relative;
 }
 
@@ -506,6 +504,8 @@ body {
     font-size: 1.2rem;
     margin-bottom: 20px;
     font-weight: 500;
+    color: white;
+    size: 30px;
 }
 
 .content-image {

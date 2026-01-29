@@ -718,7 +718,7 @@ body {
 .section-title {
     text-align: center;
     margin-bottom: 50px;
-    font-size: 2.5rem;
+    font-size: 4.5rem;
     position: relative;
 }
 

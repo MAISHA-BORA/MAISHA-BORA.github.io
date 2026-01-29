@@ -583,7 +583,7 @@ body {
 .section-title {
     text-align: center;
     margin-bottom: 50px;
-    font-size: 2.5rem;
+    font-size: 4.5rem;
     position: relative;
 }
 
@@ -1622,9 +1622,10 @@ document.addEventListener('DOMContentLoaded', function() {
     
     if (customDonateBtn) {
         customDonateBtn.addEventListener('click', function() {
-            const customAmount = parseInt(amountInput.value);
+            // const customAmount = parseInt(amountInput.value);
+            const customAmount = Number(amountInput.value);
             if (customAmount && customAmount >= 1) {
-                currentAmount = customAmount;
+                currentAmount = Number(this.getAttribute('data-amount'));
                 document.getElementById('modalAmount').textContent = `$${currentAmount}`;
                 modal.style.display = 'flex';
                 document.body.style.overflow = 'hidden';

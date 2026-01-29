@@ -496,7 +496,7 @@ body {
 
 .section-title {
     margin-bottom: 30px;
-    font-size: 2rem;
+    font-size: 4.5rem;
     position: relative;
 }
 
