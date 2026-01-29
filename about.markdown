@@ -70,16 +70,15 @@ permalink: /about/
 <section class="section section-dark">
     <div class="container">
         <h2 class="section-title">The Challenge We Face</h2>
-        <p class="section-intro">In today's rapidly changing world, teenagers in our community face numerous challenges that impact their overall well-being:</p>
+        <p class="section-intro">Teenagers living near Karatu District, Mang'ola County, Tanzania face a difficult environment causing many of them to drop out of school before completing their primary education. This in turn leads to:</p>
         <div class="challenges-grid">
             <div class="challenge-category">
-                <h3>Environmental Challenges</h3>
                 <div class="challenge-list">
                     <div class="challenge-item">
                         <div class="challenge-icon">🚫</div>
                         <div class="challenge-content">
-                            <h4>Educational Barriers</h4>
-                            <p>Many teenagers drop out of school before completing primary education due to economic hardship and lack of school fees</p>
+                            <h4>Abandonment by fathers</h4>
+                            <p>Emotionally, the absence of a father can lead to feelings of insecurity, low self-esteem, and stress, affecting mental and social development.</p>
                         </div>
                     </div>
                     <div class="challenge-item">
@@ -92,21 +91,21 @@ permalink: /about/
                     <div class="challenge-item">
                         <div class="challenge-icon">💊</div>
                         <div class="challenge-content">
-                            <h4>Youth Delinquency</h4>
+                            <h4>Young men drifting into drugs and theft</h4>
                             <p>Young men drift into drug use (particularly marijuana) and theft due to lack of opportunities</p>
                         </div>
                     </div>
                     <div class="challenge-item">
                         <div class="challenge-icon">🚨</div>
                         <div class="challenge-content">
-                            <h4>Sexual Violence</h4>
+                            <h4>Sexual violence against teenagers</h4>
                             <p>Teenagers face sexual violence within the community</p>
                         </div>
                     </div>
                     <div class="challenge-item">
                         <div class="challenge-icon">💸</div>
                         <div class="challenge-content">
-                            <h4>Economic Hardship</h4>
+                            <h4>Economic hardship preventing school attendance</h4>
                             <p>Families struggle to provide basic necessities and educational opportunities</p>
                         </div>
                     </div>
