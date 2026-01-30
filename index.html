@@ -150,9 +150,9 @@ layout: page
 <style>
 /* Base Styles */
 :root {
-  --primary-color: #2c5530;
+  --primary-color: #fc7d07;
   --secondary-color: #4a7c59;
-  --accent-color: #8fb996;
+  --accent-color: #b9a38f;
   --light-color: #f8f9fa;
   --dark-color: #343a40;
   --text-color: #333;
@@ -183,7 +183,7 @@ body {
 }
 
 .section-dark {
-  background-color: var(--accent-color);
+  background-color: rgb(238, 232, 213);
   color: var(--text-color);
 }
 
@@ -202,7 +202,7 @@ body {
   margin-bottom: 50px;
   font-size: 4.5rem;
   position: relative;
-  color: var(--primary-color);
+  color: var(--primary-color  );
 }
 
 .section-title::after {
@@ -215,7 +215,7 @@ body {
 }
 
 .section-dark .section-title {
-  color: white;
+  color: var(--primary-color);
 }
 
 .section-dark .section-title::after {
@@ -373,7 +373,7 @@ body {
 }
 
 .challenges-box {
-  background-color: #f8d7da;
+  background-color: #b7e058;
   border-left: 5px solid #dc3545;
   padding: 30px;
   border-radius: 10px;
@@ -385,13 +385,12 @@ body {
   border-left: 5px solid #007bff;
   padding: 30px;
   border-radius: 10px;
-  grid-column: 2;
-  grid-row: 1 / span 2;
   height: 100%;
 }
 
 .image-box {
-  background-color: white;
+  background-color: rgb(244, 212, 245);
+  border-left: 5px solid #085014;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 5px 15px rgba(0,0,0,0.1);
@@ -711,9 +710,11 @@ body {
 document.addEventListener('DOMContentLoaded', function() {
   // Get all gallery items
   const galleryItems = document.querySelectorAll('.gallery-item');
+  let isHovering = false;
+  let currentActiveItem = document.querySelector('.gallery-item.active');
   
   // Function to activate a specific image
-  function activateImage(clickedItem) {
+  function activateImage(hoveredItem) {
     // Remove active class and add greyed-out class to all images
     galleryItems.forEach(item => {
       const img = item.querySelector('.gallery-image');
@@ -721,20 +722,53 @@ document.addEventListener('DOMContentLoaded', function() {
       img.classList.add('greyed-out');
     });
     
-    // Activate the clicked item
-    const clickedImg = clickedItem.querySelector('.gallery-image');
-    clickedItem.classList.add('active');
-    clickedImg.classList.remove('greyed-out');
+    // Activate the hovered item
+    const hoveredImg = hoveredItem.querySelector('.gallery-image');
+    hoveredItem.classList.add('active');
+    hoveredImg.classList.remove('greyed-out');
+    currentActiveItem = hoveredItem;
   }
   
-  // Add click event listeners to each gallery item
+  // Function to reset to default active image
+  function resetToDefault() {
+    if (!isHovering) {
+      // Remove active class and add greyed-out class to all images
+      galleryItems.forEach(item => {
+        const img = item.querySelector('.gallery-image');
+        item.classList.remove('active');
+        img.classList.add('greyed-out');
+      });
+      
+      // Reactivate the middle image
+      const defaultItem = document.querySelector('.gallery-item[data-image="computers"]');
+      if (defaultItem) {
+        const defaultImg = defaultItem.querySelector('.gallery-image');
+        defaultItem.classList.add('active');
+        defaultImg.classList.remove('greyed-out');
+        currentActiveItem = defaultItem;
+      }
+    }
+  }
+  
+  // Add mouseover event listeners to each gallery item
   galleryItems.forEach(item => {
-    item.addEventListener('click', function() {
+    item.addEventListener('mouseover', function() {
+      isHovering = true;
       activateImage(this);
+    });
+    
+    item.addEventListener('mouseleave', function() {
+      isHovering = false;
+      // Use setTimeout to delay the reset, allowing time to move to another image
+      setTimeout(() => {
+        if (!isHovering) {
+          resetToDefault();
+        }
+      }, 100);
     });
   });
   
-  // Initialize with middle image active (it already has the active class)
+  // Initialize with middle image active
   const activeItem = document.querySelector('.gallery-item.active');
   if (activeItem) {
     const activeImg = activeItem.querySelector('.gallery-image');
