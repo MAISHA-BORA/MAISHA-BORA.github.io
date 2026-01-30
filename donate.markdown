@@ -546,12 +546,12 @@ body {
 }
 
 .section-light {
-    background-color: var(--accent-color);
+    background-color: #c4f7cbff;
 }
 
 .section-dark {
-    background-color: var(--dark-color);
-    color: white;
+    background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+    color: #ffffff;
 }
 
 .section-accent {
@@ -562,7 +562,7 @@ body {
 }
 
 .section-brand {
-    background-color: var(--accent-color);
+    background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
     color: white;
 }
 
@@ -1108,10 +1108,10 @@ body {
 }
 
 .sponsorship-card {
-    background: white;
+    background: linear-gradient(rgba(191, 238, 193, 0.8), rgba(42, 95, 63, 0.9));
     border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+    box-shadow: 0 15px 40px rgba(153, 172, 172, 0);
     width: 100%;
     max-width: 350px;
     
