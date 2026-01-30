@@ -2,11 +2,14 @@
 
 /* Color Palette */
 :root {
-  --primary-color: #2E7D32; /* Green - growth and hope */
-  --secondary-color: #FF6F00; /* Orange - energy and enthusiasm */
-  --accent-color: #1565C0; /* Blue - trust and stability */
+  --primary-color: #fc7d07;
+  --secondary-color: #4a7c59;
+  --accent-color: #b9a38f;
+  --light-color: #f8f9fa;
+  --dark-color: #343a40;
   --text-dark: #212121;
-  --text-light: #757575;
+  --text-color: #333;
+  --text-light: #6c757d;
   --bg-light: #F5F5F5;
   --white: #FFFFFF;
   --success: #4CAF50;
@@ -127,7 +130,7 @@ body {
   display: none;
   background: none;
   border: none;
-  color: var(--white);
+  color: var(--primary-color);
   font-size: 1.5rem;
   cursor: pointer;
   padding: 10px;

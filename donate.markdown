@@ -523,17 +523,6 @@ permalink: /donate/
 </div>
 
 <style>
-:root {
-    --primary-color: #2c5530;
-    --secondary-color: #4a7c59;
-    --accent-color: #8fb996;
-    --light-color: #f8f9fa;
-    --dark-color: #343a40;
-    --text-color: #333;
-    --text-light: #6c757d;
-    --brand-color: #3a6351;
-}
-
 * {
     margin: 0;
     padding: 0;
