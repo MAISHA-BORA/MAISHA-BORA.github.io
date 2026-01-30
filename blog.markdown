@@ -40,7 +40,6 @@ permalink: /blog/
                         </div>
                     </div>
                 </div>
-
                 <!-- Blog Posts Grid -->
                 <div class="posts-grid">
                     <!-- Post 1 -->
@@ -61,7 +60,6 @@ permalink: /blog/
                             <a href="#" class="read-more">Read More →</a>
                         </div>
                     </article>
-
                     <!-- Post 2 -->
                     <article class="post-card">
                         <div class="post-image">
@@ -80,7 +78,6 @@ permalink: /blog/
                             <a href="#" class="read-more">Read More →</a>
                         </div>
                     </article>
-
                     <!-- Post 3 -->
                     <article class="post-card">
                         <div class="post-image">
@@ -99,7 +96,6 @@ permalink: /blog/
                             <a href="#" class="read-more">Read More →</a>
                         </div>
                     </article>
-
                     <!-- Post 4 -->
                     <article class="post-card">
                         <div class="post-image">
@@ -118,7 +114,6 @@ permalink: /blog/
                             <a href="#" class="read-more">Read More →</a>
                         </div>
                     </article>
-
                     <!-- Post 5 -->
                     <article class="post-card">
                         <div class="post-image">
@@ -137,7 +132,6 @@ permalink: /blog/
                             <a href="#" class="read-more">Read More →</a>
                         </div>
                     </article>
-
                     <!-- Post 6 -->
                     <article class="post-card">
                         <div class="post-image">
@@ -157,7 +151,6 @@ permalink: /blog/
                         </div>
                     </article>
                 </div>
-
                 <!-- Pagination -->
                 <div class="pagination">
                     <a href="#" class="page-nav disabled">← Previous</a>
@@ -171,7 +164,6 @@ permalink: /blog/
                     <a href="#" class="page-nav">Next →</a>
                 </div>
             </div>
-
             <!-- Sidebar -->
             <div class="blog-sidebar">
                 <!-- Categories Widget -->
@@ -210,7 +202,6 @@ permalink: /blog/
                         </a>
                     </div>
                 </div>
-
                 <!-- Subscribe Widget -->
                 <div class="sidebar-widget subscribe-widget">
                     <div class="subscribe-icon">📬</div>
@@ -222,7 +213,6 @@ permalink: /blog/
                     </div>
                     <p class="subscribe-note">Or email us at <strong>info@maishabora.org</strong> with "Subscribe to Blog" in the subject line.</p>
                 </div>
-
                 <!-- Popular Posts Widget -->
                 <div class="sidebar-widget">
                     <h3 class="widget-title">Popular Posts</h3>
@@ -256,7 +246,6 @@ permalink: /blog/
                         </a>
                     </div>
                 </div>
-
                 <!-- Newsletter Archive Widget -->
                 <div class="sidebar-widget">
                     <h3 class="widget-title">Newsletter Archive</h3>
