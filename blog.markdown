@@ -1,13 +1,12 @@
 ---
 layout: home
-title: Blog & News
 permalink: /blog/
 ---
 
 <!-- Hero Section -->
-<section class="blog-hero" >
-    <div class="container" >
-        <div class="hero-content" >
+<section class="blog-hero">
+    <div class="container">
+        <div class="hero-content">
             <h1 class="hero-title">Latest News & Updates</h1>
             <p class="hero-subtitle">Stay informed about our programs, success stories, and the impact we're making in the lives of teenagers in Karatu District.</p>
         </div>
@@ -25,9 +24,8 @@ permalink: /blog/
                     <div class="featured-badge">Featured Story</div>
                     <div class="featured-content">
                         <div class="featured-image">
-                            <div class="image-placeholder">
-                                <span>Featured Post Image</span>
-                            </div>
+                            <img src="/photos/person6.jpeg" alt="Sarah - From Dropout to Entrepreneur" class="featured-img">
+                            <div class="image-overlay"></div>
                         </div>
                         <div class="featured-text">
                             <div class="post-meta">
@@ -45,9 +43,7 @@ permalink: /blog/
                     <!-- Post 1 -->
                     <article class="post-card">
                         <div class="post-image">
-                            <div class="image-placeholder">
-                                <span>Post Image</span>
-                            </div>
+                            <img src="/photos/computers.jpeg" alt="New Computer Lab Grand Opening" class="post-img">
                             <span class="post-category announcement">Announcements</span>
                         </div>
                         <div class="post-content">
@@ -63,9 +59,7 @@ permalink: /blog/
                     <!-- Post 2 -->
                     <article class="post-card">
                         <div class="post-image">
-                            <div class="image-placeholder">
-                                <span>Post Image</span>
-                            </div>
+                            <img src="/photos/chakula.jpg" alt="Financial Literacy Workshop" class="post-img">
                             <span class="post-category program">Programs</span>
                         </div>
                         <div class="post-content">
@@ -81,9 +75,7 @@ permalink: /blog/
                     <!-- Post 3 -->
                     <article class="post-card">
                         <div class="post-image">
-                            <div class="image-placeholder">
-                                <span>Post Image</span>
-                            </div>
+                            <img src="/photos/group1.jpeg" alt="Youth Leadership Summit" class="post-img">
                             <span class="post-category event">Events</span>
                         </div>
                         <div class="post-content">
@@ -99,9 +91,7 @@ permalink: /blog/
                     <!-- Post 4 -->
                     <article class="post-card">
                         <div class="post-image">
-                            <div class="image-placeholder">
-                                <span>Post Image</span>
-                            </div>
+                            <img src="/photos/dawati.jpg" alt="2024 Impact Report" class="post-img">
                             <span class="post-category impact">Impact Reports</span>
                         </div>
                         <div class="post-content">
@@ -117,9 +107,7 @@ permalink: /blog/
                     <!-- Post 5 -->
                     <article class="post-card">
                         <div class="post-image">
-                            <div class="image-placeholder">
-                                <span>Post Image</span>
-                            </div>
+                            <img src="/photos/darasani.jpg" alt="Education Guide" class="post-img">
                             <span class="post-category resource">Resources</span>
                         </div>
                         <div class="post-content">
@@ -135,9 +123,7 @@ permalink: /blog/
                     <!-- Post 6 -->
                     <article class="post-card">
                         <div class="post-image">
-                            <div class="image-placeholder">
-                                <span>Post Image</span>
-                            </div>
+                            <img src="/photos/kid7.jpeg" alt="John's Technical School Journey" class="post-img">
                             <span class="post-category success">Success Stories</span>
                         </div>
                         <div class="post-content">
@@ -219,7 +205,7 @@ permalink: /blog/
                     <div class="popular-posts">
                         <a href="#" class="popular-post">
                             <div class="popular-post-image">
-                                <div class="image-placeholder small"></div>
+                                <img src="/photos/kid8.jpeg" alt="Reducing Youth Unemployment" class="popular-post-img">
                             </div>
                             <div class="popular-post-content">
                                 <h4>How We're Reducing Youth Unemployment</h4>
@@ -228,7 +214,7 @@ permalink: /blog/
                         </a>
                         <a href="#" class="popular-post">
                             <div class="popular-post-image">
-                                <div class="image-placeholder small"></div>
+                                <img src="/photos/kid9.jpeg" alt="New Program Coordinator" class="popular-post-img">
                             </div>
                             <div class="popular-post-content">
                                 <h4>Meet Our New Program Coordinator</h4>
@@ -237,7 +223,7 @@ permalink: /blog/
                         </a>
                         <a href="#" class="popular-post">
                             <div class="popular-post-image">
-                                <div class="image-placeholder small"></div>
+                                <img src="/photos/kid10.jepg" alt="Summer Coding Camp" class="popular-post-img">
                             </div>
                             <div class="popular-post-content">
                                 <h4>Summer Coding Camp Success</h4>
@@ -321,7 +307,7 @@ body {
 
 /* Hero Section */
 .blog-hero {
-    background: linear-gradient(rgba(44, 85, 48, 0.85), rgba(44, 85, 48, 0.85)), url('/assets/images/blog-hero.jpg');
+    background: linear-gradient(rgba(44, 85, 48, 0.85), rgba(44, 85, 48, 0.85)), url('/photos/cropped.jpg');
     background-size: cover;
     background-position: center;
     color: white;
@@ -340,6 +326,51 @@ body {
     opacity: 0.9;
     max-width: 600px;
     margin: 0 auto;
+}
+
+/* Image Styles */
+.featured-img,
+.post-img,
+.popular-post-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.featured-image {
+    position: relative;
+    overflow: hidden;
+    height: 400px;
+}
+
+.image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to right, rgba(0,0,0,0.2), rgba(0,0,0,0.1));
+}
+
+.post-image {
+    height: 200px;
+    position: relative;
+    overflow: hidden;
+}
+
+.popular-post-image {
+    width: 60px;
+    height: 60px;
+    border-radius: 8px;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.popular-post-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 /* Blog Layout */
@@ -377,15 +408,6 @@ body {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 0;
-}
-
-.featured-image {
-    height: 400px;
-    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
 }
 
 .featured-text {
@@ -447,16 +469,6 @@ body {
     box-shadow: 0 15px 30px rgba(0,0,0,0.15);
 }
 
-.post-image {
-    height: 200px;
-    background: linear-gradient(45deg, #8fb996, #4a7c59);
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-}
-
 .post-category {
     position: absolute;
     top: 15px;
@@ -466,6 +478,7 @@ body {
     font-size: 0.75rem;
     font-weight: 600;
     color: white;
+    z-index: 2;
 }
 
 .post-category.announcement { background: #3498db; }
@@ -711,14 +724,6 @@ body {
     background: var(--light-color);
 }
 
-.popular-post-image {
-    width: 60px;
-    height: 60px;
-    border-radius: 8px;
-    overflow: hidden;
-    flex-shrink: 0;
-}
-
 .popular-post-content h4 {
     font-size: 0.9rem;
     line-height: 1.4;
@@ -767,7 +772,7 @@ body {
 
 /* CTA Section */
 .cta-section {
-    background: linear-gradient(rgba(44, 85, 48, 0.9), rgba(44, 85, 48, 0.9)), url('/assets/images/cta-bg.jpg');
+    background: linear-gradient(rgba(44, 85, 48, 0.9), rgba(44, 85, 48, 0.9)), url('/photos/kid11.jepg');
     background-size: cover;
     background-position: center;
     color: white;
@@ -828,21 +833,6 @@ body {
     box-shadow: 0 10px 20px rgba(0,0,0,0.1);
 }
 
-/* Image Placeholders */
-.image-placeholder {
-    background: rgba(255,255,255,0.2);
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: inherit;
-}
-
-.image-placeholder.small {
-    font-size: 0.8rem;
-}
-
 /* Responsive Design */
 @media (max-width: 992px) {
     .blog-layout {
@@ -854,7 +844,7 @@ body {
     }
     
     .featured-image {
-        height: 250px;
+        height: 300px;
     }
     
     .blog-sidebar {

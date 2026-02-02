@@ -1,197 +1,14 @@
 ---
 layout: page
-title: Contact Us
 permalink: /contact/
 ---
 
 <!-- Hero Section -->
-<section class="contact-hero">
+<section class="contact-hero" style="background-image: url('/photos/cropped.jpg');">
     <div class="container">
         <div class="hero-content">
             <h1 class="hero-title">Get In Touch</h1>
             <p class="hero-subtitle">We'd love to hear from you! Whether you're a teenager interested in our programs, a parent seeking support, a potential volunteer, or someone who wants to support our mission, please reach out.</p>
-        </div>
-    </div>
-</section>
-
-<!-- Contact Information Section -->
-<section class="section section-light">
-    <div class="container">
-        <div class="contact-grid">
-            <!-- Contact Info -->
-            <div class="contact-info">
-                <h2 class="section-title">Contact Information</h2>
-                
-                <div class="contact-card">
-                    <div class="contact-icon">🏢</div>
-                    <div class="contact-details">
-                        <h3>Maisha Bora Youth Foundation</h3>
-                        <div class="address-group">
-                            <h4>Physical Address:</h4>
-                            <p>Mang'ola County<br>Karatu District<br>Arusha Region<br>Tanzania</p>
-                        </div>
-                        <div class="address-group">
-                            <h4>Mailing Address:</h4>
-                            <p>[P.O. Box Number]<br>Karatu District<br>Tanzania</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="contact-methods">
-                    <div class="contact-method">
-                        <div class="method-icon">📧</div>
-                        <div class="method-info">
-                            <h4>Email</h4>
-                            <a href="mailto:info@maishabora.org">info@maishabora.org</a>
-                        </div>
-                    </div>
-                    
-                    <div class="contact-method">
-                        <div class="method-icon">📞</div>
-                        <div class="method-info">
-                            <h4>Phone</h4>
-                            <a href="tel:[Contact Number]">[Contact Number]</a>
-                        </div>
-                    </div>
-                    
-                    <div class="contact-method">
-                        <div class="method-icon">💬</div>
-                        <div class="method-info">
-                            <h4>WhatsApp</h4>
-                            <a href="https://wa.me/[WhatsApp Number]">[WhatsApp Number]</a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="office-hours">
-                    <h3>Office Hours</h3>
-                    <div class="hours-grid">
-                        <div class="hour-item">
-                            <span class="days">Monday - Friday</span>
-                            <span class="time">8:00 AM - 5:00 PM</span>
-                        </div>
-                        <div class="hour-item">
-                            <span class="days">Saturday</span>
-                            <span class="time">9:00 AM - 2:00 PM</span>
-                        </div>
-                        <div class="hour-item">
-                            <span class="days">Sunday</span>
-                            <span class="time closed">Closed</span>
-                        </div>
-                    </div>
-                    <p class="hours-note">During special events and programs, extended hours may apply.</p>
-                </div>
-            </div>
-            
-            <!-- How We Can Help -->
-            <div class="help-section">
-                <h2 class="section-title">How Can We Help You?</h2>
-                
-                <div class="help-cards">
-                    <div class="help-card">
-                        <div class="help-card-icon">👦👧</div>
-                        <h3>For Teenagers</h3>
-                        <ul>
-                            <li>Interested in joining our programs?</li>
-                            <li>Need help with school or career planning?</li>
-                            <li>Looking for a mentor?</li>
-                            <li>Want to know more about what we offer?</li>
-                        </ul>
-                        <p class="help-cta">Contact us to schedule a visit and learn how we can support your journey!</p>
-                    </div>
-                    
-                    <div class="help-card">
-                        <div class="help-card-icon">👨‍👩‍👧‍👦</div>
-                        <h3>For Parents & Guardians</h3>
-                        <ul>
-                            <li>Concerned about your teenager's future?</li>
-                            <li>Looking for educational support?</li>
-                            <li>Want to understand our programs?</li>
-                            <li>Need guidance on youth development?</li>
-                        </ul>
-                        <p class="help-cta">We welcome family involvement and are here to support both you and your teenager.</p>
-                    </div>
-                    
-                    <div class="help-card">
-                        <div class="help-card-icon">🤝</div>
-                        <h3>For Volunteers</h3>
-                        <ul>
-                            <li>Want to make a difference?</li>
-                            <li>Have skills to share?</li>
-                            <li>Interested in mentoring youth?</li>
-                            <li>Available for workshops or training?</li>
-                        </ul>
-                        <p class="help-cta">We're always looking for dedicated individuals to join our team!</p>
-                    </div>
-                    
-                    <div class="help-card">
-                        <div class="help-card-icon">💝</div>
-                        <h3>For Donors & Partners</h3>
-                        <ul>
-                            <li>Interested in supporting our mission?</li>
-                            <li>Looking for partnership opportunities?</li>
-                            <li>Want to sponsor a program?</li>
-                            <li>Seeking information about grants?</li>
-                        </ul>
-                        <p class="help-cta">Your support can transform lives. Let's discuss how we can work together.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Visit & Directions Section -->
-<section class="section section-accent">
-    <div class="container">
-        <div class="visit-directions">
-            <div class="visit-info">
-                <h2>Visit Us</h2>
-                <p>We welcome visitors! If you'd like to tour our facilities, meet our team, or see our programs in action, please:</p>
-                <div class="visit-steps">
-                    <div class="step">
-                        <div class="step-number">1</div>
-                        <div class="step-content">
-                            <h4>Contact us in advance</h4>
-                            <p>Schedule a visit by phone or email</p>
-                        </div>
-                    </div>
-                    <div class="step">
-                        <div class="step-number">2</div>
-                        <div class="step-content">
-                            <h4>Let us know your purpose</h4>
-                            <p>Tell us why you'd like to visit</p>
-                        </div>
-                    </div>
-                    <div class="step">
-                        <div class="step-number">3</div>
-                        <div class="step-content">
-                            <h4>Specify any needs</h4>
-                            <p>Let us know if you need translation services</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="language-note">
-                    <strong>Languages:</strong> Our staff speaks Swahili and English
-                </div>
-            </div>
-            
-            <div class="directions-info">
-                <h2>Directions</h2>
-                <div class="direction-method">
-                    <h4>From Karatu Town:</h4>
-                    <p>Travel approximately [X km] towards Mang'ola County. Our office is located [specific landmarks/directions].</p>
-                </div>
-                <div class="direction-method">
-                    <h4>From Arusha:</h4>
-                    <p>Take the main highway towards Karatu District, approximately [X km]. Continue to Mang'ola County.</p>
-                </div>
-                <div class="direction-method">
-                    <h4>Public Transportation:</h4>
-                    <p>Local buses (daladala) run regularly between Karatu and Mang'ola. Ask the driver to drop you at [landmark near office].</p>
-                </div>
-                <p class="directions-note">For detailed directions, please contact us and we'll guide you.</p>
-            </div>
         </div>
     </div>
 </section>
@@ -204,23 +21,20 @@ permalink: /contact/
             <div class="social-section">
                 <h2 class="section-title">Connect With Us Online</h2>
                 <p class="social-intro">Stay updated on our programs, success stories, and community impact:</p>
-                
-                <div class="social-cards">
+                                <div class="social-cards">
                     <div class="social-card">
                         <div class="social-icon facebook">📘</div>
                         <h3>Facebook</h3>
                         <p>Follow us for event updates, youth success stories, and program highlights</p>
                         <a href="https://facebook.com/maishabora" class="social-link">@maishabora</a>
                     </div>
-                    
-                    <div class="social-card">
+                                        <div class="social-card">
                         <div class="social-icon instagram">📷</div>
                         <h3>Instagram</h3>
                         <p>See photos and videos from our programs and community events</p>
                         <a href="https://instagram.com/maishabora" class="social-link">@maishabora</a>
                     </div>
-                    
-                    <div class="social-card">
+                                        <div class="social-card">
                         <div class="social-icon linkedin">💼</div>
                         <h3>LinkedIn</h3>
                         <p>Connect with us professionally and stay informed about organizational updates</p>
@@ -228,119 +42,33 @@ permalink: /contact/
                     </div>
                 </div>
             </div>
-            
-            <!-- FAQ -->
+                        <!-- FAQ -->
             <div class="faq-section">
                 <h2 class="section-title">Frequently Asked Questions</h2>
-                
-                <div class="faq-list">
+                                <div class="faq-list">
                     <div class="faq-item">
                         <h3>How do I enroll my teenager in programs?</h3>
                         <p>Contact us via phone or email to schedule an initial consultation. We'll discuss your teenager's needs, interests, and goals, then recommend appropriate programs.</p>
                     </div>
-                    
-                    <div class="faq-item">
+                                    <div class="faq-item">
                         <h3>Are your programs free?</h3>
                         <p>Yes! All our core programs are free for participants. We believe financial constraints should not prevent teenagers from accessing life-changing opportunities.</p>
                     </div>
-                    
-                    <div class="faq-item">
+                                        <div class="faq-item">
                         <h3>What age group do you serve?</h3>
                         <p>We primarily serve teenagers ages 13-20 years from Karatu District and surrounding areas.</p>
                     </div>
-                    
-                    <div class="faq-item">
+                                        <div class="faq-item">
                         <h3>Do you offer transportation?</h3>
                         <p>Please contact us to discuss transportation options. We work to ensure that distance is not a barrier to participation.</p>
                     </div>
-                    
-                    <div class="faq-item">
+                                        <div class="faq-item">
                         <h3>Can I volunteer even if I don't live in Tanzania?</h3>
                         <p>Yes! We welcome international volunteers and can discuss remote volunteering opportunities such as online mentoring, curriculum development, or fundraising support.</p>
                     </div>
-                    
-                    <div class="faq-item">
+                                        <div class="faq-item">
                         <h3>How can my organization partner with you?</h3>
                         <p>We actively seek partnerships with schools, businesses, NGOs, and community organizations. Contact us to explore collaboration opportunities that align with our mission.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Contact Form & Special Contacts -->
-<section class="section section-brand">
-    <div class="container">
-        <div class="special-contacts-grid">
-            <!-- Contact Form -->
-            <div class="contact-form-section">
-                <h2>Send Us a Message</h2>
-                <p>Have questions or want to get involved? Reach out to us directly:</p>
-                
-                <div class="contact-form">
-                    <div class="form-note">
-                        <p><strong>Email us at <a href="mailto:info@maishabora.org">info@maishabora.org</a> with:</strong></p>
-                        <ul>
-                            <li>Your name</li>
-                            <li>Contact information</li>
-                            <li>Subject of inquiry</li>
-                            <li>Detailed message</li>
-                        </ul>
-                        <p class="response-time">We aim to respond to all inquiries within 48 hours during business days.</p>
-                    </div>
-                    
-                    <!-- Optional: Add actual form integration here -->
-                    <div class="form-placeholder">
-                        <div class="placeholder-content">
-                            <h4>Contact Form Coming Soon</h4>
-                            <p>We're working on integrating a direct contact form. In the meantime, please email us using the information above.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Special Contacts -->
-            <div class="special-contacts">
-                <div class="special-contact emergency">
-                    <div class="special-icon">🚨</div>
-                    <div class="special-content">
-                        <h3>Emergency Contact</h3>
-                        <p>For urgent matters related to program participants or safety concerns:</p>
-                        <div class="contact-detail">
-                            <strong>Emergency Phone:</strong> [Emergency Number]
-                        </div>
-                        <div class="availability">Available: 24/7</div>
-                    </div>
-                </div>
-                
-                <div class="special-contact concerns">
-                    <div class="special-icon">🛡️</div>
-                    <div class="special-content">
-                        <h3>Report Concerns</h3>
-                        <p>The safety and well-being of our youth participants is our highest priority.</p>
-                        <p>If you have concerns about child safety, program quality, staff conduct, or facility conditions:</p>
-                        <div class="contact-detail">
-                            <strong>Program Director:</strong> [Director Contact]
-                        </div>
-                        <p class="confidentiality">All reports are handled with confidentiality and professionalism.</p>
-                    </div>
-                </div>
-                
-                <div class="special-contact media">
-                    <div class="special-icon">📰</div>
-                    <div class="special-content">
-                        <h3>Media Inquiries</h3>
-                        <p>For media requests, interviews, or press information:</p>
-                        <div class="contact-detail">
-                            <strong>Media Contact:</strong> [Media Contact Person]
-                        </div>
-                        <div class="contact-detail">
-                            <strong>Email:</strong> <a href="mailto:media@maishabora.org">media@maishabora.org</a>
-                        </div>
-                        <div class="contact-detail">
-                            <strong>Phone:</strong> [Media Contact Number]
-                        </div>
                     </div>
                 </div>
             </div>
@@ -426,7 +154,7 @@ permalink: /contact/
             
             <div class="organization-signature">
                 <h3>Maisha Bora Youth Foundation</h3>
-                <p class="tagline">Empowering Youth, Transforming Futures</p>
+                <p class="tagline">Empowering Teenagers, Transforming Futures</p>
             </div>
             
             <div class="cta-actions">
@@ -505,7 +233,7 @@ body {
 
 /* Hero Section */
 .contact-hero {
-    background: linear-gradient(rgba(44, 85, 48, 0.85), rgba(44, 85, 48, 0.85)), url('/assets/images/contact-hero.jpg');
+    background: linear-gradient(rgba(44, 85, 48, 0.85), rgba(44, 85, 48, 0.85)), url('background-image: url('/photos/cropped.jpg');');
     background-size: cover;
     background-position: center;
     color: white;

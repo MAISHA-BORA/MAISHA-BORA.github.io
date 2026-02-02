@@ -523,6 +523,17 @@ permalink: /donate/
 </div>
 
 <style>
+:root {
+    --primary-color: #2c5530;
+    --secondary-color: #4a7c59;
+    --accent-color: #8fb996;
+    --light-color: #f8f9fa;
+    --dark-color: #343a40;
+    --text-color: #333;
+    --text-light: #6c757d;
+    --brand-color: #3a6351;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -546,12 +557,12 @@ body {
 }
 
 .section-light {
-    background-color: #c4f7cbff;
+    background-color: var(--accent-color);
 }
 
 .section-dark {
-    background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
-    color: #ffffff;
+    background-color: var(--dark-color);
+    color: white;
 }
 
 .section-accent {
@@ -562,7 +573,7 @@ body {
 }
 
 .section-brand {
-    background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+    background-color: var(--accent-color);
     color: white;
 }
 
@@ -1108,10 +1119,10 @@ body {
 }
 
 .sponsorship-card {
-    background: linear-gradient(rgba(191, 238, 193, 0.8), rgba(42, 95, 63, 0.9));
+    background: white;
     border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 15px 40px rgba(153, 172, 172, 0);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.1);
     width: 100%;
     max-width: 350px;
     

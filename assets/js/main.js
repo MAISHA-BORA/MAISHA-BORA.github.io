@@ -359,7 +359,7 @@ document.addEventListener('DOMContentLoaded', function() {
   
   // Console message
   console.log('%cMaisha Bora Youth Foundation', 'color: #2E7D32; font-size: 24px; font-weight: bold;');
-  console.log('%cEmpowering Youth, Transforming Futures', 'color: #FF6F00; font-size: 14px;');
+  console.log('%cEmpowering Teenagers, Transforming Futures', 'color: #FF6F00; font-size: 14px;');
   console.log('Website developed with ❤️ for the youth of Tanzania');
   
 });

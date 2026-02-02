@@ -1,7 +1,7 @@
 {
   "name": "maisha-bora",
   "version": "1.0.0",
-  "description": "**Empowering Youth, Transforming Futures**",
+  "description": "**Empowering Teenagers, Transforming Futures**",
   "main": "index.js",
   "scripts": {
     "start": "node server.js",

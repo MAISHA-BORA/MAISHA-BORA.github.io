@@ -1,11 +1,10 @@
 ---
 layout: page
-title: Events
 permalink: /events/
 ---
 
 <!-- Hero Section -->
-<section class="events-hero">
+<section class="events-hero" style="background-image: url('/photos/cropped.jpg');">
     <div class="container">
         <div class="hero-content">
             <h1 class="hero-title">Upcoming Events & Programs</h1>
