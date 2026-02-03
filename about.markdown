@@ -420,7 +420,7 @@ body {
 }
 
 .section-accent {
-    background-color: var(--accent-color);
+    background-color: var(--primary-color);
     color: var(--text-color);
 }
 

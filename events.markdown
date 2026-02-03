@@ -597,7 +597,7 @@ permalink: /events/
                 </div>
             </div>
             <div class="image-box">
-                <img src="/photos/person10.jpeg" alt="Teenager smiling" class="side-image">
+                <img src="/photos/group3.jpeg" alt="Teenager smiling" class="side-image">
             </div>
         </div>
     </div>
@@ -705,13 +705,6 @@ permalink: /events/
                     <span>Monday - Friday: 8:00 AM - 5:00 PM</span>
                     <span>Saturday: 9:00 AM - 2:00 PM</span>
                     <span>Sunday: Closed</span>
-                </div>
-            </div>
-            <div class="social-connect">
-                <p>Follow us for event updates:</p>
-                <div class="social-links">
-                    <a href="#" class="social-link facebook">Facebook: @maishabora</a>
-                    <a href="#" class="social-link instagram">Instagram: @maishabora</a>
                 </div>
             </div>
         </div>
@@ -1117,7 +1110,7 @@ body {
   overflow: hidden;
   border-radius: 10px;
   border-left: 5px solid #085014;
-  padding: 10px;
+  padding: 0px;
   box-shadow: 0 5px 15px rgba(0,0,0,0.1);
   background-color: white;
   display: flex;
