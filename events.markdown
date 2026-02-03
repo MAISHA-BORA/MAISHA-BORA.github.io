@@ -46,7 +46,6 @@ permalink: /events/
     <div class="container">
         <h2 class="section-title">Weekly Programs</h2>
         <p class="section-intro">Regular programs that provide consistent support and development opportunities</p>
-        
         <div class="events-grid">
             <div class="event-card featured">
                 <div class="event-badge weekly">Weekly</div>
@@ -80,8 +79,7 @@ permalink: /events/
                     </div>
                 </div>
             </div>
-            
-            <div class="event-card">
+                        <div class="event-card">
                 <div class="event-badge weekly">Weekly</div>
                 <div class="event-header">
                     <div class="event-date">
@@ -130,7 +128,6 @@ permalink: /events/
     <div class="container">
         <h2 class="section-title">Monthly Programs</h2>
         <p class="section-intro">Specialized programs offered monthly to build essential life skills</p>
-        
         <div class="events-grid">
             <div class="event-card">
                 <div class="event-badge monthly">Monthly</div>
@@ -172,7 +169,6 @@ permalink: /events/
                     </div>
                 </div>
             </div>
-            
             <div class="event-card">
                 <div class="event-badge monthly">Monthly</div>
                 <div class="event-header">
@@ -225,11 +221,10 @@ permalink: /events/
     <div class="container">
         <h2 class="section-title">Upcoming Special Events</h2>
         <p class="section-intro">Major events and community initiatives that create lasting impact</p>
-        
         <div class="special-events">
             <div class="special-event-card">
                 <div class="event-image">
-                    <div class="image-placeholder">
+                    <div class="image-box">
                         <span>Youth Empowerment Summit Image</span>
                     </div>
                     <div class="event-status upcoming">Coming Soon</div>
@@ -286,7 +281,6 @@ permalink: /events/
                     </div>
                 </div>
             </div>
-            
             <div class="special-events-grid">
                 <div class="mini-event-card">
                     <div class="event-category service">Community Service</div>
@@ -315,7 +309,6 @@ permalink: /events/
                         <a href="#register" class="btn-event small">Sign Up</a>
                     </div>
                 </div>
-                
                 <div class="mini-event-card">
                     <div class="event-category career">Career</div>
                     <h4 class="event-title">Career Guidance Fair</h4>
@@ -369,7 +362,6 @@ permalink: /events/
     <div class="container">
         <h2 class="section-title">Training Programs</h2>
         <p class="section-intro">Comprehensive courses to build essential skills for education and employment</p>
-        
         <div class="training-programs">
             <div class="training-card">
                 <div class="training-header">
@@ -420,7 +412,6 @@ permalink: /events/
                     <a href="#register" class="btn-training">Apply Now</a>
                 </div>
             </div>
-            
             <div class="training-card">
                 <div class="training-header">
                     <div class="training-icon">🗣️</div>
@@ -478,7 +469,6 @@ permalink: /events/
                 <h2>Peer Mentoring Program</h2>
                 <div class="mentorship-badge ongoing">Ongoing Enrollment</div>
                 <p class="mentorship-description">Older teenagers (ages 18-20) mentor younger participants (ages 13-17) in academic success, personal development, career planning, and life skills.</p>
-                
                 <div class="mentorship-benefits">
                     <div class="benefits-column">
                         <h4>Benefits for Mentors:</h4>
@@ -501,7 +491,6 @@ permalink: /events/
                             </div>
                         </div>
                     </div>
-                    
                     <div class="benefits-column">
                         <h4>Benefits for Mentees:</h4>
                         <div class="benefits-list">
@@ -524,17 +513,13 @@ permalink: /events/
                         </div>
                     </div>
                 </div>
-                
                 <div class="mentorship-actions">
                     <a href="#register" class="btn btn-primary">Apply as Mentor</a>
                     <a href="#register" class="btn btn-secondary">Request a Mentor</a>
                 </div>
             </div>
-            
-            <div class="mentorship-image">
-                <div class="image-placeholder">
-                    <span>Mentorship Program Image</span>
-                </div>
+            <div class="image-box">
+                <img src="/photos/kid7.jpeg" alt="Teenager smiling" class="side-image">
             </div>
         </div>
     </div>
@@ -544,7 +529,6 @@ permalink: /events/
 <section class="section section-light" id="register">
     <div class="container">
         <h2 class="section-title">How to Participate</h2>
-        
         <div class="participation-steps">
             <div class="steps-content">
                 <h3>For Teenagers:</h3>
@@ -586,7 +570,6 @@ permalink: /events/
                     </div>
                 </div>
             </div>
-            
             <div class="parents-content">
                 <h3>For Parents/Guardians:</h3>
                 <div class="parents-card">
@@ -624,7 +607,6 @@ permalink: /events/
         <div class="cta-content">
             <h2>Ready to Get Involved?</h2>
             <p>Join us in transforming lives, one teenager at a time! Contact us today to learn more about our programs and how you can participate.</p>
-            
             <div class="contact-info">
                 <div class="contact-item">
                     <span class="contact-icon">📧</span>
@@ -639,7 +621,6 @@ permalink: /events/
                     <span>Mang'ola County, Karatu District, Tanzania</span>
                 </div>
             </div>
-            
             <div class="office-hours">
                 <h4>Office Hours:</h4>
                 <div class="hours">
@@ -648,7 +629,6 @@ permalink: /events/
                     <span>Sunday: Closed</span>
                 </div>
             </div>
-            
             <div class="social-connect">
                 <p>Follow us for event updates:</p>
                 <div class="social-links">
@@ -700,7 +680,7 @@ body {
 }
 
 .section-brand {
-    background-color: var(--brand-color);
+    background-color: var(--secondary-color);
     color: white;
 }
 
@@ -1331,16 +1311,6 @@ body {
     gap: 15px;
 }
 
-.mentorship-image {
-    height: 400px;
-    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-    border-radius: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-}
-
 /* Participation Steps */
 .participation-steps {
     display: grid;
@@ -1544,15 +1514,16 @@ body {
     box-shadow: 0 10px 20px rgba(0,0,0,0.1);
 }
 
-/* Image Placeholders */
-.image-placeholder {
-    background: rgba(255,255,255,0.2);
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: inherit;
+/* Image  */
+.image-box {
+  background-color: white;
+  border-left: 5px solid #085014;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Responsive Design */
@@ -1563,7 +1534,7 @@ body {
         grid-template-columns: 1fr;
     }
     
-    .mentorship-image {
+    .image-box {
         height: 300px;
         order: -1;
     }

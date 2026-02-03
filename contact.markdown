@@ -154,7 +154,7 @@ permalink: /contact/
             
             <div class="organization-signature">
                 <h3>Maisha Bora Youth Foundation</h3>
-                <p class="tagline">Empowering Teenagers, Transforming Futures</p>
+                <p class="tagline">Empowering Youth, Transforming Futures</p>
             </div>
             
             <div class="cta-actions">

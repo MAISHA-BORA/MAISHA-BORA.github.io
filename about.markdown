@@ -38,7 +38,7 @@ permalink: /about/
             <div class="content-text">
                 <h2 class="section-title">Who We Are</h2>
                 <p class="lead-text">In today’s rapidly changing world, teenagers face numerous challenges that impact their overall well-being. </p>
-                <p class="lead-text">Maisha Bora Youth Foundation is dedicated to empowering teenagers in Karatu District, Mang'ola County, Tanzania with the skills, knowledge, and support they need to thrive. In a challenging environment where many young people face obstacles to education and opportunity, we provide a pathway to a brighter future..</p>
+                <p class="lead-text">Maisha Bora Youth Foundation is dedicated to Empowering Youth in Karatu District, Mang'ola County, Tanzania with the skills, knowledge, and support they need to thrive. In a challenging environment where many young people face obstacles to education and opportunity, we provide a pathway to a brighter future..</p>
                 <div class="target-audience">
                     <h1>Our Reach</h1>
                     <div class="stats-grid">

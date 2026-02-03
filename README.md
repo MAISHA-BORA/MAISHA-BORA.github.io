@@ -1,6 +1,6 @@
 # Maisha Bora Youth Foundation Website
 
-**Empowering Teenagers, Transforming Futures**
+**Empowering Youth, Transforming Futures**
 
 This is the official Jekyll website for Maisha Bora Youth Foundation, a comprehensive youth development organization serving teenagers in Karatu District, Mang'ola County, Tanzania.
 
