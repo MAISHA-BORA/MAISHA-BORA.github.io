@@ -304,9 +304,7 @@ permalink: /events/
         <div class="special-events">
             <div class="special-event-card">
                 <div class="event-image">
-                    <div class="image-box">
                         <img src="/photos/person10.jpeg" alt="Teenager smiling" class="side-image">
-                    </div>
                     <div class="event-status upcoming">Coming Soon</div>
                 </div>
                 <div class="event-content">
@@ -1083,6 +1081,153 @@ body {
     grid-template-columns: 1fr 1fr;
 }
 
+/* ==================== */
+/* RESPONSIVE IMAGE FIXES */
+/* ==================== */
+
+/* Fix for oversized images in Special Events */
+.special-event-card .event-image,
+.mentorship-section .image-box {
+  position: relative;
+  overflow: hidden;
+  min-height: 300px;
+}
+
+.special-event-card .side-image,
+.mentorship-section .side-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+/* Image hover effect */
+.special-event-card .event-image:hover .side-image,
+.mentorship-section .image-box:hover .side-image {
+  transform: scale(1.05);
+}
+
+/* Responsive image container */
+.image-box {
+  width: 100%;
+  height: auto;
+  max-height: 400px;
+  overflow: hidden;
+  border-radius: 10px;
+  border-left: 5px solid #085014;
+  padding: 10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* For mentorship section specific styling */
+.mentorship-section .image-box {
+  height: 100%;
+  max-height: 500px;
+}
+
+/* Special Events image layout fix */
+.special-event-card {
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 992px) {
+  .special-event-card {
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  .event-image {
+    min-height: 400px;
+  }
+}
+
+/* Mobile-first responsive images */
+@media (max-width: 768px) {
+  .image-box {
+    max-height: 300px;
+    margin-bottom: 20px;
+  }
+  
+  .special-event-card .event-image {
+    min-height: 250px;
+  }
+  
+  .mentorship-section .image-box {
+    max-height: 350px;
+  }
+}
+
+/* ==================== */
+/* UPDATED MONTHLY PROGRAMS */
+/* ==================== */
+
+/* Update the events-grid for 6 programs */
+.events-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 30px;
+}
+
+/* New category colors for additional programs */
+.event-category.social { background: #3498db; }
+.event-category.computer { background: #2c3e50; }
+.event-category.english { background: #9b59b6; }
+.event-category.health { background: #e74c3c; }
+.event-category.financial { background: #27ae60; }
+.event-category.business { background: #f39c12; }
+
+/* Program icons in headers */
+.event-header .program-icon {
+  font-size: 1.5rem;
+  margin-right: 10px;
+}
+
+/* ==================== */
+/* IMPROVED RESPONSIVE DESIGN */
+/* ==================== */
+
+/* Better mobile handling */
+@media (max-width: 480px) {
+  .events-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .topic-tag {
+    font-size: 0.75rem;
+    padding: 4px 8px;
+  }
+  
+  .hero-title {
+    font-size: 2rem;
+  }
+  
+  .section-title {
+    font-size: 1.8rem;
+  }
+}
+
+/* Tablet optimization */
+@media (max-width: 768px) and (min-width: 481px) {
+  .events-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .special-events-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Ensure images never overflow */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
 .event-image {
     position: relative;
     background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
@@ -1091,6 +1236,7 @@ body {
     justify-content: center;
     color: white;
     min-height: 300px;
+    padding: 0;
 }
 
 .event-status {
@@ -1594,17 +1740,6 @@ body {
     box-shadow: 0 10px 20px rgba(0,0,0,0.1);
 }
 
-/* Image  */
-.image-box {
-  background-color: white;
-  border-left: 5px solid #085014;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
 
 /* Responsive Design */
 @media (max-width: 992px) {
@@ -1612,11 +1747,6 @@ body {
     .mentorship-section,
     .participation-steps {
         grid-template-columns: 1fr;
-    }
-    
-    .image-box {
-        height: 300px;
-        order: -1;
     }
     
     .events-grid,
