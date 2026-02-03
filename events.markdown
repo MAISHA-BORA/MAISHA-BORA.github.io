@@ -21,10 +21,6 @@ permalink: /events/
 <section class="section section-light">
     <div class="container">
         <div class="events-navigation">
-            <a href="#weekly" class="nav-item">
-                <div class="nav-icon">📅</div>
-                <span>Weekly Programs</span>
-            </a>
             <a href="#monthly" class="nav-item">
                 <div class="nav-icon">🗓️</div>
                 <span>Monthly Programs</span>
@@ -41,55 +37,106 @@ permalink: /events/
     </div>
 </section>
 
-<!-- Weekly Programs -->
-<section class="section section-brand" id="weekly">
+<!-- Monthly Programs -->
+<section class="section section-light" id="monthly">
     <div class="container">
-        <h2 class="section-title">Weekly Programs</h2>
-        <p class="section-intro">Regular programs that provide consistent support and development opportunities</p>
+        <h2 class="section-title">Monthly Programs</h2>
+        <p class="section-intro">Specialized programs offered monthly to build essential life skills</p>
         <div class="events-grid">
-            <div class="event-card featured">
-                <div class="event-badge weekly">Weekly</div>
+            <!-- Social Skills -->
+            <div class="event-card">
                 <div class="event-header">
                     <div class="event-date">
-                        <div class="date-day">SAT</div>
-                        <div class="date-time">10:00 AM</div>
+                        <div class="date-day">1st MON</div>
+                        <div class="date-time">3:00 PM</div>
                     </div>
-                    <div class="event-category spiritual">Spiritual</div>
+                    <div class="event-category social">Social</div>
                 </div>
                 <div class="event-content">
-                    <h3 class="event-title">Spiritual Growth Workshops</h3>
+                    <h3 class="event-title">Social Skills Development</h3>
                     <div class="event-details">
                         <div class="detail-item">
                             <span class="detail-icon">⏰</span>
-                            <span>Every Saturday | 10:00 AM - 12:00 PM</span>
+                            <span>Every Monday | 3:00 PM - 5:00 PM</span>
                         </div>
                         <div class="detail-item">
                             <span class="detail-icon">📍</span>
-                            <span>Mang'ola Community Center</span>
+                            <span>Youth Community Center</span>
                         </div>
                         <div class="detail-item">
                             <span class="detail-icon">👥</span>
                             <span>Teenagers ages 13-20</span>
                         </div>
                     </div>
-                    <p class="event-description">Weekly sessions focusing on values clarification, mindfulness, and personal development. Guest speakers from various faiths and philosophies provide diverse perspectives on living purposeful lives.</p>
+                    <div class="workshop-topics">
+                        <h4>Develop essential skills:</h4>
+                        <div class="topics-grid">
+                            <span class="topic-tag">Communication skills</span>
+                            <span class="topic-tag">Conflict resolution</span>
+                            <span class="topic-tag">Team building</span>
+                            <span class="topic-tag">Emotional intelligence</span>
+                        </div>
+                    </div>
                     <div class="event-actions">
-                        <span class="registration-info">Walk-in or contact us in advance</span>
-                        <a href="#register" class="btn-event">Learn More</a>
+                        <span class="registration-limited">Group sessions available</span>
+                        <a href="#register" class="btn-event">Join Session</a>
                     </div>
                 </div>
             </div>
-                        <div class="event-card">
-                <div class="event-badge weekly">Weekly</div>
+            <!-- Computer Skills -->
+            <div class="event-card">
                 <div class="event-header">
                     <div class="event-date">
-                        <div class="date-day">WED</div>
-                        <div class="date-time">2:00 PM</div>
+                        <div class="date-day">Every TUE</div>
+                        <div class="date-time">10:00 AM</div>
                     </div>
-                    <div class="event-category social">Social</div>
+                    <div class="event-category computer">Computer</div>
                 </div>
                 <div class="event-content">
-                    <h3 class="event-title">Social Skills Development Workshop</h3>
+                    <h3 class="event-title">Computer Skills Workshop</h3>
+                    <div class="event-details">
+                        <div class="detail-item">
+                            <span class="detail-icon">⏰</span>
+                            <span>Every Tuesday | 10:00 AM - 12:00 PM</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-icon">📍</span>
+                            <span>Computer Lab, Karatu</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-icon">👥</span>
+                            <span>Beginners to Intermediate</span>
+                        </div>
+                    </div>
+                    <div class="workshop-topics">
+                        <h4>Learn practical computer skills:</h4>
+                        <div class="topics-grid">
+                            <span class="topic-tag">Basic computer operation</span>
+                            <span class="topic-tag">Microsoft Office</span>
+                            <span class="topic-tag">Internet browsing</span>
+                            <span class="topic-tag">Email communication</span>
+                        </div>
+                    </div>
+                    <div class="event-note">
+                        <span class="note-icon">💻</span>
+                        <span>Computers provided - no experience needed</span>
+                    </div>
+                    <div class="event-actions">
+                        <a href="#register" class="btn-event">Enroll Now</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Basic English Program -->
+            <div class="event-card">
+                <div class="event-header">
+                    <div class="event-date">
+                        <div class="date-day">Every WED</div>
+                        <div class="date-time">2:00 PM</div>
+                    </div>
+                    <div class="event-category english">English</div>
+                </div>
+                <div class="event-content">
+                    <h3 class="event-title">Basic English Program</h3>
                     <div class="event-details">
                         <div class="detail-item">
                             <span class="detail-icon">⏰</span>
@@ -97,80 +144,30 @@ permalink: /events/
                         </div>
                         <div class="detail-item">
                             <span class="detail-icon">📍</span>
-                            <span>Youth Center, Karatu District</span>
+                            <span>Mang'ola Learning Center</span>
                         </div>
                         <div class="detail-item">
                             <span class="detail-icon">👥</span>
-                            <span>Teenagers ages 13-20</span>
+                            <span>All levels welcome</span>
                         </div>
                     </div>
                     <div class="workshop-topics">
-                        <h4>Interactive workshops covering:</h4>
+                        <h4>Improve your English:</h4>
                         <div class="topics-grid">
-                            <span class="topic-tag">Communication skills</span>
-                            <span class="topic-tag">Conflict resolution</span>
-                            <span class="topic-tag">Teamwork and collaboration</span>
-                            <span class="topic-tag">Leadership development</span>
+                            <span class="topic-tag">Basic conversation</span>
+                            <span class="topic-tag">Vocabulary building</span>
+                            <span class="topic-tag">Grammar essentials</span>
+                            <span class="topic-tag">Pronunciation practice</span>
                         </div>
                     </div>
                     <div class="event-actions">
-                        <span class="registration-required">Registration Required</span>
-                        <a href="#register" class="btn-event">Register Now</a>
+                        <span class="registration-required">Assessment required</span>
+                        <a href="#register" class="btn-event">Get Assessed</a>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-</section>
-
-<!-- Monthly Programs -->
-<section class="section section-light" id="monthly">
-    <div class="container">
-        <h2 class="section-title">Monthly Programs</h2>
-        <p class="section-intro">Specialized programs offered monthly to build essential life skills</p>
-        <div class="events-grid">
+            <!-- Entrepreneurship -->
             <div class="event-card">
-                <div class="event-badge monthly">Monthly</div>
-                <div class="event-header">
-                    <div class="event-date">
-                        <div class="date-day">1st SAT</div>
-                        <div class="date-time">9:00 AM</div>
-                    </div>
-                    <div class="event-category financial">Financial</div>
-                </div>
-                <div class="event-content">
-                    <h3 class="event-title">Financial Literacy Course</h3>
-                    <div class="event-details">
-                        <div class="detail-item">
-                            <span class="detail-icon">⏰</span>
-                            <span>First Saturday | 9:00 AM - 1:00 PM</span>
-                        </div>
-                        <div class="detail-item">
-                            <span class="detail-icon">📍</span>
-                            <span>Mang'ola Community Hall</span>
-                        </div>
-                        <div class="detail-item">
-                            <span class="detail-icon">👥</span>
-                            <span>Teenagers ages 16-20</span>
-                        </div>
-                    </div>
-                    <div class="workshop-topics">
-                        <h4>Comprehensive training on:</h4>
-                        <div class="topics-grid">
-                            <span class="topic-tag">Budgeting and money management</span>
-                            <span class="topic-tag">Saving strategies</span>
-                            <span class="topic-tag">Basic investing concepts</span>
-                            <span class="topic-tag">Banking and financial services</span>
-                        </div>
-                    </div>
-                    <div class="event-actions">
-                        <span class="registration-limited">Limited Spaces Available</span>
-                        <a href="#register" class="btn-event">Pre-register</a>
-                    </div>
-                </div>
-            </div>
-            <div class="event-card">
-                <div class="event-badge monthly">Monthly</div>
                 <div class="event-header">
                     <div class="event-date">
                         <div class="date-day">3rd SAT</div>
@@ -212,6 +209,89 @@ permalink: /events/
                     </div>
                 </div>
             </div>
+            <!-- Financial Literacy -->
+            <div class="event-card">
+                <div class="event-header">
+                    <div class="event-date">
+                        <div class="date-day">1st SAT</div>
+                        <div class="date-time">9:00 AM</div>
+                    </div>
+                    <div class="event-category financial">Financial</div>
+                </div>
+                <div class="event-content">
+                    <h3 class="event-title">Financial Literacy Course</h3>
+                    <div class="event-details">
+                        <div class="detail-item">
+                            <span class="detail-icon">⏰</span>
+                            <span>First Saturday | 9:00 AM - 1:00 PM</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-icon">📍</span>
+                            <span>Mang'ola Community Hall</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-icon">👥</span>
+                            <span>Teenagers ages 16-20</span>
+                        </div>
+                    </div>
+                    <div class="workshop-topics">
+                        <h4>Comprehensive training on:</h4>
+                        <div class="topics-grid">
+                            <span class="topic-tag">Budgeting and money management</span>
+                            <span class="topic-tag">Saving strategies</span>
+                            <span class="topic-tag">Basic investing concepts</span>
+                            <span class="topic-tag">Banking and financial services</span>
+                        </div>
+                    </div>
+                    <div class="event-actions">
+                        <span class="registration-limited">Limited Spaces Available</span>
+                        <a href="#register" class="btn-event">Pre-register</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Health Skills -->
+            <div class="event-card">
+                <div class="event-header">
+                    <div class="event-date">
+                        <div class="date-day">4th SAT</div>
+                        <div class="date-time">11:00 AM</div>
+                    </div>
+                    <div class="event-category health">Health</div>
+                </div>
+                <div class="event-content">
+                    <h3 class="event-title">Health Skills Workshop</h3>
+                    <div class="event-details">
+                        <div class="detail-item">
+                            <span class="detail-icon">⏰</span>
+                            <span>Fourth Saturday | 11:00 AM - 2:00 PM</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-icon">📍</span>
+                            <span>Community Health Center</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-icon">👥</span>
+                            <span>All teenagers welcome</span>
+                        </div>
+                    </div>
+                    <div class="workshop-topics">
+                        <h4>Learn about:</h4>
+                        <div class="topics-grid">
+                            <span class="topic-tag">Basic first aid</span>
+                            <span class="topic-tag">Nutrition basics</span>
+                            <span class="topic-tag">Mental health awareness</span>
+                            <span class="topic-tag">Hygiene practices</span>
+                        </div>
+                    </div>
+                    <div class="event-note">
+                        <span class="note-icon">❤️</span>
+                        <span>Certified health professionals present</span>
+                    </div>
+                    <div class="event-actions">
+                        <a href="#register" class="btn-event">Join Workshop</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </section>
@@ -225,7 +305,7 @@ permalink: /events/
             <div class="special-event-card">
                 <div class="event-image">
                     <div class="image-box">
-                        <span>Youth Empowerment Summit Image</span>
+                        <img src="/photos/person10.jpeg" alt="Teenager smiling" class="side-image">
                     </div>
                     <div class="event-status upcoming">Coming Soon</div>
                 </div>
@@ -519,7 +599,7 @@ permalink: /events/
                 </div>
             </div>
             <div class="image-box">
-                <img src="/photos/kid7.jpeg" alt="Teenager smiling" class="side-image">
+                <img src="/photos/person10.jpeg" alt="Teenager smiling" class="side-image">
             </div>
         </div>
     </div>
