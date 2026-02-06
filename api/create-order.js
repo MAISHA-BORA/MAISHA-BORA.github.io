@@ -1,9 +1,9 @@
-// api/create-order.js - Direct HTTP implementation (no external dependencies)
+// api/create-order.js - ENHANCED VERSION
 const crypto = require('crypto');
 const https = require('https');
 
 module.exports = async (req, res) => {
-  // CORS headers
+  // CORS headers (keep existing)
   const origin = req.headers.origin;
   const allowedOrigins = [
     'https://maishaborafoundation.org',
@@ -47,7 +47,17 @@ module.exports = async (req, res) => {
     }
     
     // Validate input
-    const { amount, email, name, phone, donationType, isMonthly } = req.body;
+    const { 
+      amount, 
+      email, 
+      name, 
+      phone, 
+      donationType, 
+      isMonthly,
+      paymentMethod, // NEW: 'card', 'mobile', 'selcompesa', 'bank'
+      billing,       // NEW: For card payments
+      currency = 'TZS' // NEW: Default to TZS, allow USD for international
+    } = req.body;
     
     if (!amount || amount < 1) {
       return res.status(400).json({
@@ -71,15 +81,15 @@ module.exports = async (req, res) => {
     // Get domain
     const domain = process.env.NEXT_PUBLIC_DOMAIN || req.headers.origin || 'https://maishaborafoundation.org';
     
-    // Prepare order data
-    const orderData = {
+    // Common order data
+    const commonOrderData = {
       vendor: vendor,
       order_id: orderId,
       buyer_email: email.trim().toLowerCase(),
       buyer_name: name?.trim() || 'Anonymous Donor',
       buyer_phone: formatPhoneNumber(phone) || '255000000000',
-      amount: parseFloat(amount), // amount: Math.round(parseFloat(amount) * 100),
-      currency: 'TZS',
+      amount: parseFloat(amount),
+      currency: currency, // Now supports TZS and USD
       buyer_remarks: `Donation to Maisha Bora${isMonthly ? ' (Monthly)' : ''}`,
       merchant_remarks: `MBYF - ${donationType || 'General'}`,
       no_of_items: 1,
@@ -89,46 +99,75 @@ module.exports = async (req, res) => {
       transid: transactionId
     };
     
-    console.log('Creating order:', { orderId, amount: orderData.amount });
+    // Determine which API endpoint to use based on payment method
+    let apiPath = '/v1/checkout/create-order-minimal';
+    let orderData = { ...commonOrderData };
     
-    // Create authorization signature according to Selcom specification
-    const path = '/v1/checkout/create-order-minimal';
-    
-    // 1. Generate ISO 8601 timestamp with +03:00 timezone (East Africa Time)
-    function getSelcomTimestamp() {
-        const now = new Date();
-        // Adjust for East Africa Time (UTC+3)
-        const adjustedTime = new Date(now.getTime() + (3 * 60 * 60 * 1000));
+    // FOR INTERNATIONAL CARD PAYMENTS
+    if (paymentMethod === 'card' || currency === 'USD') {
+      apiPath = '/v1/checkout/create-order';
+      
+      // Add billing information required for card payments
+      orderData = {
+        ...orderData,
+        payment_methods: 'CARD', // Can be 'ALL', 'CARD', 'MOBILEMONEYPULL'
+        buyer_user_id: email, // Use email as user ID
         
-        // Format: YYYY-MM-DDThh:mm:ss+03:00 (no milliseconds)
-        const year = adjustedTime.getUTCFullYear();
-        const month = String(adjustedTime.getUTCMonth() + 1).padStart(2, '0');
-        const day = String(adjustedTime.getUTCDate()).padStart(2, '0');
-        const hours = String(adjustedTime.getUTCHours()).padStart(2, '0');
-        const minutes = String(adjustedTime.getUTCMinutes()).padStart(2, '0');
-        const seconds = String(adjustedTime.getUTCSeconds()).padStart(2, '0');
+        // Billing info for card payments (international requirements)
+        billing: {
+          firstname: name?.split(' ')[0] || 'Donor',
+          lastname: name?.split(' ').slice(1).join(' ') || 'Anonymous',
+          address_1: billing?.address || 'Not Provided',
+          city: billing?.city || 'Karatu',
+          state_or_region: billing?.state || 'Arusha',
+          postcode_or_pobox: billing?.postcode || '00000',
+          country: billing?.country || 'TZ',
+          phone: formatPhoneNumber(phone) || '255000000000'
+        },
         
-        return `${year}-${month}-${day}T${hours}:${minutes}:${seconds}+03:00`;
+        // Shipping info (same as billing for donations)
+        shipping: {
+          firstname: name?.split(' ')[0] || 'Donor',
+          lastname: name?.split(' ').slice(1).join(' ') || 'Anonymous',
+          address_1: billing?.address || 'Not Provided',
+          city: billing?.city || 'Karatu',
+          state_or_region: billing?.state || 'Arusha',
+          postcode_or_pobox: billing?.postcode || '00000',
+          country: billing?.country || 'TZ',
+          phone: formatPhoneNumber(phone) || '255000000000'
+        },
+        
+        // Customization
+        header_colour: '#2c5530', // Your brand color
+        button_colour: '#4a7c59',
+        expiry: 60 // 60 minutes expiry
+      };
     }
-    const timestamp_sig = getSelcomTimestamp();
-    console.log('Selcom Timestamp:', timestamp_sig);
     
-    // 2. Prepare data for the signature - include timestamp first
+    console.log('Creating order:', { 
+      orderId, 
+      amount: orderData.amount, 
+      currency: orderData.currency,
+      method: paymentMethod 
+    });
+    
+    // Create authorization signature
+    const path = apiPath;
+    const timestamp_sig = getSelcomTimestamp();
+    
+    // Prepare data for the signature
     const dataToSign = {
       timestamp: timestamp_sig,
       ...orderData
     };
     
-    // 3. Create the query string for signing (sorted alphabetically by key)
+    // Create signature
     const signedFields = Object.keys(orderData).sort().join(',');
     const queryString = Object.keys(dataToSign)
       .sort()
       .map(key => `${key}=${dataToSign[key]}`)
       .join('&');
     
-    console.log('String to sign:', queryString);
-    
-    // 4. Create the HMAC SHA256 signature and encode it in Base64
     const signature = crypto
       .createHmac('sha256', apiSecret)
       .update(queryString)
@@ -155,6 +194,8 @@ module.exports = async (req, res) => {
       orderId,
       transactionId,
       amount,
+      currency,
+      paymentMethod: paymentMethod || 'mobile',
       paymentGatewayUrl: paymentData?.payment_gateway_url ? 
         Buffer.from(paymentData.payment_gateway_url, 'base64').toString() : null,
       qrCode: paymentData?.qr || null,
@@ -175,7 +216,21 @@ module.exports = async (req, res) => {
   }
 };
 
-// Helper function to make HTTPS requests to Selcom
+// Helper functions remain the same...
+function getSelcomTimestamp() {
+  const now = new Date();
+  const adjustedTime = new Date(now.getTime() + (3 * 60 * 60 * 1000));
+  
+  const year = adjustedTime.getUTCFullYear();
+  const month = String(adjustedTime.getUTCMonth() + 1).padStart(2, '0');
+  const day = String(adjustedTime.getUTCDate()).padStart(2, '0');
+  const hours = String(adjustedTime.getUTCHours()).padStart(2, '0');
+  const minutes = String(adjustedTime.getUTCMinutes()).padStart(2, '0');
+  const seconds = String(adjustedTime.getUTCSeconds()).padStart(2, '0');
+  
+  return `${year}-${month}-${day}T${hours}:${minutes}:${seconds}+03:00`;
+}
+
 function makeSelcomRequest(path, data, auth) {
   return new Promise((resolve, reject) => {
     const postData = JSON.stringify(data);
@@ -247,3 +302,4 @@ function formatPhoneNumber(phone) {
   }
   return cleaned.length >= 10 && cleaned.length <= 13 ? cleaned : null;
 }
+
