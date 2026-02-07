@@ -651,7 +651,7 @@ body {
 }
 
 .objective-card {
-    background: var(--accent-color);
+    background: linear-gradient(rgba(58, 35, 8, 0.88), rgba(186, 228, 190, 0.9));
     padding: 30px;
     border-radius: 10px;
     backdrop-filter: blur(10px);
@@ -690,7 +690,7 @@ body {
 .objective-list {
     list-style-type: none;
     margin-top: 15px;
-    color: var(--secondary-color);
+    color: black;
 }
 
 .objective-list li {
@@ -721,7 +721,7 @@ body {
     border-radius: 20px;
     text-align: center;
     font-size: 0.9rem;
-    color: var(--secondary-color);
+    color: black;
 }
 
 /* Programs Tabs */
