@@ -420,12 +420,12 @@ body {
 }
 
 .section-accent {
-    background-color: var(--primary-color);
+    background-color: var(--accent-color);
     color: var(--text-color);
 }
 
 .section-brand {
-    background-color: var(--brand-color);
+    background-color: var(--accent-color);
     color: white;
 }
 
@@ -459,7 +459,7 @@ body {
 
 /* Hero Section */
 .about-hero {
-  background-image: url('/photos/cropped.jpg');
+  background-image: url('/photos/youth2.jpg');
   background-size: cover;
   background-position: center;
   color: white;
@@ -651,7 +651,7 @@ body {
 }
 
 .objective-card {
-    background: rgba(255,255,255,0.1);
+    background: var(--accent-color);
     padding: 30px;
     border-radius: 10px;
     backdrop-filter: blur(10px);
@@ -662,6 +662,7 @@ body {
     align-items: center;
     gap: 15px;
     margin-bottom: 20px;
+    background: var(--secondary-color);
 }
 
 .objective-number {
@@ -681,10 +682,15 @@ body {
     color: var(--accent-color);
     margin: 0;
 }
+.objective-card p {
+    color: var(--light-color);
+    margin: 0;
+}
 
 .objective-list {
     list-style-type: none;
     margin-top: 15px;
+    color: var(--secondary-color);
 }
 
 .objective-list li {
@@ -706,6 +712,7 @@ body {
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     gap: 10px;
     margin-top: 15px;
+    
 }
 
 .skill-tag {
@@ -714,6 +721,7 @@ body {
     border-radius: 20px;
     text-align: center;
     font-size: 0.9rem;
+    color: var(--secondary-color);
 }
 
 /* Programs Tabs */

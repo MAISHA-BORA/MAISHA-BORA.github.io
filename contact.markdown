@@ -4,7 +4,7 @@ permalink: /contact/
 ---
 
 <!-- Hero Section -->
-<section class="contact-hero" style="background-image: url('/photos/cropped.jpg');">
+<section class="contact-hero" style="background-image: url('/photos/youth2.jpg');">
     <div class="container">
         <div class="hero-content">
             <h1 class="hero-title">Get In Touch</h1>
@@ -233,7 +233,7 @@ body {
 
 /* Hero Section */
 .contact-hero {
-    background: linear-gradient(rgba(44, 85, 48, 0.85), rgba(44, 85, 48, 0.85)), url('background-image: url('/photos/cropped.jpg');');
+    background: linear-gradient(rgba(44, 85, 48, 0.85), rgba(44, 85, 48, 0.85)), url('background-image: url('/photos/youth2.jpg');');
     background-size: cover;
     background-position: center;
     color: white;

@@ -4,7 +4,7 @@ permalink: /events/
 ---
 
 <!-- Hero Section -->
-<section class="events-hero" style="background-image: url('/photos/cropped.jpg');">
+<section class="events-hero" style="background-image: url('/photos/youth2.jpg');">
     <div class="container">
         <div class="hero-content">
             <h1 class="hero-title">Upcoming Events & Programs</h1>
@@ -378,7 +378,7 @@ permalink: /events/
                         <ul>
                             <li>School clean-up and painting</li>
                             <li>Tree planting initiatives</li>
-                            <li>Elderly care visits</li>
+                            <li>Youth home visits</li>
                             <li>Community garden development</li>
                         </ul>
                     </div>

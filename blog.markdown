@@ -307,7 +307,7 @@ body {
 
 /* Hero Section */
 .blog-hero {
-    background: linear-gradient(rgba(44, 85, 48, 0.85), rgba(44, 85, 48, 0.85)), url('/photos/cropped.jpg');
+    background: linear-gradient(rgba(44, 85, 48, 0.85), rgba(44, 85, 48, 0.85)), url('/photos/youth2.jpg');
     background-size: cover;
     background-position: center;
     color: white;
