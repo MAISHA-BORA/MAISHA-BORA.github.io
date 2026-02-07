@@ -662,7 +662,6 @@ body {
     align-items: center;
     gap: 15px;
     margin-bottom: 20px;
-    background: var(--secondary-color);
 }
 
 .objective-number {
