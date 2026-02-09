@@ -87,7 +87,7 @@ permalink: /contact/
                     <div class="mailing-content">
                         <h3>Join Our Mailing List</h3>
                         <p>Want to receive updates about our programs, events, and impact?</p>
-                        <p><strong>Email us at <a href="mailto:info@maishabora.org">info@maishabora.org</a> with "Subscribe" in the subject line.</strong></p>
+                        <p><strong>Email us at <a href="mailto:info@maishaborafoundation.org">info@maishaborafoundation.org</a> with "Subscribe" in the subject line.</strong></p>
                         
                         <div class="mailing-benefits">
                             <h4>You'll receive:</h4>

@@ -688,7 +688,7 @@ permalink: /events/
             <div class="contact-info">
                 <div class="contact-item">
                     <span class="contact-icon">📧</span>
-                    <span>info@maishabora.org</span>
+                    <span>info@maishaborafoundation.org</span>
                 </div>
                 <div class="contact-item">
                     <span class="contact-icon">📞</span>

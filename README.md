@@ -112,7 +112,7 @@ This site uses the **Minima** theme, which is the default Jekyll theme. It's cle
 Mang'ola County, Karatu District  
 Arusha Region, Tanzania
 
-**Email:** info@maishabora.org  
+**Email:** info@maishaborafoundation.org  
 **Website:** [To be deployed]
 
 **Social Media:**

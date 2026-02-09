@@ -62,7 +62,7 @@ title: Thank You for Your Donation
             
             <div class="receipt-note">
                 <p><strong>Tax Receipt:</strong> Your donation receipt will be emailed to you within 24 hours. Please keep it for your records.</p>
-                <p><strong>Questions?</strong> Email us at <a href="mailto:donations@maishabora.org">donations@maishabora.org</a></p>
+                <p><strong>Questions?</strong> Email us at <a href="mailto:donations@maishaborafoundation.org">donations@maishaborafoundation.org</a></p>
             </div>
         </div>
     </div>

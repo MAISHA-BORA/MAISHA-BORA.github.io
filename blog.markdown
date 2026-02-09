@@ -197,7 +197,7 @@ permalink: /blog/
                         <input type="email" placeholder="Your email address" class="subscribe-input">
                         <button class="subscribe-btn">Subscribe</button>
                     </div>
-                    <p class="subscribe-note">Or email us at <strong>info@maishabora.org</strong> with "Subscribe to Blog" in the subject line.</p>
+                    <p class="subscribe-note">Or email us at <strong>info@maishaborafoundation.org</strong> with "Subscribe to Blog" in the subject line.</p>
                 </div>
                 <!-- Popular Posts Widget -->
                 <div class="sidebar-widget">
