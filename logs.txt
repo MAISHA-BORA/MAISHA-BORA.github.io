@@ -1,3 +1,676 @@
+┌─[elliot@parrot]─[~/Desktop/MAISHA-BORA]
+└──╼ $cat api/* 
+// api/check-payment.js
+const crypto = require('crypto');
+const https = require('https');
+
+module.exports = async (req, res) => {
+  // CORS headers (similar to create-order.js)
+  
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end();
+  }
+  
+  if (req.method !== 'GET') {
+    return res.status(405).json({ error: 'Method not allowed' });
+  }
+  
+  try {
+    const { order_id } = req.query;
+    
+    if (!order_id) {
+      return res.status(400).json({ error: 'Order ID required' });
+    }
+    
+    const apiKey = process.env.SELCOM_API_KEY;
+    const apiSecret = process.env.SELCOM_API_SECRET;
+    
+    const timestamp_sig = getSelcomTimestamp();
+    
+    // Create signature for GET request
+    const dataToSign = {
+      timestamp: timestamp_sig,
+      order_id
+    };
+    
+    const queryString = Object.keys(dataToSign)
+      .sort()
+      .map(key => `${key}=${dataToSign[key]}`)
+      .join('&');
+    
+    const signature = crypto
+      .createHmac('sha256', apiSecret)
+      .update(queryString)
+      .digest('base64');
+    
+    const options = {
+      hostname: 'apigw.selcommobile.com',
+      port: 443,
+      path: `/v1/checkout/order-status?order_id=${order_id}`,
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `SELCOM ${Buffer.from(apiKey).toString('base64')}`,
+        'Digest-Method': 'HS256',
+        'Digest': signature,
+        'Timestamp': timestamp_sig,
+        'Signed-Fields': 'order_id'
+      }
+    };
+    
+    const response = await new Promise((resolve, reject) => {
+      const req = https.request(options, (res) => {
+        let body = '';
+        res.on('data', (chunk) => body += chunk);
+        res.on('end', () => {
+          try {
+            resolve(JSON.parse(body));
+          } catch (e) {
+            reject(e);
+          }
+        });
+      });
+      req.on('error', reject);
+      req.end();
+    });
+    
+    return res.status(200).json(response);
+    
+  } catch (error) {
+    console.error('Payment check error:', error);
+    return res.status(500).json({ error: 'Failed to check payment status' });
+  }
+};// api/create-order.js
+const crypto = require('crypto');
+const https = require('https');
+
+module.exports = async (req, res) => {
+  // CORS headers (keep existing)
+  const origin = req.headers.origin;
+  const allowedOrigins = [
+    'https://maishaborafoundation.org',
+    'https://www.maishaborafoundation.org',
+    'http://localhost:4000',
+    'http://localhost:3000',
+  ];
+  
+  if (allowedOrigins.includes(origin)) {
+    res.setHeader('Access-Control-Allow-Origin', origin);
+  }
+  
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
+  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  
+  // Handle preflight
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end();
+  }
+  
+  // Only POST allowed
+  if (req.method !== 'POST') {
+    return res.status(405).json({ 
+      error: 'Method not allowed'
+    });
+  }
+  
+  try {
+    // Get environment variables
+    const apiKey = process.env.SELCOM_API_KEY;
+    const apiSecret = process.env.SELCOM_API_SECRET;
+    const vendor = process.env.SELCOM_VENDOR_ID;
+    const vendorPin = process.env.SELCOM_VENDOR_PIN; // Added for wallet payments
+    
+    if (!apiKey || !apiSecret || !vendor || !vendorPin) {
+      console.error('Missing Selcom credentials');
+      return res.status(503).json({
+        error: 'Payment service temporarily unavailable',
+        message: 'Please try again later or contact support'
+      });
+    }
+    
+    // Validate input
+    const { 
+      amount, 
+      email, 
+      name, 
+      phone, 
+      donationType, 
+      isMonthly,
+      paymentMethod = 'mobile', // 'card', 'mobile', 'selcompesa', 'bank'
+      currency = 'TZS', // Default to TZS
+      msisdn, // For mobile payments
+      walletType, // For specific wallet: 'mpesa', 'airtel', 'tigo', 'halopesa'
+      billing       // For card payments
+    } = req.body;
+    
+    if (!amount || amount < 1) {
+      return res.status(400).json({
+        error: 'Invalid amount',
+        message: 'Please provide a valid donation amount'
+      });
+    }
+    
+    if (!email || !email.includes('@')) {
+      return res.status(400).json({
+        error: 'Invalid email',
+        message: 'Please provide a valid email address'
+      });
+    }
+    
+    // Generate IDs
+    const timestamp = Date.now();
+    const orderId = `MBYF-${timestamp}-${crypto.randomBytes(4).toString('hex').toUpperCase()}`;
+    const transactionId = `DON-${timestamp}-${crypto.randomBytes(4).toString('hex').toUpperCase()}`;
+    
+    // Get domain
+    const domain = process.env.NEXT_PUBLIC_DOMAIN || req.headers.origin || 'https://maishaborafoundation.org';
+    
+    // Determine which API to use based on payment method
+    let apiPath, orderData, requiresAuth = true;
+    
+    if (paymentMethod === 'card') {
+      // CARD PAYMENTS - Use Checkout API
+      apiPath = '/v1/checkout/create-order';
+      orderData = await buildCardOrderData({
+        vendor,
+        orderId,
+        transactionId,
+        amount,
+        currency,
+        email,
+        name,
+        phone,
+        donationType,
+        isMonthly,
+        billing,
+        domain
+      });
+      
+    } else if (paymentMethod === 'mobile' || paymentMethod === 'selcompesa') {
+      // MOBILE MONEY PAYMENTS - Use specific wallet APIs
+      const walletConfig = getWalletConfig(walletType || 'mpesa');
+      
+      if (paymentMethod === 'mobile') {
+        // Mobile money push payment
+        apiPath = '/v1/wallet/pushussd';
+        orderData = buildWalletOrderData({
+          vendor,
+          vendorPin,
+          transactionId,
+          amount,
+          currency,
+          msisdn: msisdn || phone,
+          walletConfig,
+          donationType
+        });
+        
+      } else if (paymentMethod === 'selcompesa') {
+        // Selcom Pesa specific API
+        apiPath = '/v1/selcompesa/cashin';
+        orderData = buildSelcomPesaOrderData({
+          vendor,
+          vendorPin,
+          transactionId,
+          amount,
+          currency,
+          msisdn: msisdn || phone,
+          donationType
+        });
+      }
+      
+    } else if (paymentMethod === 'bank') {
+      // BANK TRANSFER - Use Qwiksend API
+      apiPath = '/v1/qwiksend/process';
+      orderData = buildBankOrderData({
+        vendor,
+        vendorPin,
+        transactionId,
+        amount,
+        currency,
+        email,
+        name,
+        phone,
+        donationType
+      });
+      
+    } else {
+      // DEFAULT: Minimal checkout for general mobile payments
+      apiPath = '/v1/checkout/create-order-minimal';
+      orderData = buildMinimalOrderData({
+        vendor,
+        orderId,
+        transactionId,
+        amount,
+        currency,
+        email,
+        name,
+        phone,
+        donationType,
+        isMonthly,
+        domain
+      });
+    }
+    
+    console.log('Creating order:', { 
+      apiPath,
+      orderId,
+      transactionId,
+      amount,
+      currency,
+      paymentMethod,
+      walletType
+    });
+    
+    // Create authorization signature
+    const timestamp_sig = getSelcomTimestamp();
+    
+    // Prepare data for the signature
+    const dataToSign = {
+      timestamp: timestamp_sig,
+      ...orderData
+    };
+    
+    // Create signature
+    const signedFields = Object.keys(orderData).sort().join(',');
+    const queryString = Object.keys(dataToSign)
+      .sort()
+      .map(key => `${key}=${dataToSign[key]}`)
+      .join('&');
+    
+    const signature = crypto
+      .createHmac('sha256', apiSecret)
+      .update(queryString)
+      .digest('base64');
+    
+    // Make request to Selcom
+    const response = await makeSelcomRequest(apiPath, orderData, {
+      apiKey,
+      signature,
+      timestamp: timestamp_sig,
+      signedFields
+    });
+    
+    console.log('Selcom response:', { 
+      result: response?.result,
+      resultcode: response?.resultcode,
+      message: response?.message
+    });
+    
+    if (!response || (response.result !== 'SUCCESS' && response.result !== 'PENDING')) {
+      throw new Error(response?.message || 'Payment gateway error');
+    }
+    
+    // Process response based on API type
+    const paymentData = response.data?.[0] || response.data || {};
+    
+    let result = {
+      success: true,
+      orderId,
+      transactionId: response.reference || transactionId,
+      amount,
+      currency,
+      paymentMethod,
+      resultcode: response.resultcode,
+      result: response.result,
+      message: response.message,
+      timestamp: new Date().toISOString()
+    };
+    
+    // Add specific response data based on API
+    if (apiPath.includes('/checkout/')) {
+      result.paymentGatewayUrl = paymentData?.payment_gateway_url ? 
+        Buffer.from(paymentData.payment_gateway_url, 'base64').toString() : null;
+      result.qrCode = paymentData?.qr || null;
+      result.paymentToken = paymentData?.payment_token;
+      result.gatewayBuyerUuid = paymentData?.gateway_buyer_uuid;
+    } else if (apiPath.includes('/wallet/') || apiPath.includes('/selcompesa/')) {
+      // For wallet payments, we need to trigger USSD push
+      result.reference = response.reference;
+      result.requiresPush = true;
+    } else if (apiPath.includes('/qwiksend/')) {
+      result.bankReference = response.reference;
+    }
+    
+    return res.status(200).json(result);
+    
+  } catch (error) {
+    console.error('Payment error:', {
+      message: error.message,
+      stack: error.stack
+    });
+    
+    return res.status(500).json({
+      error: 'Payment processing failed',
+      message: error.message || 'Please try again or contact support',
+      reference: `ERR-${Date.now()}`
+    });
+  }
+};
+
+// Helper Functions
+
+function getSelcomTimestamp() {
+  const now = new Date();
+  const adjustedTime = new Date(now.getTime() + (3 * 60 * 60 * 1000));
+  
+  const year = adjustedTime.getUTCFullYear();
+  const month = String(adjustedTime.getUTCMonth() + 1).padStart(2, '0');
+  const day = String(adjustedTime.getUTCDate()).padStart(2, '0');
+  const hours = String(adjustedTime.getUTCHours()).padStart(2, '0');
+  const minutes = String(adjustedTime.getUTCMinutes()).padStart(2, '0');
+  const seconds = String(adjustedTime.getUTCSeconds()).padStart(2, '0');
+  
+  return `${year}-${month}-${day}T${hours}:${minutes}:${seconds}+03:00`;
+}
+
+async function makeSelcomRequest(path, data, auth) {
+  return new Promise((resolve, reject) => {
+    const postData = JSON.stringify(data);
+    
+    const options = {
+      hostname: 'apigw.selcommobile.com',
+      port: 443,
+      path: path,
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Content-Length': Buffer.byteLength(postData),
+        'Accept': 'application/json',
+        'Authorization': `SELCOM ${Buffer.from(auth.apiKey).toString('base64')}`,
+        'Digest-Method': 'HS256',
+        'Digest': auth.signature,
+        'Timestamp': auth.timestamp,
+        'Signed-Fields': auth.signedFields
+      }
+    };
+    
+    // Debug logging
+    console.log('Selcom Request:', {
+      path,
+      headers: {
+        Authorization: options.headers.Authorization.substring(0, 30) + '...',
+        Timestamp: options.headers.Timestamp,
+        'Signed-Fields': options.headers['Signed-Fields']
+      },
+      data: path.includes('/checkout/') ? '*** CHECKOUT DATA ***' : data
+    });
+    
+    const req = https.request(options, (response) => {
+      let body = '';
+      
+      console.log('Selcom Response Status:', response.statusCode);
+      
+      response.on('data', (chunk) => {
+        body += chunk;
+      });
+      
+      response.on('end', () => {
+        try {
+          const parsed = JSON.parse(body);
+          console.log('Selcom Response:', parsed);
+          resolve(parsed);
+        } catch (e) {
+          console.error('Selcom Parse Error:', body);
+          reject(new Error(`Invalid response from Selcom: ${body.substring(0, 200)}`));
+        }
+      });
+    });
+    
+    req.on('error', (error) => {
+      console.error('Selcom Request Error:', error);
+      reject(new Error(`Selcom connection failed: ${error.message}`));
+    });
+    
+    req.setTimeout(30000, () => {
+      req.destroy();
+      reject(new Error('Selcom API timeout (30s)'));
+    });
+    
+    req.write(postData);
+    req.end();
+  });
+}
+
+function formatPhoneNumber(phone) {
+  if (!phone) return '255000000000';
+  let cleaned = phone.toString().replace(/\D/g, '');
+  if (!cleaned.startsWith('255') && cleaned.length <= 9) {
+    cleaned = '255' + cleaned;
+  }
+  return cleaned.length >= 10 && cleaned.length <= 13 ? cleaned : '255000000000';
+}
+
+function formatAmount(amount, currency) {
+  // Selcom expects TZS, convert if needed
+  if (currency === 'USD') {
+    // Convert USD to TZS (approximate rate)
+    return Math.round(amount * 2500);
+  }
+  return Math.round(amount);
+}
+
+// Wallet configuration mapping
+function getWalletConfig(walletType) {
+  const wallets = {
+    'mpesa': {
+      utilitycode: 'MPESA-TZ',
+      name: 'M-Pesa'
+    },
+    'airtel': {
+      utilitycode: 'AIRTELMONEY',
+      name: 'Airtel Money'
+    },
+    'tigo': {
+      utilitycode: 'TIGOPESATZ',
+      name: 'Tigo Pesa'
+    },
+    'halopesa': {
+      utilitycode: 'HALOPESATZ',
+      name: 'HaloPesa'
+    },
+    'ttcl': {
+      utilitycode: 'TTCLMOBILE',
+      name: 'TTCL Pesa'
+    }
+  };
+  
+  return wallets[walletType] || wallets.mpesa;
+}
+
+// Build order data for different payment methods
+
+function buildCardOrderData(params) {
+  const {
+    vendor,
+    orderId,
+    transactionId,
+    amount,
+    currency,
+    email,
+    name,
+    phone,
+    donationType,
+    isMonthly,
+    billing,
+    domain
+  } = params;
+  
+  const amountInTzs = formatAmount(amount, currency);
+  
+  return {
+    vendor: vendor,
+    order_id: orderId,
+    buyer_email: email.trim().toLowerCase(),
+    buyer_name: name?.trim() || 'Anonymous Donor',
+    buyer_user_id: email.split('@')[0], // Simple user ID
+    buyer_phone: formatPhoneNumber(phone),
+    gateway_buyer_uuid: `mb-${email.split('@')[0]}-${Date.now()}`, // For stored cards
+    amount: amountInTzs,
+    currency: 'TZS', // Selcom Checkout uses TZS
+    payment_methods: 'ALL', // ALL, CARD, MOBILEMONEYPULL, MASTERPASS
+    redirect_url: Buffer.from(`${domain}/donate/thank-you?ref=${transactionId}`).toString('base64'),
+    cancel_url: Buffer.from(`${domain}/donate?cancelled=true`).toString('base64'),
+    webhook: Buffer.from(`${domain}/api/selcom-webhook`).toString('base64'),
+    transid: transactionId,
+    
+    // Billing info (required for card payments)
+    billing: {
+      firstname: name?.split(' ')[0] || 'Donor',
+      lastname: name?.split(' ').slice(1).join(' ') || 'Anonymous',
+      address_1: billing?.address || 'Karatu District',
+      address_2: billing?.address2 || '',
+      city: billing?.city || 'Karatu',
+      state_or_region: billing?.state || 'Arusha',
+      postcode_or_pobox: billing?.postcode || '00000',
+      country: billing?.country || 'TZ',
+      phone: formatPhoneNumber(phone)
+    },
+    
+    // Shipping info (same as billing for donations)
+    shipping: {
+      firstname: name?.split(' ')[0] || 'Donor',
+      lastname: name?.split(' ').slice(1).join(' ') || 'Anonymous',
+      address_1: billing?.address || 'Karatu District',
+      address_2: billing?.address2 || '',
+      city: billing?.city || 'Karatu',
+      state_or_region: billing?.state || 'Arusha',
+      postcode_or_pobox: billing?.postcode || '00000',
+      country: billing?.country || 'TZ',
+      phone: formatPhoneNumber(phone)
+    },
+    
+    // Additional fields
+    buyer_remarks: `Donation: ${donationType || 'General'}${isMonthly ? ' (Monthly)' : ''}`,
+    merchant_remarks: `MBYF Donation - ${transactionId}`,
+    no_of_items: 1,
+    
+    // Customization
+    header_colour: '#2c5530',
+    link_colour: '#4a7c59',
+    button_colour: '#fc7d07',
+    expiry: 60 // 60 minutes
+  };
+}
+
+function buildMinimalOrderData(params) {
+  const {
+    vendor,
+    orderId,
+    transactionId,
+    amount,
+    currency,
+    email,
+    name,
+    phone,
+    donationType,
+    isMonthly,
+    domain
+  } = params;
+  
+  const amountInTzs = formatAmount(amount, currency);
+  
+  return {
+    vendor: vendor,
+    order_id: orderId,
+    buyer_email: email.trim().toLowerCase(),
+    buyer_name: name?.trim() || 'Anonymous Donor',
+    buyer_phone: formatPhoneNumber(phone),
+    amount: amountInTzs,
+    currency: 'TZS',
+    payment_methods: 'MOBILEMONEYPULL', // Only mobile money
+    redirect_url: Buffer.from(`${domain}/donate/thank-you?ref=${transactionId}`).toString('base64'),
+    cancel_url: Buffer.from(`${domain}/donate?cancelled=true`).toString('base64'),
+    webhook: Buffer.from(`${domain}/api/selcom-webhook`).toString('base64'),
+    transid: transactionId,
+    buyer_remarks: `Donation: ${donationType || 'General'}${isMonthly ? ' (Monthly)' : ''}`,
+    merchant_remarks: `MBYF Donation - ${transactionId}`,
+    no_of_items: 1
+  };
+}
+
+function buildWalletOrderData(params) {
+  const {
+    vendor,
+    vendorPin,
+    transactionId,
+    amount,
+    currency,
+    msisdn,
+    walletConfig,
+    donationType
+  } = params;
+  
+  const amountInTzs = formatAmount(amount, currency);
+  
+  return {
+    transid: transactionId,
+    utilityref: donationType || 'MAISHABORA',
+    amount: amountInTzs,
+    vendor: vendor,
+    pin: vendorPin,
+    msisdn: formatPhoneNumber(msisdn),
+    utilitycode: walletConfig.utilitycode
+  };
+}
+
+function buildSelcomPesaOrderData(params) {
+  const {
+    vendor,
+    vendorPin,
+    transactionId,
+    amount,
+    currency,
+    msisdn,
+    donationType
+  } = params;
+  
+  const amountInTzs = formatAmount(amount, currency);
+  
+  return {
+    transid: transactionId,
+    utilityref: formatPhoneNumber(msisdn), // Selcom Pesa account or mobile
+    amount: amountInTzs,
+    vendor: vendor,
+    pin: vendorPin,
+    msisdn: formatPhoneNumber(msisdn),
+    utilitycode: 'SPSCASHIN' // Static for Selcom Pesa
+  };
+}
+
+function buildBankOrderData(params) {
+  const {
+    vendor,
+    vendorPin,
+    transactionId,
+    amount,
+    currency,
+    email,
+    name,
+    phone,
+    donationType
+  } = params;
+  
+  const amountInTzs = formatAmount(amount, currency);
+  
+  return {
+    transid: transactionId,
+    recipientFiCode: 'NMB', // Example: NMB Bank
+    recipientAccount: 'DONATION', // Account to receive funds
+    recipientName: 'MAISHA BORA YOUTH FOUNDATION',
+    senderAccount: email, // Donor's email as account ID
+    senderName: name?.trim() || 'Anonymous Donor',
+    amount: amountInTzs,
+    vendor: vendor,
+    pin: vendorPin,
+    msisdn: formatPhoneNumber(phone),
+    purpose: 'DONATION',
+    remarks: donationType || 'General Donation'
+  };
+}
+
+┌─[elliot@parrot]─[~/Desktop/MAISHA-BORA]
+└──╼ $cat donate.markdown
 ---
 layout: page
 permalink: /donate/
@@ -2056,9 +2729,14 @@ body {
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    // Configuration
-    const BASE_DOMAIN = window.location.origin; // Use current domain
-    const API_BASE = `${BASE_DOMAIN}/api`; // Your backend API
+    // Selcom API Configuration
+    const SELCOM_API_BASE = 'https://api.selcommobile.com'; // Production API endpoint
+    const SELCOM_API_KEY = '{{ site.selcom_api_key }}'; // Your API key from Selcom
+    const SELCOM_VENDOR_ID = '{{ site.selcom_vendor_id }}'; // Your vendor ID from Selcom
+    const SELCOM_VENDOR_PIN = '{{ site.selcom_vendor_pin }}'; // Your vendor PIN from Selcom
+    
+    // Your backend API for handling Selcom callbacks
+    const BASE_DOMAIN = '{{ site.api_base | default: "https://maishaborafoundation.org" }}';
     
     // DOM Elements
     const modal = document.getElementById('donationModal');
@@ -2073,24 +2751,159 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // State
     let currentAmount = 25;
-    let currentCurrency = 'TZS';
-    let currentPaymentMethod = 'mobile';
+    let currentCurrency = 'TZS'; // Default to TZS as per Selcom
+    let exchangeRates = {};
+    let currentTransId = '';
     
-    // Payment method mapping (simplified)
-    const paymentMethods = {
-        'mpesa': { name: 'M-Pesa', type: 'mobile' },
-        'airtel': { name: 'Airtel Money', type: 'mobile' },
-        'tigo': { name: 'Tigo Pesa', type: 'mobile' },
-        'visa': { name: 'Visa Card', type: 'card' },
-        'mastercard': { name: 'MasterCard', type: 'card' },
-        'selcom': { name: 'Selcom Pesa', type: 'selcompesa' }
+    // Exchange rates (for display only, Selcom handles conversions)
+    const defaultExchangeRates = {
+        'USD': 1,
+        'TZS': 2500,
+        'EUR': 0.92,
+        'GBP': 0.79
     };
     
-    // Initialize
-    initializeApp();
+    // Selcom Payment Method Mapping
+    const paymentMethods = {
+        'mpesa': {
+            name: 'M-Pesa',
+            utilityCode: 'MPESA-TZ',
+            category: 'MOBILEMONEYPULL',
+            currencies: ['TZS'],
+            requiresPhone: true,
+            phonePattern: /^255[67]\d{8}$/,
+            provider: 'selcom',
+            // Selcom expects TZ numbers in format: 255xxxxxxxxx
+            formatPhone: (phone) => {
+                // Ensure phone starts with 255
+                if (phone.startsWith('0')) return '255' + phone.substring(1);
+                if (phone.startsWith('+')) return phone.substring(1);
+                return phone;
+            }
+        },
+        'airtel': {
+            name: 'Airtel Money',
+            utilityCode: 'AIRTELMONEY',
+            category: 'MOBILEMONEYPULL',
+            currencies: ['TZS'],
+            requiresPhone: true,
+            phonePattern: /^255[67]\d{8}$/,
+            provider: 'selcom',
+            formatPhone: (phone) => {
+                if (phone.startsWith('0')) return '255' + phone.substring(1);
+                if (phone.startsWith('+')) return phone.substring(1);
+                return phone;
+            }
+        },
+        'tigo': {
+            name: 'Tigo Pesa',
+            utilityCode: 'TIGOPESATZ',
+            category: 'MOBILEMONEYPULL',
+            currencies: ['TZS'],
+            requiresPhone: true,
+            phonePattern: /^255[67]\d{8}$/,
+            provider: 'selcom',
+            formatPhone: (phone) => {
+                if (phone.startsWith('0')) return '255' + phone.substring(1);
+                if (phone.startsWith('+')) return phone.substring(1);
+                return phone;
+            }
+        },
+        'halopesa': {
+            name: 'HaloPesa',
+            utilityCode: 'HALOPESATZ',
+            category: 'MOBILEMONEYPULL',
+            currencies: ['TZS'],
+            requiresPhone: true,
+            phonePattern: /^255[67]\d{8}$/,
+            provider: 'selcom',
+            formatPhone: (phone) => {
+                if (phone.startsWith('0')) return '255' + phone.substring(1);
+                if (phone.startsWith('+')) return phone.substring(1);
+                return phone;
+            }
+        },
+        'visa': {
+            name: 'Visa Card',
+            category: 'CARD',
+            currencies: ['TZS', 'USD'],
+            requiresPhone: false,
+            provider: 'selcom'
+        },
+        'mastercard': {
+            name: 'MasterCard',
+            category: 'CARD',
+            currencies: ['TZS', 'USD'],
+            requiresPhone: false,
+            provider: 'selcom'
+        },
+        'selcom': {
+            name: 'Selcom Pesa',
+            utilityCode: 'SPSCASHIN',
+            category: 'SELCOMPESA',
+            currencies: ['TZS'],
+            requiresPhone: true,
+            phonePattern: /^255[67]\d{8}$/,
+            provider: 'selcom',
+            formatPhone: (phone) => {
+                if (phone.startsWith('0')) return '255' + phone.substring(1);
+                if (phone.startsWith('+')) return phone.substring(1);
+                return phone;
+            }
+        }
+    };
     
+    // Update payment method options in HTML
+    function updatePaymentMethodOptions() {
+        const mobileMoneyGroup = paymentMethodSelect.querySelector('optgroup[label="Mobile Money"]');
+        const cardGroup = paymentMethodSelect.querySelector('optgroup[label="Card Payments"]');
+        const bankGroup = paymentMethodSelect.querySelector('optgroup[label="Bank Transfer"]');
+        
+        // Clear existing options
+        mobileMoneyGroup.innerHTML = '<option value="">Select mobile money</option>';
+        cardGroup.innerHTML = '<option value="">Select card</option>';
+        bankGroup.innerHTML = '<option value="">Select bank transfer</option>';
+        
+        // Add Selcom-supported options
+        const mobileMoneyMethods = ['mpesa', 'airtel', 'tigo', 'halopesa', 'selcom'];
+        const cardMethods = ['visa', 'mastercard'];
+        
+        mobileMoneyMethods.forEach(method => {
+            if (paymentMethods[method]) {
+                const option = document.createElement('option');
+                option.value = method;
+                option.textContent = paymentMethods[method].name;
+                mobileMoneyGroup.appendChild(option);
+            }
+        });
+        
+        cardMethods.forEach(method => {
+            if (paymentMethods[method]) {
+                const option = document.createElement('option');
+                option.value = method;
+                option.textContent = paymentMethods[method].name;
+                cardGroup.appendChild(option);
+            }
+        });
+        
+        // Add Selcom Pesa option
+        if (paymentMethods.selcom) {
+            const option = document.createElement('option');
+            option.value = 'selcom';
+            option.textContent = paymentMethods.selcom.name;
+            bankGroup.appendChild(option);
+        }
+    }
+    
+    // Initialize
     function initializeApp() {
+        // Update payment method options
+        updatePaymentMethodOptions();
+        
+        // Set up event listeners
         setupEventListeners();
+        
+        // Initialize UI
         updateAmountDisplay();
     }
     
@@ -2149,6 +2962,8 @@ document.addEventListener('DOMContentLoaded', function() {
     
     function openDonationModal(amount) {
         currentAmount = amount;
+        currentTransId = `MB${Date.now()}${Math.floor(Math.random() * 1000)}`;
+        
         updateAmountDisplay();
         modal.style.display = 'flex';
         document.body.style.overflow = 'hidden';
@@ -2173,25 +2988,16 @@ document.addEventListener('DOMContentLoaded', function() {
         
         if (!config) return;
         
-        // Update currency options based on payment method type
-        if (config.type === 'card') {
-            // Card payments can use TZS or USD
-            updateCurrencyOptions(['TZS', 'USD', 'EUR', 'GBP']);
-        } else {
-            // Mobile payments only TZS
-            updateCurrencyOptions(['TZS']);
-        }
+        // Update currency options based on payment method
+        updateCurrencyOptions(config.currencies);
         
         // Update phone requirement
         const phoneField = document.getElementById('donorPhone');
-        phoneField.required = config.type !== 'card';
+        phoneField.required = config.requiresPhone;
         
-        if (config.type !== 'card') {
-            phoneField.pattern = '^255[67]\\d{8}$';
+        if (config.phonePattern) {
+            phoneField.pattern = config.phonePattern.source;
             phoneField.title = 'Please enter a valid Tanzanian phone number (e.g., 2557XXXXXXX)';
-        } else {
-            phoneField.removeAttribute('pattern');
-            phoneField.title = '';
         }
     }
     
@@ -2224,7 +3030,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     function updateAmountDisplay() {
-        // For display purposes, show in selected currency
         const amountInSelectedCurrency = currentCurrency === 'TZS' ? 
             currentAmount * 2500 : // Convert USD to TZS for display
             currentAmount;
@@ -2278,66 +3083,195 @@ document.addEventListener('DOMContentLoaded', function() {
         submitBtn.disabled = true;
         
         try {
-            // Prepare donation data
-            const donationData = {
-                amount: currentAmount,
-                currency: currentCurrency,
-                email: document.getElementById('donorEmail').value.trim(),
-                name: document.getElementById('donorName').value.trim(),
-                phone: document.getElementById('donorPhone').value.trim(),
-                donationType: document.getElementById('donationType').value,
-                isMonthly: document.getElementById('isMonthly').checked,
-                subscribeNews: document.getElementById('subscribeNews').checked,
-                paymentMethod: paymentMethodSelect.value,
-                walletType: paymentMethodSelect.value // For mobile payments
-            };
+            // Create donation record in your database first
+            const donationRecord = await createDonationRecord();
             
-            console.log('Sending donation request:', donationData);
+            // Then initiate Selcom payment
+            const paymentResult = await initiateSelcomPayment(donationRecord);
             
-            // Call YOUR backend API (create-order.js)
-            const response = await fetch(`${API_BASE}/create-order`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-                },
-                body: JSON.stringify(donationData)
-            });
-            
-            console.log('Response status:', response.status);
-            
-            if (!response.ok) {
-                const errorText = await response.text();
-                throw new Error(`Server error: ${response.status} - ${errorText}`);
-            }
-            
-            const result = await response.json();
-            console.log('Payment response:', result);
-            
-            if (result.success) {
+            if (paymentResult.success) {
                 // Handle successful payment initiation
-                if (result.paymentGatewayUrl) {
-                    // Redirect to payment gateway
-                    window.location.href = result.paymentGatewayUrl;
-                } else if (result.qrCode) {
-                    // Show QR code
-                    showQRCodePayment(result);
+                if (paymentResult.payment_gateway_url) {
+                    // Redirect to Selcom payment gateway
+                    window.location.href = atob(paymentResult.payment_gateway_url);
+                } else if (paymentResult.qr) {
+                    // Show QR code for mobile payments
+                    showQRCodePayment(paymentResult);
                 } else {
-                    // Show instructions
-                    showPaymentInstructions(result);
+                    // For mobile money push payments
+                    showMobilePaymentInstructions(paymentResult);
                 }
             } else {
-                throw new Error(result.message || 'Payment initiation failed');
+                throw new Error(paymentResult.message || 'Payment initiation failed');
             }
             
         } catch (error) {
             console.error('Donation error:', error);
-            showError(`Payment Error: ${error.message || 'Please try again later'}`);
+            showError(`Payment Error: ${error.message}`);
             
             // Reset button state
             btnText.style.display = 'inline';
             spinner.style.display = 'none';
             submitBtn.disabled = false;
+        }
+    }
+    
+    async function createDonationRecord() {
+        const formData = new FormData(donationForm);
+        
+        const donationData = {
+            transid: currentTransId,
+            amount: currentAmount,
+            currency: currentCurrency,
+            donor_name: formData.get('donorName'),
+            donor_email: formData.get('donorEmail'),
+            donor_phone: formData.get('donorPhone'),
+            payment_method: formData.get('paymentMethod'),
+            donation_type: formData.get('donationType'),
+            is_monthly: document.getElementById('isMonthly').checked,
+            subscribe_news: document.getElementById('subscribeNews').checked,
+            timestamp: new Date().toISOString()
+        };
+        
+        // In production, send to your backend API
+        // For demo purposes, we'll return the data
+        return donationData;
+    }
+    
+    async function initiateSelcomPayment(donationData) {
+        const paymentMethod = donationData.payment_method;
+        const config = paymentMethods[paymentMethod];
+        
+        if (!config) {
+            throw new Error('Invalid payment method');
+        }
+        
+        // Calculate amount in TZS (Selcom's primary currency)
+        const amountInTzs = currentCurrency === 'TZS' ? 
+            currentAmount : 
+            Math.round(currentAmount * 2500); // Convert USD to TZS
+        
+        // Prepare Selcom API request based on payment method
+        let selcomRequest;
+        
+        if (config.category === 'MOBILEMONEYPULL' || config.category === 'SELCOMPESA') {
+            // Mobile money push payment
+            selcomRequest = {
+                transid: currentTransId,
+                msisdn: config.formatPhone ? 
+                    config.formatPhone(donationData.donor_phone) : 
+                    donationData.donor_phone,
+                amount: amountInTzs,
+                vendor: SELCOM_VENDOR_ID,
+                pin: SELCOM_VENDOR_PIN,
+                utilityref: config.utilityCode || 'MAISHABORA',
+                utilitycode: config.utilityCode,
+                reference: `DON-${Date.now()}`,
+                remarks: `Donation to Maisha Bora: ${donationData.donation_type}`
+            };
+            
+            // Call Selcom wallet payment API
+            return await callSelcomWalletPayment(selcomRequest, config);
+            
+        } else if (config.category === 'CARD') {
+            // Card payment - use Selcom Checkout API
+            selcomRequest = {
+                vendor: SELCOM_VENDOR_ID,
+                order_id: currentTransId,
+                buyer_email: donationData.donor_email,
+                buyer_name: donationData.donor_name,
+                buyer_phone: donationData.donor_phone,
+                amount: amountInTzs,
+                currency: 'TZS', // Selcom Checkout uses TZS
+                payment_methods: 'ALL', // or 'CARD,MASTERPASS,MOBILEMONEYPULL'
+                redirect_url: btoa(`${window.location.origin}/donate/thank-you`),
+                cancel_url: btoa(`${window.location.origin}/donate`),
+                webhook: btoa(`${BASE_DOMAIN}/api/selcom-webhook`),
+                billing: {
+                    firstname: donationData.donor_name.split(' ')[0],
+                    lastname: donationData.donor_name.split(' ').slice(1).join(' ') || 'Donor',
+                    address_1: 'Karatu District',
+                    city: 'Karatu',
+                    state_or_region: 'Arusha',
+                    country: 'TZ',
+                    phone: donationData.donor_phone
+                }
+            };
+            
+            // Call Selcom Checkout API
+            return await callSelcomCheckoutAPI(selcomRequest);
+        }
+    }
+    
+    async function callSelcomWalletPayment(request, config) {
+        // For security, this should be done through your backend
+        // to protect API keys and vendor PIN
+        
+        try {
+            const response = await fetch(`${BASE_DOMAIN}/api/selcom/wallet-payment`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({
+                    ...request,
+                    payment_type: config.category,
+                    callback_url: `${BASE_DOMAIN}/api/selcom-callback`
+                })
+            });
+            
+            const result = await response.json();
+            
+            if (result.resultcode === '000' || result.resultcode === '111') {
+                return {
+                    success: true,
+                    reference: result.reference,
+                    transid: result.transid,
+                    message: result.message,
+                    qr: result.data && result.data.qr,
+                    instructions: `We've sent a payment request to your ${config.name} wallet. Please check your phone to complete the transaction.`
+                };
+            } else {
+                throw new Error(result.message || 'Payment initiation failed');
+            }
+            
+        } catch (error) {
+            console.error('Selcom API Error:', error);
+            throw error;
+        }
+    }
+    
+    async function callSelcomCheckoutAPI(request) {
+        // This should be done through your backend
+        try {
+            const response = await fetch(`${BASE_DOMAIN}/api/selcom/checkout`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify(request)
+            });
+            
+            const result = await response.json();
+            
+            if (result.resultcode === '000') {
+                return {
+                    success: true,
+                    payment_gateway_url: result.data[0]?.payment_gateway_url,
+                    qr: result.data[0]?.qr,
+                    payment_token: result.data[0]?.payment_token,
+                    reference: result.reference,
+                    gateway_buyer_uuid: result.data[0]?.gateway_buyer_uuid
+                };
+            } else {
+                throw new Error(result.message || 'Checkout creation failed');
+            }
+            
+        } catch (error) {
+            console.error('Selcom Checkout Error:', error);
+            throw error;
         }
     }
     
@@ -2347,8 +3281,6 @@ document.addEventListener('DOMContentLoaded', function() {
         // Reset all error states
         document.querySelectorAll('.form-group').forEach(group => {
             group.classList.remove('error');
-            const errorMsg = group.querySelector('.error-message');
-            if (errorMsg) errorMsg.remove();
         });
         
         // Validate name
@@ -2371,16 +3303,12 @@ document.addEventListener('DOMContentLoaded', function() {
         const method = paymentMethodSelect.value;
         const config = paymentMethods[method];
         
-        if (config && config.type !== 'card') {
-            // Mobile payments require valid Tanzanian phone
-            const phone = phoneField.value.trim();
-            const phoneRegex = /^255[67]\d{8}$/;
-            
-            if (!phone) {
-                showFieldError(phoneField, 'Phone number is required for mobile payments');
+        if (config && config.requiresPhone) {
+            if (!phoneField.value.trim()) {
+                showFieldError(phoneField, 'Phone number is required for this payment method');
                 isValid = false;
-            } else if (!phoneRegex.test(phone)) {
-                showFieldError(phoneField, 'Please enter a valid Tanzanian phone number (format: 2557XXXXXXX)');
+            } else if (config.phonePattern && !config.phonePattern.test(phoneField.value)) {
+                showFieldError(phoneField, 'Please enter a valid Tanzanian phone number starting with 255 (e.g., 2557XXXXXXX)');
                 isValid = false;
             }
         }
@@ -2432,6 +3360,7 @@ document.addEventListener('DOMContentLoaded', function() {
             display: flex;
             align-items: center;
             gap: 10px;
+            animation: slideIn 0.3s ease;
         `;
         
         alertDiv.innerHTML = `
@@ -2447,6 +3376,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 cursor: pointer;
                 color: var(--danger);
                 opacity: 0.7;
+                transition: opacity 0.3s;
                 padding: 5px;
                 border-radius: 50%;
                 width: 30px;
@@ -2459,6 +3389,13 @@ document.addEventListener('DOMContentLoaded', function() {
         
         const modalBody = document.querySelector('.modal-body');
         modalBody.insertBefore(alertDiv, modalBody.firstChild);
+        
+        setTimeout(() => {
+            if (alertDiv.parentNode) {
+                alertDiv.style.opacity = '0';
+                setTimeout(() => alertDiv.remove(), 300);
+            }
+        }, 10000);
     }
     
     function showQRCodePayment(paymentResult) {
@@ -2482,12 +3419,12 @@ document.addEventListener('DOMContentLoaded', function() {
                             margin: 15px 0;
                             border: 1px solid #eee;
                         ">
-                            <img src="${paymentResult.qrCode}" 
+                            <img src="${paymentResult.qr}" 
                                  alt="Payment QR Code"
                                  style="max-width: 250px; height: auto;">
                         </div>
                         <p style="color: var(--text-light); font-size: 0.95rem;">
-                            Reference: <strong>${paymentResult.reference || paymentResult.transactionId}</strong>
+                            Payment Reference: <strong>${paymentResult.reference}</strong>
                         </p>
                     </div>
                     
@@ -2499,19 +3436,20 @@ document.addEventListener('DOMContentLoaded', function() {
                         margin: 25px 0;
                         border: 1px solid #e9ecef;
                     ">
-                        <h4 style="margin-top: 0; color: var(--primary);">Instructions:</h4>
+                        <h4 style="margin-top: 0; color: var(--primary);">Payment Instructions:</h4>
                         <ol style="margin: 15px 0; padding-left: 20px;">
-                            <li style="margin-bottom: 10px;">Open your mobile money app</li>
-                            <li style="margin-bottom: 10px;">Tap "Scan QR Code" or use Send Money</li>
+                            <li style="margin-bottom: 10px;">Open your mobile money app (M-Pesa, Airtel Money, Tigo Pesa, etc.)</li>
+                            <li style="margin-bottom: 10px;">Tap "Scan QR Code" or use the Send Money option</li>
                             <li style="margin-bottom: 10px;">Scan the QR code above</li>
-                            <li>Enter your PIN to complete</li>
+                            <li>Confirm and complete the transaction</li>
                         </ol>
                     </div>
                     
                     <div style="display: flex; gap: 15px; margin-top: 30px; justify-content: center;">
-                        <button onclick="window.location.href='/donate/thank-you?ref=${paymentResult.transactionId}'" 
-                                class="btn btn-primary">
-                            Payment Completed
+                        <button onclick="window.location.href='/donate/thank-you?ref=${paymentResult.reference}'" 
+                                class="btn btn-primary"
+                                style="min-width: 200px;">
+                            I've Completed Payment
                         </button>
                         <button class="btn btn-outline close-qr">Cancel</button>
                     </div>
@@ -2538,23 +3476,41 @@ document.addEventListener('DOMContentLoaded', function() {
         closeDonationModal();
     }
     
-    function showPaymentInstructions(paymentResult) {
+    function showMobilePaymentInstructions(paymentResult) {
         const instructionsModal = document.createElement('div');
         instructionsModal.className = 'modal';
         instructionsModal.style.display = 'flex';
         instructionsModal.innerHTML = `
             <div class="modal-content" style="max-width: 450px;">
                 <div class="modal-header">
-                    <h3>Payment Instructions</h3>
+                    <h3>Complete Your Donation</h3>
                     <button class="close-instr" aria-label="Close">&times;</button>
                 </div>
                 <div class="modal-body" style="text-align: center;">
                     <div style="margin-bottom: 30px;">
                         <div style="font-size: 3rem; margin-bottom: 20px;">📱</div>
-                        <h3 style="color: var(--primary); margin-bottom: 15px;">Payment Request Sent</h3>
+                        <h3 style="color: var(--primary); margin-bottom: 15px;">Check Your Phone</h3>
                         <p style="font-size: 1.1rem; line-height: 1.6;">
-                            Check your phone for a payment request notification.
+                            We've sent a payment request to your mobile wallet. 
+                            Please check your phone for a USSD prompt or in-app notification.
                         </p>
+                    </div>
+                    
+                    <div style="
+                        background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+                        padding: 20px;
+                        border-radius: 12px;
+                        text-align: left;
+                        margin: 25px 0;
+                        border: 1px solid #90caf9;
+                    ">
+                        <h4 style="margin-top: 0; color: #1565c0;">What to do next:</h4>
+                        <ol style="margin: 15px 0; padding-left: 20px;">
+                            <li style="margin-bottom: 10px;">Check your phone for a payment request</li>
+                            <li style="margin-bottom: 10px;">Enter your mobile money PIN when prompted</li>
+                            <li style="margin-bottom: 10px;">Wait for the payment confirmation</li>
+                            <li>You'll receive a confirmation SMS upon successful payment</li>
+                        </ol>
                     </div>
                     
                     <div style="
@@ -2573,12 +3529,19 @@ document.addEventListener('DOMContentLoaded', function() {
                                 font-family: monospace;
                                 margin-left: 10px;
                                 color: var(--dark);
-                            ">${paymentResult.transactionId}</code>
+                            ">${paymentResult.reference}</code>
+                        </p>
+                        <p style="margin: 10px 0 0 0; font-size: 0.85rem; color: #2e7d32;">
+                            Transaction ID: <strong>${paymentResult.transid}</strong>
                         </p>
                     </div>
                     
+                    <div style="color: var(--text-light); font-size: 0.9rem; margin: 20px 0;">
+                        <p>If you don't receive a prompt within 2 minutes, please try again or contact support.</p>
+                    </div>
+                    
                     <div style="display: flex; gap: 15px; margin-top: 30px; justify-content: center; flex-wrap: wrap;">
-                        <button onclick="window.location.href='/donate/thank-you?ref=${paymentResult.transactionId}'" 
+                        <button onclick="window.location.href='/donate/thank-you?ref=${paymentResult.reference}'" 
                                 class="btn btn-primary">
                             Payment Completed
                         </button>
@@ -2610,5 +3573,17 @@ document.addEventListener('DOMContentLoaded', function() {
         
         closeDonationModal();
     }
+    
+    // Initialize the app
+    initializeApp();
+    
+    // Utility function for currency formatting
+    window.formatCurrency = function(amount, currency) {
+        return new Intl.NumberFormat('en-US', {
+            style: 'currency',
+            currency: currency,
+            minimumFractionDigits: currency === 'TZS' ? 0 : 2
+        }).format(amount);
+    };
 });
 </script>
