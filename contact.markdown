@@ -88,7 +88,6 @@ permalink: /contact/
                         <h3>Join Our Mailing List</h3>
                         <p>Want to receive updates about our programs, events, and impact?</p>
                         <p><strong>Email us at <a href="mailto:info@maishaborafoundation.org">info@maishaborafoundation.org</a> with "Subscribe" in the subject line.</strong></p>
-                        
                         <div class="mailing-benefits">
                             <h4>You'll receive:</h4>
                             <div class="benefits-grid">
@@ -102,7 +101,6 @@ permalink: /contact/
                     </div>
                 </div>
             </div>
-            
             <div class="commitment-section">
                 <h2>Our Commitment to You</h2>
                 <div class="commitment-card">
@@ -151,12 +149,10 @@ permalink: /contact/
         <div class="cta-content">
             <h2>We Look Forward to Hearing From You!</h2>
             <p>Whether you're seeking help, offering support, or simply learning more about our work, we're here to connect with you. Together, we can empower the next generation of leaders in Tanzania.</p>
-            
             <div class="organization-signature">
                 <h3>Maisha Bora Youth Foundation</h3>
                 <p class="tagline">Empowering Youth, Transforming Futures</p>
             </div>
-            
             <div class="cta-actions">
                 <a href="/" class="btn btn-primary">Back to Home</a>
                 <a href="/" class="btn btn-secondary">Learn About Our Programs</a>

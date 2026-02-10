@@ -1225,6 +1225,7 @@ body {
   background: var(--light-gray);
   border-radius: var(--radius-sm);
   transition: var(--transition);
+  color: black
 }
 
 .benefit-item:hover {
