@@ -839,6 +839,7 @@ body {
   font-size: 3rem;
   margin-bottom: 20px;
   opacity: 0.8;
+  color: black;
 }
 
 .tier-benefits {
@@ -2613,3 +2614,4 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 </script>
+
