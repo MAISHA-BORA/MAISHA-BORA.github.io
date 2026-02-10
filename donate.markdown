@@ -733,8 +733,8 @@ body {
 }
 
 .section-accent {
-  background: linear-gradient(135deg, var(--accent-light) 0%, var(--accent) 100%);
-  color: white;
+  background-image: src('/photos/dirishani_kids.jpeg');
+  /* color: white; */
 }
 
 .section-title {

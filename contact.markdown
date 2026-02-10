@@ -21,7 +21,6 @@ permalink: /contact/
             <div class="social-section">
                 <h2 class="section-title">Connect With Us Online</h2>
                 <p class="social-intro">Send us a message or stay updated on our programs, success stories, and community impact:</p>
-                
                 <!-- Formspree Contact Form -->
                 <div class="social-card" style="margin-bottom: 30px;">
                     <form id="my-form" action="https://formspree.io/f/xojnjqyp" method="POST" style="width: 100%;">
@@ -38,28 +37,27 @@ permalink: /contact/
                         </button>
                         <p id="my-form-status" style="margin-top: 15px; font-weight: 500;"></p>
                     </form>
-                    
                     <!-- Social Media Icons -->
                     <div style="margin-top: 40px; padding-top: 30px; border-top: 1px solid #eee; text-align: center;">
                         <p style="margin-bottom: 20px; color: var(--text-light);">Or connect with us on social media:</p>
                         <div style="display: flex; justify-content: center; gap: 30px; flex-wrap: wrap;">
                             <a href="https://facebook.com/maishabora" style="color: #1877F2; text-decoration: none; display: flex; flex-direction: column; align-items: center; gap: 8px;">
-                                <div style="font-size: 2.5rem;">📘</div>
+                                <i class="fab fa-facebook" style="font-size: 2.5rem;"></i>
                                 <span style="font-weight: 500;">Facebook</span>
                             </a>
                             <a href="https://instagram.com/maishabora" style="color: #E4405F; text-decoration: none; display: flex; flex-direction: column; align-items: center; gap: 8px;">
-                                <div style="font-size: 2.5rem;">📷</div>
+                                <i class="fab fa-instagram" style="font-size: 2.5rem;"></i>
                                 <span style="font-weight: 500;">Instagram</span>
                             </a>
                             <a href="#" style="color: #0A66C2; text-decoration: none; display: flex; flex-direction: column; align-items: center; gap: 8px;">
-                                <div style="font-size: 2.5rem;">💼</div>
+                                <i class="fab fa-linkedin" style="font-size: 2.5rem;"></i>
                                 <span style="font-weight: 500;">LinkedIn</span>
                             </a>
                         </div>
                     </div>
                 </div>
             </div>
-            
+
             <!-- FAQ -->
             <div class="faq-section">
                 <h2 class="section-title">Frequently Asked Questions</h2>
