@@ -321,17 +321,15 @@ description: Support teenagers in Karatu District, Tanzania. Your donation provi
 </div>
 
 
-
 <!-- Sponsor a Student Section -->
 <section class="section section-accent">
     <div class="container">
         <div class="sponsorship-section">
             <div class="sponsorship-content">
-                <h2>Sponsor a Student</h2>
+                <h2 class="section-title">Sponsor a Student</h2>
                 <p class="sponsorship-intro">Change one teenager's life with a personal sponsorship</p>
-                <div class="sponsorship-card">
+                  <div class="sponsorship-card">
                     <div class="sponsorship-header">
-                        <div class="sponsorship-amount">$50/month</div>
                         <div class="sponsorship-badge">Full Student Sponsorship</div>
                     </div>
                     <div class="sponsorship-benefits">
@@ -366,7 +364,105 @@ description: Support teenagers in Karatu District, Tanzania. Your donation provi
                 </div>
             </div>
         </div>
+        <br>
+        <!-- New Sponsorship Tiles Grid -->
+                <div class="sponsorship-tiles">
+                    <div class="tile-grid">
+                        <!-- Tile 1 -->
+                        <div class="sponsor-tile">
+                            <div class="tile-header">
+                                <h3>Hair Braid and Salon Services</h3>
+                                <div class="tile-duration">1 year</div>
+                            </div>
+                            <div class="tile-amount">$775</div>
+                            <button class="tile-sponsor-btn" data-program="Hair Braid and Salon Services" data-amount="775">Sponsor This Program</button>
+                        </div>
+                        <!-- Tile 2 -->
+                        <div class="sponsor-tile">
+                            <div class="tile-header">
+                                <h3>Food Production</h3>
+                                <div class="tile-duration">1 year</div>
+                            </div>
+                            <div class="tile-amount">$500</div>
+                            <button class="tile-sponsor-btn" data-program="Food Production" data-amount="500">Sponsor This Program</button>
+                        </div>
+                        <!-- Tile 3 -->
+                        <div class="sponsor-tile">
+                            <div class="tile-header">
+                                <h3>Food and Beverage Services</h3>
+                                <div class="tile-duration">1 year</div>
+                            </div>
+                            <div class="tile-amount">$500</div>
+                            <button class="tile-sponsor-btn" data-program="Food and Beverage Services" data-amount="500">Sponsor This Program</button>
+                        </div>
+                        <!-- Tile 4 -->
+                        <div class="sponsor-tile">
+                            <div class="tile-header">
+                                <h3>Front Office Operation</h3>
+                                <div class="tile-duration">1 year</div>
+                            </div>
+                            <div class="tile-amount">$650</div>
+                            <button class="tile-sponsor-btn" data-program="Front Office Operation" data-amount="650">Sponsor This Program</button>
+                        </div>
+                        <!-- Tile 5 -->
+                        <div class="sponsor-tile">
+                            <div class="tile-header">
+                                <h3>Electrician and Plumbing</h3>
+                                <div class="tile-duration">2 years</div>
+                            </div>
+                            <div class="tile-amount">$950</div>
+                            <button class="tile-sponsor-btn" data-program="Electrician and Plumbing" data-amount="950">Sponsor This Program</button>
+                        </div>
+                        <!-- Tile 6 -->
+                        <div class="sponsor-tile">
+                            <div class="tile-header">
+                                <h3>Automotive Technician</h3>
+                                <div class="tile-duration">2 years</div>
+                            </div>
+                            <div class="tile-amount">$450</div>
+                            <button class="tile-sponsor-btn" data-program="Automotive Technician" data-amount="450">Sponsor This Program</button>
+                        </div>
+                        <!-- Tile 7 -->
+                        <div class="sponsor-tile">
+                            <div class="tile-header">
+                                <h3>Tailoring and Seamstress</h3>
+                                <div class="tile-duration">1.5 years</div>
+                            </div>
+                            <div class="tile-amount">$650</div>
+                            <button class="tile-sponsor-btn" data-program="Tailoring and Seamstress" data-amount="650">Sponsor This Program</button>
+                        </div>
+                        <!-- Tile 8 -->
+                        <div class="sponsor-tile">
+                            <div class="tile-header">
+                                <h3>Bakery</h3>
+                                <div class="tile-duration">1 year</div>
+                            </div>
+                            <div class="tile-amount">$375</div>
+                            <button class="tile-sponsor-btn" data-program="Bakery" data-amount="375">Sponsor This Program</button>
+                        </div>
+                        <!-- Tile 9 -->
+                        <div class="sponsor-tile">
+                            <div class="tile-header">
+                                <h3>Computer and Graphic Design</h3>
+                                <div class="tile-duration">1 year</div>
+                            </div>
+                            <div class="tile-amount">$775</div>
+                            <button class="tile-sponsor-btn" data-program="Computer and Graphic Design" data-amount="775">Sponsor This Program</button>
+                        </div>
+                        <!-- Tile 10 -->
+                        <div class="sponsor-tile">
+                            <div class="tile-header">
+                                <h3>Chauffeur and Tour Guide</h3>
+                                <div class="tile-duration">1.5 years</div>
+                            </div>
+                            <div class="tile-amount">$775</div>
+                            <button class="tile-sponsor-btn" data-program="Chauffeur and Tour Guide" data-amount="775">Sponsor This Program</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Original Sponsorship Card (kept as alternative option) -->
     </div>
+    
 </section>
 
 <!-- Transparency Section -->
@@ -1617,6 +1713,142 @@ body {
   display: flex;
   flex-direction: column;
   gap: 5px;
+}/* ===== SPONSORSHIP TILES ===== */
+.sponsorship-tiles {
+    margin-bottom: 60px;
+    animation: fadeInUp 0.8s ease both;
+}
+
+.tile-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+    margin-bottom: 40px;
+}
+
+.sponsor-tile {
+    background: white;
+    border-radius: var(--radius);
+    padding: 25px;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    border: 1px solid var(--medium-gray);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+}
+
+.sponsor-tile::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+    border-radius: var(--radius) var(--radius) 0 0;
+}
+
+.sponsor-tile:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--accent);
+}
+
+.tile-header {
+    margin-bottom: 15px;
+    flex-grow: 1;
+}
+
+.tile-header h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--primary);
+    margin-bottom: 8px;
+    line-height: 1.4;
+}
+
+.tile-duration {
+    display: inline-block;
+    background: linear-gradient(135deg, rgba(44, 85, 48, 0.1) 0%, rgba(74, 124, 89, 0.1) 100%);
+    color: var(--primary);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    border: 1px solid rgba(44, 85, 48, 0.2);
+}
+
+.tile-amount {
+    font-size: 2.25rem;
+    font-weight: 800;
+    color: var(--accent);
+    margin: 15px 0;
+    text-align: center;
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+}
+
+.tile-sponsor-btn {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+    color: white;
+    border: none;
+    padding: 14px;
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    width: 100%;
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+    margin-top: 10px;
+    position: relative;
+    overflow: hidden;
+}
+
+.tile-sponsor-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(44, 85, 48, 0.3);
+    background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary) 100%);
+}
+
+.tile-sponsor-btn:active {
+    transform: translateY(0);
+}
+
+/* Responsive adjustments for tiles */
+@media (max-width: 1200px) {
+    .tile-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .tile-grid {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    }
+    
+    .sponsor-tile {
+        padding: 20px;
+    }
+    
+    .tile-header h3 {
+        font-size: 1.1rem;
+    }
+    
+    .tile-amount {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .tile-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 .amount-left span {
@@ -2053,6 +2285,32 @@ body {
     box-shadow: none !important;
     border: 1px solid #ddd !important;
   }
+}
+/* Even more compact option */
+.sponsor-tile {
+    padding: 16px;
+    min-height: 180px;
+}
+
+.tile-header h3 {
+    font-size: 1rem;
+    min-height: 2.4em;
+    margin-bottom: 8px;
+}
+
+.tile-amount {
+    font-size: 1.6rem;
+    margin: 8px 0 12px;
+}
+
+.tile-duration {
+    font-size: 0.75rem;
+    padding: 3px 8px;
+}
+
+.tile-sponsor-btn {
+    padding: 10px;
+    font-size: 0.85rem;
 }
 </style>
 
@@ -2612,6 +2870,29 @@ document.addEventListener('DOMContentLoaded', function() {
         
         closeDonationModal();
     }
+});
+document.querySelectorAll('.tile-sponsor-btn').forEach(button => {
+    button.addEventListener('click', (e) => {
+        const program = e.target.dataset.program;
+        const amount = parseFloat(e.target.dataset.amount);
+        
+        // Open donation modal with program-specific amount
+        openDonationModal(amount);
+        
+        // Set the donation type to the specific program
+        setTimeout(() => {
+            const donationTypeSelect = document.getElementById('donationType');
+            if (donationTypeSelect) {
+                // Add option if it doesn't exist
+                const existingOption = Array.from(donationTypeSelect.options).find(opt => opt.value === program.toLowerCase().replace(/\s+/g, '-'));
+                if (!existingOption) {
+                    const newOption = new Option(`${program} Sponsorship`, program.toLowerCase().replace(/\s+/g, '-'));
+                    donationTypeSelect.add(newOption);
+                }
+                donationTypeSelect.value = program.toLowerCase().replace(/\s+/g, '-');
+            }
+        }, 100);
+    });
 });
 </script>
 
