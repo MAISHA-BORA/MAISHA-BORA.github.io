@@ -17,56 +17,80 @@ permalink: /contact/
 <section class="section section-light">
     <div class="container">
         <div class="social-faq-grid">
-            <!-- Social Media -->
+            <!-- Social Media & Contact Form -->
             <div class="social-section">
                 <h2 class="section-title">Connect With Us Online</h2>
-                <p class="social-intro">Stay updated on our programs, success stories, and community impact:</p>
-                                <div class="social-cards">
-                    <div class="social-card">
-                        <div class="social-icon facebook">📘</div>
-                        <h3>Facebook</h3>
-                        <p>Follow us for event updates, youth success stories, and program highlights</p>
-                        <a href="https://facebook.com/maishabora" class="social-link">@maishabora</a>
-                    </div>
-                                        <div class="social-card">
-                        <div class="social-icon instagram">📷</div>
-                        <h3>Instagram</h3>
-                        <p>See photos and videos from our programs and community events</p>
-                        <a href="https://instagram.com/maishabora" class="social-link">@maishabora</a>
-                    </div>
-                                        <div class="social-card">
-                        <div class="social-icon linkedin">💼</div>
-                        <h3>LinkedIn</h3>
-                        <p>Connect with us professionally and stay informed about organizational updates</p>
-                        <a href="#" class="social-link">Maisha Bora Youth Foundation</a>
+                <p class="social-intro">Send us a message or stay updated on our programs, success stories, and community impact:</p>
+                
+                <!-- Formspree Contact Form -->
+                <div class="social-card" style="margin-bottom: 30px;">
+                    <form id="my-form" action="https://formspree.io/f/xojnjqyp" method="POST" style="width: 100%;">
+                        <div style="margin-bottom: 20px;">
+                            <label style="display: block; margin-bottom: 8px; font-weight: 500; color: var(--primary-color);">Email:</label>
+                            <input type="email" name="email" style="width: 100%; padding: 12px 15px; border: 1px solid #ddd; border-radius: 8px; font-size: 1rem; transition: border-color 0.3s;" required />
+                        </div>
+                        <div style="margin-bottom: 20px;">
+                            <label style="display: block; margin-bottom: 8px; font-weight: 500; color: var(--primary-color);">Message:</label>
+                            <textarea name="message" style="width: 100%; padding: 12px 15px; border: 1px solid #ddd; border-radius: 8px; font-size: 1rem; min-height: 150px; resize: vertical; transition: border-color 0.3s;" required></textarea>
+                        </div>
+                        <button id="my-form-button" type="submit" style="background-color: var(--primary-color); color: white; border: none; padding: 12px 30px; border-radius: 50px; font-weight: bold; cursor: pointer; transition: all 0.3s;">
+                            Send Message
+                        </button>
+                        <p id="my-form-status" style="margin-top: 15px; font-weight: 500;"></p>
+                    </form>
+                    
+                    <!-- Social Media Icons -->
+                    <div style="margin-top: 40px; padding-top: 30px; border-top: 1px solid #eee; text-align: center;">
+                        <p style="margin-bottom: 20px; color: var(--text-light);">Or connect with us on social media:</p>
+                        <div style="display: flex; justify-content: center; gap: 30px; flex-wrap: wrap;">
+                            <a href="https://facebook.com/maishabora" style="color: #1877F2; text-decoration: none; display: flex; flex-direction: column; align-items: center; gap: 8px;">
+                                <div style="font-size: 2.5rem;">📘</div>
+                                <span style="font-weight: 500;">Facebook</span>
+                            </a>
+                            <a href="https://instagram.com/maishabora" style="color: #E4405F; text-decoration: none; display: flex; flex-direction: column; align-items: center; gap: 8px;">
+                                <div style="font-size: 2.5rem;">📷</div>
+                                <span style="font-weight: 500;">Instagram</span>
+                            </a>
+                            <a href="#" style="color: #0A66C2; text-decoration: none; display: flex; flex-direction: column; align-items: center; gap: 8px;">
+                                <div style="font-size: 2.5rem;">💼</div>
+                                <span style="font-weight: 500;">LinkedIn</span>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
-                        <!-- FAQ -->
+            
+            <!-- FAQ -->
             <div class="faq-section">
                 <h2 class="section-title">Frequently Asked Questions</h2>
-                                <div class="faq-list">
+                
+                <div class="faq-list">
                     <div class="faq-item">
                         <h3>How do I enroll my teenager in programs?</h3>
                         <p>Contact us via phone or email to schedule an initial consultation. We'll discuss your teenager's needs, interests, and goals, then recommend appropriate programs.</p>
                     </div>
-                                    <div class="faq-item">
+                    
+                    <div class="faq-item">
                         <h3>Are your programs free?</h3>
                         <p>Yes! All our core programs are free for participants. We believe financial constraints should not prevent teenagers from accessing life-changing opportunities.</p>
                     </div>
-                                        <div class="faq-item">
+                    
+                    <div class="faq-item">
                         <h3>What age group do you serve?</h3>
                         <p>We primarily serve teenagers ages 13-20 years from Karatu District and surrounding areas.</p>
                     </div>
-                                        <div class="faq-item">
+                    
+                    <div class="faq-item">
                         <h3>Do you offer transportation?</h3>
                         <p>Please contact us to discuss transportation options. We work to ensure that distance is not a barrier to participation.</p>
                     </div>
-                                        <div class="faq-item">
+                    
+                    <div class="faq-item">
                         <h3>Can I volunteer even if I don't live in Tanzania?</h3>
                         <p>Yes! We welcome international volunteers and can discuss remote volunteering opportunities such as online mentoring, curriculum development, or fundraising support.</p>
                     </div>
-                                        <div class="faq-item">
+                    
+                    <div class="faq-item">
                         <h3>How can my organization partner with you?</h3>
                         <p>We actively seek partnerships with schools, businesses, NGOs, and community organizations. Contact us to explore collaboration opportunities that align with our mission.</p>
                     </div>
@@ -149,10 +173,12 @@ permalink: /contact/
         <div class="cta-content">
             <h2>We Look Forward to Hearing From You!</h2>
             <p>Whether you're seeking help, offering support, or simply learning more about our work, we're here to connect with you. Together, we can empower the next generation of leaders in Tanzania.</p>
+            
             <div class="organization-signature">
                 <h3>Maisha Bora Youth Foundation</h3>
                 <p class="tagline">Empowering Youth, Transforming Futures</p>
             </div>
+            
             <div class="cta-actions">
                 <a href="/" class="btn btn-primary">Back to Home</a>
                 <a href="/" class="btn btn-secondary">Learn About Our Programs</a>
@@ -163,8 +189,45 @@ permalink: /contact/
     </div>
 </section>
 
-<style>
+<!-- Formspree Script -->
+<script>
+  var form = document.getElementById("my-form");
+  
+  async function handleSubmit(event) {
+    event.preventDefault();
+    var status = document.getElementById("my-form-status");
+    var data = new FormData(event.target);
+    fetch(event.target.action, {
+      method: form.method,
+      body: data,
+      headers: {
+          'Accept': 'application/json'
+      }
+    }).then(response => {
+      if (response.ok) {
+        status.innerHTML = "Thanks for your submission! We'll get back to you soon.";
+        status.style.color = "#28a745";
+        form.reset()
+      } else {
+        response.json().then(data => {
+          if (Object.hasOwn(data, 'errors')) {
+            status.innerHTML = data["errors"].map(error => error["message"]).join(", ");
+            status.style.color = "#dc3545";
+          } else {
+            status.innerHTML = "Oops! There was a problem submitting your form";
+            status.style.color = "#dc3545";
+          }
+        })
+      }
+    }).catch(error => {
+      status.innerHTML = "Oops! There was a problem submitting your form";
+      status.style.color = "#dc3545";
+    });
+  }
+  form.addEventListener("submit", handleSubmit)
+</script>
 
+<style>
 * {
     margin: 0;
     padding: 0;
@@ -174,7 +237,17 @@ permalink: /contact/
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.6;
-    color: var(--text-color);
+    color: #333;
+}
+
+:root {
+    --primary-color: #2c5530;
+    --accent-color: #8fb996;
+    --light-color: #f8f9fa;
+    --dark-color: #343a40;
+    --text-color: #333;
+    --text-light: #666;
+    --brand-color: #1e3a22;
 }
 
 .container {
@@ -209,7 +282,7 @@ body {
 
 .section-title {
     margin-bottom: 30px;
-    font-size: 4.5rem;
+    font-size: 2.5rem;
     position: relative;
 }
 
@@ -229,7 +302,7 @@ body {
 
 /* Hero Section */
 .contact-hero {
-    background: linear-gradient(rgba(44, 85, 48, 0.85), rgba(44, 85, 48, 0.85)), url('background-image: url('/photos/youth2.jpg');');
+    background: linear-gradient(rgba(44, 85, 48, 0.85), rgba(44, 85, 48, 0.85)), url('/photos/youth2.jpg');
     background-size: cover;
     background-position: center;
     color: white;
@@ -515,7 +588,6 @@ body {
     padding: 25px;
     border-radius: 10px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-    text-align: center;
 }
 
 .social-icon {
@@ -721,7 +793,7 @@ body {
 
 /* CTA Section */
 .cta-section {
-    background: linear-gradient(rgba(44, 85, 48, 0.9), rgba(44, 85, 48, 0.9)), url('/assets/images/cta-bg.jpg');
+    background: linear-gradient(rgba(44, 85, 48, 0.9), rgba(44, 85, 48, 0.9));
     background-size: cover;
     background-position: center;
     color: white;
@@ -822,6 +894,19 @@ body {
     box-shadow: 0 10px 20px rgba(0,0,0,0.1);
 }
 
+/* Form Input Focus States */
+input:focus, textarea:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(143, 185, 150, 0.2);
+}
+
+#my-form-button:hover {
+    background-color: #1e3a22;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
 /* Responsive Design */
 @media (max-width: 992px) {
     .contact-grid,
@@ -891,6 +976,11 @@ body {
     .mailing-card,
     .commitment-card {
         padding: 20px;
+    }
+    
+    /* Adjust form for mobile */
+    input, textarea {
+        font-size: 16px; /* Prevents zoom on iOS */
     }
 }
 </style>
